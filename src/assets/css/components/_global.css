@@ -1,0 +1,55 @@
+html {
+  scroll-behavior: smooth;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -2;
+    background-size: cover;
+    /* filter: grayscale(100%); */
+    background-repeat: no-repeat;
+    @media screen(xl) {
+      background-image: url("../../images/backgrounds/bg-main.jpg");
+    }
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background-color: theme("colors.slate.100");
+    @media screen(xl) {
+      background-color: theme("colors.primary" / 30%);
+    }
+  }
+  &.dark {
+    &:after {
+      background-color: theme("colors.darkmode.700");
+      @media screen(xl) {
+        background-color: theme("colors.primary" / 30%);
+      }
+    }
+    body {
+      color: theme("colors.slate.300");
+      *,
+      ::before,
+      ::after {
+        border-color: theme("colors.white" / 5%);
+      }
+    }
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: theme("fontFamily.roboto");
+    font-size: theme("fontSize.sm");
+    line-height: theme("lineHeight.5");
+    color: theme("colors.slate.700");
+  }
+}
