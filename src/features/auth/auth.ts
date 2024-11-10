@@ -88,8 +88,7 @@ export const getRegisterAuth = () => {
     useEffect(()=>{
         if(is_error_register && message_register ){
             if(!is_loading_register){
-                console.log(message_register, 'message register');
-                setMessage(message_register);
+                setMessage(message_register && message_register.data);
                 dispatch(resetAuth());
             }
         }
