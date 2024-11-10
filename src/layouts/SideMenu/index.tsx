@@ -14,13 +14,17 @@ import { selectDarkMode } from "../../stores/darkModeSlice";
 import { useAppSelector } from "../../stores/hooks";
 import { FormattedMenu, linkTo, nestedMenu, enter, leave } from "./side-menu";
 import Lucide from "../../base-components/Lucide";
-import logoUrl from "../../assets/images/logo.svg";
-import logoDarkUrl from "../../assets/images/logo-dark.svg";
+import logoUrl from "../../assets/images/logo/logo_kopkarla_white.png";
+import logoDarkUrl from "../../assets/images/logo/logo_kopkarla_color.png";
 import clsx from "clsx";
 import TopBar from "../../components/TopBar";
 import DarkModeSwitcher from "../../components/DarkModeSwitcher";
 import MainColorSwitcher from "../../components/MainColorSwitcher";
 import SimpleBar from "simplebar";
+
+import { getMeAuth } from "../../features/auth/meAuth";
+import { getLogoutAuth } from "../../features/auth/logoutAuth";
+import LoadingIcon from "../../base-components/LoadingIcon";
 
 function Main() {
   const location = useLocation();
@@ -30,15 +34,26 @@ function Main() {
   const sideMenuStore = useAppSelector(selectSideMenu);
   const sideMenu = () => nestedMenu(sideMenuStore, location);
   const darkMode = useAppSelector(selectDarkMode);
+  const [privilege, setPrivilege] = useState<any>([])
+
+  //get data auth
+  const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
+
+  useEffect(()=>{
+    setPrivilege(dataMe && dataMe.datas && dataMe.datas.data && dataMe.datas.data.privilege);
+  },[dataMe])
+
+  //logout
+  const {data: dataLogout, loading:loadingLogout, message:messageLogout, handleLogout} = getLogoutAuth();
 
   useEffect(() => {
     setFormattedMenu(sideMenu());
   }, [sideMenuStore, location.pathname]);
 
   const [simpleMenu, setSimpleMenu] = useCallbackState({
-    active: false,
+    active: true,
     hover: false,
-    wrapper: false,
+    wrapper: true,
   });
   const [mobileMenu, setMobileMenu] = useState(false);
   const scrollableRef = createRef<HTMLDivElement>();
@@ -126,14 +141,17 @@ function Main() {
   }, [sideMenuStore, location.pathname]);
 
   return (
+    <>
+    <div className={`${loadingMe === false ? 'hidden' : ''} flex justify-center items-center w-full h-screen`}>
+      <LoadingIcon icon="circles" className={`w-10 h-10`} color="white" />
+    </div>
     <div className="flex h-screen xl:pl-5 xl:py-5">
       <DarkModeSwitcher />
-      {/* <MainColorSwitcher /> */}
       {/* BEGIN: Side Menu */}
       <nav
         className={clsx([
-          "text-xs",
-          "absolute z-[52] xl:z-auto -ml-[100%] xl:ml-0 transition-[width,margin-left] w-[270px] h-full flex flex-col pl-6 pr-2 overflow-hidden duration-300 ease-in-out xl:rounded-l-xl",
+          {"hidden" : loadingMe === true},
+          "absolute z-[52] -ml-[100%] xl:ml-0 transition-[width,margin-left] w-[270px] h-full flex flex-col pl-6 pr-2 overflow-hidden duration-300 ease-in-out xl:rounded-l-xl",
           "xl:before:visible before:opacity-0 xl:before:opacity-100 before:z-[-2] xl:before:z-auto before:bg-black/60 xl:before:bg-transparent before:transition-opacity xl:before:transition-none before:duration-300 before:ease-in-out before:content-[''] before:fixed xl:before:absolute before:inset-0 before:blur-md before:bg-cover before:grayscale before:xl:bg-[url('../../assets/images/backgrounds/bg-main.jpg')] before:bg-no-repeat before:-m-5",
           "after:w-full xl:after:w-auto after:h-screen xl:after:h-auto after:dark:bg-darkmode-800 xl:after:dark:bg-primary/50 after:content-[''] after:absolute after:inset-0 after:opacity-100 xl:after:opacity-90 after:bg-slate-50 xl:after:bg-primary/50 after:xl:bg-gradient-to-b after:from-slate-50/90 after:via-white/70 after:to-white/90 after:dark:from-darkmode-800/90 after:dark:via-darkmode-700/60 after:dark:to-darkmode-700/80",
           {
@@ -188,7 +206,7 @@ function Main() {
                     "xl:opacity-0 transition-opacity duration-200 ease-in-out",
                 ])}
               >
-                Lucent
+                Kopkarla
               </span>
             </Link>
             <a
@@ -224,7 +242,7 @@ function Main() {
         <div
           ref={scrollableRef}
           className={clsx([
-            "relative z-10 -ml-5 pl-5 pt-5 pb-5 h-full overflow-y-auto [-webkit-mask-image:-webkit-linear-gradient(top,rgba(0,0,0,0),black_30px)] [&:-webkit-scrollbar]:w-0 [&:-webkit-scrollbar]:bg-transparent",
+            "relative text-xs z-10 -ml-5 pl-5 pt-5 pb-5 h-full overflow-y-auto [-webkit-mask-image:-webkit-linear-gradient(top,rgba(0,0,0,0),black_30px)] [&:-webkit-scrollbar]:w-0 [&:-webkit-scrollbar]:bg-transparent",
             "[&_.simplebar-content]:p-0 [&_.simplebar-track.simplebar-vertical]:w-[10px] [&_.simplebar-track.simplebar-vertical]:pt-[3.1rem] [&_.simplebar-track.simplebar-vertical]:mr-0.5 [&_.simplebar-track.simplebar-vertical_.simplebar-scrollbar]:before:bg-black/10 [&_.simplebar-track.simplebar-vertical_.simplebar-scrollbar]:before:dark:bg-white/[0.15]",
           ])}
         >
@@ -234,7 +252,7 @@ function Main() {
               typeof menu === "string" ? (
                 <li
                   className={clsx([
-                    "mb-4 w-full h-5 pl-5 text-xs relative [&:not(:first-child)]:mt-6",
+                    "mb-4 w-full h-5 pl-5  relative [&:not(:first-child)]:mt-6",
                     !simpleMenu.active && "text-slate-600 dark:text-slate-500",
                     simpleMenu.active &&
                       "text-slate-600 dark:text-slate-500 xl:text-transparent whitespace-nowrap",
@@ -261,6 +279,7 @@ function Main() {
                       }`]: !menu.active,
                     })}
                     menu={menu}
+                    privilege={privilege}
                     simpleMenu={simpleMenu}
                     formattedMenuState={[formattedMenu, setFormattedMenu]}
                     level="first"
@@ -293,6 +312,7 @@ function Main() {
                                 }`]: !subMenu.active,
                               })}
                               menu={subMenu}
+                              privilege={privilege}
                               simpleMenu={simpleMenu}
                               formattedMenuState={[
                                 formattedMenu,
@@ -331,6 +351,7 @@ function Main() {
                                             }`]: !lastSubMenu.active,
                                           })}
                                           menu={lastSubMenu}
+                                          privilege={privilege}
                                           simpleMenu={simpleMenu}
                                           formattedMenuState={[
                                             formattedMenu,
@@ -378,7 +399,11 @@ function Main() {
             { "xl:pr-1": simpleMenu.wrapper },
           ])}
         >
-          <TopBar toggleMobileMenu={toggleMobileMenu} />
+          <TopBar 
+            data={dataMe && dataMe.datas && dataMe.datas.data} 
+            logout={handleLogout}
+            toggleMobileMenu={toggleMobileMenu}
+          />
           <div className="xl:px-6 mt-2.5">
             <Outlet />
           </div>
@@ -386,6 +411,8 @@ function Main() {
       </div>
       {/* END: Content */}
     </div>
+    </>
+    
   );
 }
 
@@ -397,6 +424,7 @@ function Menu(props: {
     wrapper: boolean;
   };
   menu: FormattedMenu;
+  privilege?:any;
   formattedMenuState: [
     (FormattedMenu | string)[],
     Dispatch<SetStateAction<(FormattedMenu | string)[]>>
@@ -406,10 +434,13 @@ function Menu(props: {
   const navigate = useNavigate();
   const [formattedMenu, setFormattedMenu] = props.formattedMenuState;
 
+  const nameColom : any = props.menu.code;
+
   return (
     <a
       href={props.menu.subMenu ? "#" : props.menu.pathname}
       className={clsx([
+        `${props.privilege && props.privilege[nameColom] ? '' : 'hidden'}`,
         "h-[50px] flex items-center pl-5 mb-1 relative dark:text-slate-300",
         {
           "bg-primary text-white rounded-xl dark:bg-transparent":
@@ -440,7 +471,7 @@ function Menu(props: {
             props.menu.active && props.level == "first",
         })}
       >
-        <Lucide icon={props.menu.icon} className="w-5 h-5 -mt-0.5" />
+        <Lucide icon={props.menu.icon} className="w-4 h-4 -mt-0.5" />
       </div>
       <div
         className={clsx([

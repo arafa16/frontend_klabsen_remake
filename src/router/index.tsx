@@ -4,6 +4,8 @@ import Dashboard from "../pages/dashboard";
 import Login from "../pages/auth/login";
 import Register from "../pages/auth/registerPage";
 import ForgotPassword from "../pages/auth/forgotPassword";
+import ResetPassword from "../pages/auth/resetPassword";
+import ViewProfilePage from "../pages/profile/viewProfilePage";
 
 function Router() {
   const routes = [
@@ -14,6 +16,11 @@ function Router() {
         {
           path: "/",
           element: <Dashboard />,
+        },
+        //profile
+        {
+          path: "/profile/data/:id",
+          element: <ViewProfilePage />
         },
       ],
     },
@@ -30,7 +37,7 @@ function Router() {
       element: <ForgotPassword />,
     },
     {
-      path: "/resetPassword/:token",
+      path: "/reset/:token",
       element: <ResetPassword />,
     }
   ];

@@ -42,6 +42,7 @@ const nestedMenu = (menu: Array<Menu | string>, location: Location) => {
         pathname: item.pathname,
         subMenu: item.subMenu,
         ignore: item.ignore,
+        code: item.code,
       };
       menuItem.active =
         ((location.forceActiveMenu !== undefined &&

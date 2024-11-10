@@ -13,6 +13,10 @@ import {
     SendEmailForgot, 
     resetState,
     VerifyToken
+} from "../../stores/features/forgotPasswordSlice";
+import { 
+    ResetPasswordByToken, 
+    resetStatePassword
 } from "../../stores/features/resetPasswordSlice";
 
 
@@ -24,7 +28,7 @@ export const getForgotPassword = () => {
     const dispatch = useDispatch();
 
     const {data:dataReset, isError:isErrorReset, isSuccess:isSuccessReset, isLoading:isLoadingReset, message:messageReset} = useSelector(
-        (state : any) => state.resetPassword
+        (state : any) => state.forgotPassword
     )
 
     useEffect(()=>{
@@ -66,13 +70,13 @@ export const getVerifyToken = (datas:any) => {
     const dispatch = useDispatch();
 
     const {data, isError, isSuccess, isLoading, message:messageVerify} = useSelector(
-        (state : any) => state.resetPassword
+        (state : any) => state.forgotPassword
     )
 
     useEffect(()=>{
         if(isSuccess && data){
             if(!isLoading){
-                setDataResult(data);
+                setDataResult(data && data.datas && data.datas.data);
                 dispatch(resetState())
             }
         }
@@ -108,15 +112,15 @@ export const getSubmitResetPassword = (datas:any) => {
     const dispatch = useDispatch();
 
     const {data, isError, isSuccess, isLoading, message:messageVerify} = useSelector(
-        (state : any) => state.auth2
+        (state : any) => state.resetPassword
     )
 
     useEffect(()=>{
         if(isSuccess && messageVerify){
             if(!isLoading){
-                setMessage({msg:messageVerify});
+                setMessage(messageVerify);
                 setSuccessReset(true);
-                dispatch(resetAuth2())
+                dispatch(resetStatePassword())
                 setInterval(() => navigate('/login'), 5000);
             }
         }
@@ -126,7 +130,7 @@ export const getSubmitResetPassword = (datas:any) => {
         if(isError && messageVerify){
             if(!isLoading){
                 setMessage({msg:messageVerify});
-                dispatch(resetAuth2())
+                dispatch(resetStatePassword())
             }
         }
     },[isError, messageVerify, isLoading]);
@@ -137,7 +141,6 @@ export const getSubmitResetPassword = (datas:any) => {
             token, password, confPassword
         }));
     }
-
     return {submitResetPassword, password, setPassword, confPassword, setConfPassword, message, successReset, isLoading}
 }
 

@@ -8,9 +8,9 @@ import { FormInput } from "../../base-components/Form";
 import LoadingIcon from "../../base-components/LoadingIcon";
 import Button from "../../base-components/Button";
 import { 
-  // getSubmitResetPassword, 
+  getSubmitResetPassword, 
   getVerifyToken 
-} from "../../features/auth/resetPassword";
+} from "../../features/auth/forgotPassword";
 import { getMessageShow } from "../../features/messageShow";
 import Alert from "../../base-components/Alert";
 import Lucide from "../../base-components/Lucide";
@@ -23,7 +23,7 @@ const ResetPassword = () => {
   
   const {dataResult, message:messageVerify, error, isLoading:isLoadingVerify} = getVerifyToken({token})
 
-  // const {submitResetPassword, password, setPassword, confPassword, setConfPassword, message:messageReset, successReset, isLoading:isLoadingReset} = getSubmitResetPassword({token})
+  const {submitResetPassword, password, setPassword, confPassword, setConfPassword, message:messageReset, successReset, isLoading:isLoadingReset} = getSubmitResetPassword({token})
 
   useEffect(()=>{
     setMessage(messageVerify)
@@ -67,7 +67,8 @@ const ResetPassword = () => {
                   }
                   <FormInput
                       type="email"
-                      className="block px-4 py-3"
+                      formInputSize="sm"
+                      className="block px-4 py-2"
                       placeholder="Email"
                       name='email'
                       disabled
@@ -75,7 +76,8 @@ const ResetPassword = () => {
                   />
                   <FormInput
                       type="password"
-                      className={`${error ? 'block' : ' '} px-4 py-3 mt-4`}
+                      formInputSize="sm"
+                      className={`${error ? 'block' : ' '} px-4 py-2 mt-4`}
                       placeholder="Password"
                       name='password'
                       required
@@ -84,19 +86,21 @@ const ResetPassword = () => {
                   />
                   <FormInput
                       type="password"
-                      className="block px-4 py-3 mt-4"
+                      formInputSize="sm"
+                      className="block px-4 py-2 mt-4"
                       placeholder="Confirmation Password"
                       name='confPassword'
                       required
                       value={confPassword}
                       onChange={(e)=>setConfPassword(e.target.value)}
                   />
-                  <div className="flex justify-end mt-4 text-xs text-slate-500 sm:text-sm">
+                  <div className="flex justify-end mt-4 text-xs text-slate-500 sm:text-xm">
                   <p onClick={()=>navigate('/login')} className='cursor-pointer hover:text-blue-500'>Back to login ?</p>
                   </div>
                   <div className="mt-5 text-center xl:mt-8 xl:text-left">                    
                       <Button 
                           variant="primary" 
+                          size="sm"
                           className={`${error ? 'hidden' : ' '} w-full xl:mr-3 mb-2`}
                           type='submit'
                           >
@@ -109,6 +113,7 @@ const ResetPassword = () => {
                       </Button>
                       <Button 
                           type='button'
+                          size="sm"
                           variant="outline-secondary" 
                           className={`${error ? 'hidden' : ' '} w-full xl:mr-3`}
                           onClick={()=>navigate('/register')}

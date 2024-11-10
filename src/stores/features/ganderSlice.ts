@@ -25,8 +25,7 @@ export const getGanders : any = createAsyncThunk("getGanders", async(_, thunkAPI
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });

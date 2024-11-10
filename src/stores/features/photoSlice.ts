@@ -17,16 +17,11 @@ const initialState : variabel = {
     message: '',
 }
 
-
-export const ResetPasswordByToken : any = createAsyncThunk("reset/ResetPasswordByToken", async(datas : any, thunkAPI) => {
+export const ChangePhotoProfile: any = createAsyncThunk("photo/ChangePhotoProfile", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+'/reset/'+datas.token, {
-            password: datas.password,
-            confPassword: datas.confPassword,
-        },{
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/user/photo/${datas.uuid}`, datas.formData,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
-        
         return response.data;
     } catch (error: any) {
         if(error.response){
@@ -35,24 +30,24 @@ export const ResetPasswordByToken : any = createAsyncThunk("reset/ResetPasswordB
     }
 });
 
-export const resetSlice = createSlice({
-    name: "resetPassword",
+export const photoSlice = createSlice({
+    name: "photo",
     initialState,
     reducers:{
-        resetStatePassword: (state) => initialState
+        resetPhoto: (state) => initialState
     },
     extraReducers:(builder) => {
-        
-        //reset password Token
-        builder.addCase(ResetPasswordByToken.pending, (state) => {
+
+        //photo profile
+        builder.addCase(ChangePhotoProfile.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(ResetPasswordByToken.fulfilled, (state, action) => {
+        builder.addCase(ChangePhotoProfile.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(ResetPasswordByToken.rejected, (state, action) => {
+        builder.addCase(ChangePhotoProfile.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
@@ -60,5 +55,5 @@ export const resetSlice = createSlice({
     }
 })
 
-export const {resetStatePassword} = resetSlice.actions;
-export default resetSlice.reducer;
+export const {resetPhoto} = photoSlice.actions;
+export default photoSlice.reducer;

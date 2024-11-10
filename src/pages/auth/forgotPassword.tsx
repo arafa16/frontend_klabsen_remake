@@ -5,7 +5,7 @@ import { FormInput } from "../../base-components/Form";
 
 import Button from "../../base-components/Button";
 import LoadingIcon from "../../base-components/LoadingIcon";
-import { getForgotPassword } from "../../features/auth/resetPassword";
+import { getForgotPassword } from "../../features/auth/forgotPassword";
 import { getMessageShow } from "../../features/messageShow";
 import { useNavigate } from "react-router-dom";
 
@@ -39,7 +39,8 @@ const forgotPassword = () => {
             <div className="box px-5 py-8 mt-10 max-w-[450px] relative before:content-[''] before:z-[-1] before:w-[95%] before:h-full before:bg-slate-200 before:border before:border-slate-200 before:-mt-5 before:absolute before:rounded-lg before:mx-auto before:inset-x-0 before:dark:bg-darkmode-600/70 before:dark:border-darkmode-500/60">
                 <FormInput
                     type="email"
-                    className="block px-4 py-3"
+                    formInputSize="sm"
+                    className="block px-4 py-2"
                     placeholder="Email"
                     name='email'
                     value={email}
@@ -57,6 +58,7 @@ const forgotPassword = () => {
                         :
                         <Button 
                             variant="primary" 
+                            size="sm"
                             className="w-full xl:mr-3"
                             type='submit'
                             >

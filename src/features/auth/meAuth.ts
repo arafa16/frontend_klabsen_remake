@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe, resetMe } from "../../stores/features/meSlice";
 
-export const getMeAuthCheck = () => {
-    const [data, setData] = useState([]);
+export const getMeAuth = () => {
+    const [data, setData] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState(null);
 
@@ -16,20 +16,22 @@ export const getMeAuthCheck = () => {
     )
 
     useEffect(()=>{
-      if(dataMe && isSuccessMe){
-        if(!isLoadingMe){
-          navigate('/');
+        if(dataMe && isSuccessMe){
+            if(!isLoadingMe){
+                setLoading(false);
+                setData(dataMe)
+            }
         }
-      }
-    },[dataMe, isSuccessMe, isLoadingMe]);
+    },[dataMe, isSuccessMe, isLoadingMe])
 
     useEffect(()=>{
-      if(isErrorMe && messageMe){
-          if(!isLoadingMe){
-              dispatch(resetMe());
-          }
-      }
-  },[isErrorMe, messageMe, isLoadingMe])
+        if(isErrorMe && messageMe){
+            if(!isLoadingMe){
+                dispatch(resetMe());
+                navigate('/login')
+            }
+        }
+    },[isErrorMe, messageMe, isLoadingMe])
 
     useEffect(()=>{
         dispatch(getMe());
