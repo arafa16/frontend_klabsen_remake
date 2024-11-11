@@ -1,6 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import Menu from "../layouts/SideMenu";
-import Dashboard from "../pages/dashboard";
+import AbsenUserPage from "../pages/absen/absenUserPage";
+import Dashboard from "../pages/dashboard/dashboardPage";
 import Login from "../pages/auth/login";
 import Register from "../pages/auth/registerPage";
 import ForgotPassword from "../pages/auth/forgotPassword";
@@ -16,6 +17,10 @@ function Router() {
         {
           path: "/",
           element: <Dashboard />,
+        },
+        {
+          path: "/absen",
+          element: <AbsenUserPage />,
         },
         //profile
         {

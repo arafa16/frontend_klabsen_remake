@@ -40,7 +40,7 @@ function Main() {
   const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
 
   useEffect(()=>{
-    setPrivilege(dataMe && dataMe.datas && dataMe.datas.data && dataMe.datas.data.privilege);
+    setPrivilege(dataMe && dataMe.privilege);
   },[dataMe])
 
   //logout
@@ -400,7 +400,7 @@ function Main() {
           ])}
         >
           <TopBar 
-            data={dataMe && dataMe.datas && dataMe.datas.data} 
+            data={dataMe} 
             logout={handleLogout}
             toggleMobileMenu={toggleMobileMenu}
           />

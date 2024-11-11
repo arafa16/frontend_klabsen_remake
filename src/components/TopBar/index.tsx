@@ -12,9 +12,7 @@ import { useNavigate } from "react-router-dom";
 function Main(props: { toggleMobileMenu: (event: React.MouseEvent) => void; data:any; logout:any;}) {
 
   const navigate = useNavigate();
-
-  console.log(props.data && props.data.url_image && import.meta.env.VITE_REACT_APP_API_URL+props.data.url_image, 'datas')
-
+  
   const {modalResetPassword, message, showModal, setShowModal} = resetPassword({uuid:props.data && props.data.uuid});
 
   const {

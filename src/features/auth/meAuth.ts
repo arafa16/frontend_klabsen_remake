@@ -19,7 +19,7 @@ export const getMeAuth = () => {
         if(dataMe && isSuccessMe){
             if(!isLoadingMe){
                 setLoading(false);
-                setData(dataMe)
+                setData(dataMe && dataMe.datas && dataMe.datas.data)
             }
         }
     },[dataMe, isSuccessMe, isLoadingMe])
