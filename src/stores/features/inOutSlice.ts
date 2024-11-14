@@ -36,6 +36,7 @@ export const getInOutsByUser : any = createAsyncThunk("getInOutsByUser", async(d
         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/in_out/user/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+        
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -75,10 +76,10 @@ export const getInOutsByUser : any = createAsyncThunk("getInOutsByUser", async(d
 export const createInOutsByAbsenWeb : any = createAsyncThunk("createInOutsByAbsenWeb", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/in_out/web`,{
-            userId:datas.userId,
-            tanggalMulai:datas.tanggalMulai,
-            tanggalSelesai:datas.tanggalSelesai,
-            codeTipeAbsen:datas.codeTipeAbsen
+            user_uuid:datas.user_uuid,
+            tanggal_mulai:datas.tanggal_mulai,
+            tanggal_selesai:datas.tanggal_selesai,
+            code_tipe_absen:datas.code_tipe_absen
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -161,20 +162,20 @@ export const inOutsSlice = createSlice({
             state.message = action.payload;
         })
 
-        // // create inOuts
-        // builder.addCase(createInOutsByAbsenWeb.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(createInOutsByAbsenWeb.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(createInOutsByAbsenWeb.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // })
+        // create inOuts
+        builder.addCase(createInOutsByAbsenWeb.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(createInOutsByAbsenWeb.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(createInOutsByAbsenWeb.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
 
     }
 })

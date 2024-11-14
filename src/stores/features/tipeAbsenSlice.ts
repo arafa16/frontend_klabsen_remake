@@ -22,6 +22,7 @@ export const getTipeAbsens : any = createAsyncThunk("getTipeAbsens", async(_, th
         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_absen/datas`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+
         return response.data;
     } catch (error : any) {
         if(error.response){

@@ -29,9 +29,9 @@ export const SlideOverDateKoreksiUser = () => {
 
     //form
     const [time, setTime] = useState('');
-    const [keterangan, setKeterangan] = useState('');
-    const [tipeAbsenId, setTipeAbsenId] = useState('');
-    const [jamOperasionalId, setJamOperasionalId] = useState('');
+    const [keterangan, set_keterangan] = useState('');
+    const [tipe_absen_id, set_tipe_absen_id] = useState('');
+    const [jam_operasional_id, set_jam_operasional_id] = useState('');
 
     const dispatch = useDispatch(); 
 
@@ -45,7 +45,7 @@ export const SlideOverDateKoreksiUser = () => {
 
     useEffect(()=>{
         const uuid = dataUser.uuid;
-        if(messageKoreksi && isSuccess){
+        if(isSuccess && messageKoreksi){
             if(!isLoading){
                 setMessage(messageKoreksi);
                 dispatch(resetKoreksis());
@@ -59,27 +59,27 @@ export const SlideOverDateKoreksiUser = () => {
     const submitForm = (e : any) => {
         e.preventDefault();
         const dateStart = dataInfo.dateStr+' '+time;
-        const tanggalMulai = dayjs(dateStart).format('YYYY-MM-DD HH:mm:ss');
+        const tanggal_mulai = dayjs(dateStart).format('YYYY-MM-DD HH:mm:ss');
         
         dispatch(createKoreksisByDate({
-            userId:dataUser.uuid,
-            tanggalMulai:tanggalMulai,
-            tanggalSelesai:tanggalMulai,
-            tipeAbsenId:tipeAbsenId,
-            codePelanggaran:2,
-            codeStatusInout:2,
-            codeStatusKoreksi:1,
+            user_id:dataUser.uuid,
+            tanggal_mulai:tanggal_mulai,
+            tanggal_selesai:tanggal_mulai,
+            tipe_absen_id:tipe_absen_id,
+            code_pelanggaran:2,
+            code_status_inout:2,
+            code_status_koreksi:1,
             keterangan:keterangan,
-            jamOperasionalId:jamOperasionalId,
-            isAbsenWeb:1,
+            jam_operasional_id:jam_operasional_id,
+            is_absen_web:1,
         }));
     }
 
     const resetValue = () => {
         setTime('');
-        setKeterangan('');
-        setTipeAbsenId('');
-        setJamOperasionalId('');
+        set_keterangan('');
+        set_tipe_absen_id('');
+        set_jam_operasional_id('');
     }
 
     const form = (
@@ -112,13 +112,13 @@ export const SlideOverDateKoreksiUser = () => {
                         <FormLabel htmlFor="modal-form-6">Tipe Absen</FormLabel>
                         <FormSelect 
                             id="tipe_absen"
-                            onChange={(e : any)=>setTipeAbsenId(e.target.value)}
-                            value={tipeAbsenId}
+                            onChange={(e : any)=>set_tipe_absen_id(e.target.value)}
+                            value={tipe_absen_id}
                             required
                             >
                             <option value={''}></option> 
                             {dataTipeAbsen.map((data : any, key)=>(
-                                <option key={key} value={data && data.uuid} className={`${(data && data.isSelect ? '' : 'hidden')}`}>{data && data.name}</option>
+                                <option key={key} value={data && data.uuid} className={`${(data && data.is_select ? '' : 'hidden')}`}>{data && data.name}</option>
                             ))}
                         </FormSelect>
                     </div>
@@ -138,8 +138,8 @@ export const SlideOverDateKoreksiUser = () => {
                         <FormLabel htmlFor="modal-form-2">Jam Operasional</FormLabel>
                         <FormSelect 
                             id="jam_operasional"
-                            onChange={(e : any)=>setJamOperasionalId(e.target.value)}
-                            value={jamOperasionalId}
+                            onChange={(e : any)=>set_jam_operasional_id(e.target.value)}
+                            value={jam_operasional_id}
                             required
                             >
                         <option value={''}></option> 
@@ -147,8 +147,8 @@ export const SlideOverDateKoreksiUser = () => {
                             <option 
                                 key={key} 
                                 value={data.uuid}
-                                className={`${data.jamOperasionalGroupId === dataUser.jamOperasionalGroupId && data.isActive === true ? '' : 'hidden'}`}
-                                >{data.jamMasuk}-{data.jamPulang} {data.name}</option>
+                                className={`${data.jam_operasional_group_id === dataUser.jam_operasional_group_id && data.is_active === true ? '' : 'hidden'}`}
+                                >{data.jam_masuk}-{data.jam_pulang} {data.name}</option>
                         ))}
                         </FormSelect>
                     </div>
@@ -158,7 +158,7 @@ export const SlideOverDateKoreksiUser = () => {
                             id="keterangan"
                             required
                             value={keterangan}
-                            onChange={(e : any) => setKeterangan(e.target.value)}
+                            onChange={(e : any) => set_keterangan(e.target.value)}
                             placeholder=""
                         />
                     </div>

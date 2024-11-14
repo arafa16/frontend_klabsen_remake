@@ -30,9 +30,9 @@ export const SlideOverDate = () => {
     useEffect(()=>{
         if(dataInOut && isSuccess){
             if(!isLoading){
-                setDataResult(dataInOut)
+                setDataResult(dataInOut && dataInOut.datas && dataInOut.datas.data)
                 dispatch(resetInOut2())
-                setDataKoreksi(dataInOut.koreksis);
+                setDataKoreksi(dataInOut && dataInOut.datas && dataInOut.datas.data && dataInOut.datas.data.koreksis);
             }
         }
     },[dataInOut, isSuccess, isLoading])
@@ -70,12 +70,12 @@ export const SlideOverDate = () => {
     const submitKoreksiUser = (e : any) => {
         e.preventDefault();
         dispatch(createKoreksi({
-            userId : dataResult.user.uuid, 
-            inOutId :  dataResult.uuid, 
+            user_id : dataResult.user.uuid, 
+            in_out_id :  dataResult.uuid, 
             keterangan : keterangan, 
-            codeStatusKoreksi : 1, 
-            isActive : 1,
-            codeStatusInout : 2,
+            code_status_koreksi : 1, 
+            is_active : 1,
+            code_status_inout : 2,
         }));
     }
 
@@ -105,7 +105,7 @@ export const SlideOverDate = () => {
                     
                         <Slideover.Title>
                             <h2 className="mr-auto text-base font-medium">
-                                Form Koreksi 
+                                Form Koreksi
                             </h2>
                             <Menu>
                             <Menu.Items className="w-40">
@@ -129,45 +129,41 @@ export const SlideOverDate = () => {
                         <Slideover.Description>
                             <div className={`grid grid-cols-1 md:grid-cols-1 gap-6 mb-10`}>
                                 <div>
-                                <FormLabel htmlFor="modal-form-1">Tanggal</FormLabel>
-                                <div>: {dayjs(dataResult && dataResult.tanggalMulai).format('YYYY-MM-DD')}</div>
+                                    <FormLabel htmlFor="modal-form-1">
+                                        Tanggal
+                                    </FormLabel>
+                                    <div>
+                                        : {dataResult && dataResult.tanggal_mulai && dayjs(dataResult && dataResult.tanggal_mulai).format('YYYY-MM-DD')}
+                                    </div>
                                 </div>
                                 <div className="">
-                                <FormLabel htmlFor="modal-form-2">Jam</FormLabel>
-                                <div>: {dayjs(dataResult && dataResult.tanggalMulai).format('HH:mm:ss')}</div>
+                                    <FormLabel htmlFor="modal-form-2">
+                                        Jam
+                                    </FormLabel>
+                                    <div>
+                                        : {dataResult && dataResult.tanggal_mulai &&  dayjs(dataResult && dataResult.tanggal_mulai).format('HH:mm:ss')}
+                                    </div>
                                 </div>
                                 <div className="">
-                                <FormLabel htmlFor="modal-form-3">
-                                    Tipe Absen
-                                </FormLabel>
-                                <div>: {dataResult.tipe_absen && dataResult.tipe_absen.name}</div>
+                                    <FormLabel htmlFor="modal-form-3">
+                                        Tipe Absen
+                                    </FormLabel>
+                                    <div>
+                                        : {dataResult && dataResult.tipe_absen && dataResult.tipe_absen.name}
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <FormLabel htmlFor="modal-form-3">
+                                        Jam Operasional
+                                    </FormLabel>
+                                    <div>
+                                        {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.name}
+                                    </div>
+                                    <div>
+                                        {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.jam_masuk} - {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.jam_pulang}
+                                    </div>
                                 </div>
                             </div>
-                            {/* form koreksi */}
-                            {/* <div className="mt-3">
-                            <FormLabel htmlFor="modal-form-4">
-                                Jam
-                            </FormLabel>
-                            <FormInput
-                                id="modal-form-4"
-                                type="time"
-                                step="1"
-                                formInputSize="sm"
-                            />
-                            </div> */}
-                            {/* <div className="mt-3">
-                            <FormLabel htmlFor="modal-form-6">Tipe Absen</FormLabel>
-                            <FormSelect 
-                                id="modal-form-6"
-                                formSelectSize="sm"
-                                >
-                                <option></option>
-                                <option>Masuk</option>
-                                <option>Pulang</option>
-                                <option>Shift Masuk</option>
-                                <option>Shift Pulang</option>
-                            </FormSelect>
-                            </div> */}
                             <div className={`${dataResult.koreksis && dataResult.koreksis.length === 0 ? '' : 'hidden'}`}>
                                 <FormLabel htmlFor="modal-form-4">
                                     Keterangan

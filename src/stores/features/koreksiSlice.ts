@@ -20,12 +20,12 @@ const initialState : variabel = {
 export const createKoreksi: any = createAsyncThunk("createKoreksi", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/data`,{
-            userId : datas.userId, 
-            inOutId :  datas.inOutId, 
+            user_id : datas.user_id, 
+            in_out_id :  datas.in_out_id, 
             keterangan : datas.keterangan, 
-            codeStatusKoreksi : datas.codeStatusKoreksi, 
-            isActive : datas.isActive,
-            codeStatusInout : datas.codeStatusInout,
+            code_status_koreksi : datas.code_status_koreksi, 
+            is_active : datas.is_active,
+            code_status_inout : datas.code_status_inout,
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -41,17 +41,17 @@ export const createKoreksi: any = createAsyncThunk("createKoreksi", async(datas 
 
 export const createKoreksisByDate: any = createAsyncThunk("createKoreksisByDate", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/byDate`,{
-            userId:datas.userId,
-            tanggalMulai:datas.tanggalMulai,
-            tanggalSelesai:datas.tanggalSelesai,
-            tipeAbsenId:datas.tipeAbsenId,
-            codePelanggaran:datas.codePelanggaran,
-            codeStatusInout:datas.codeStatusInout,
-            codeStatusKoreksi:datas.codeStatusKoreksi,
-            jamOperasionalId:datas.jamOperasionalId,
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/date`,{
+            user_id:datas.user_id,
+            tanggal_mulai:datas.tanggal_mulai,
+            tanggal_selesai:datas.tanggal_selesai,
+            tipe_absen_id:datas.tipe_absen_id,
+            code_pelanggaran:datas.code_pelanggaran,
+            code_status_inout:datas.code_status_inout,
+            code_status_koreksi:datas.code_status_koreksi,
+            jam_operasional_id:datas.jam_operasional_id,
             keterangan:datas.keterangan,
-            isAbsenWeb:datas.isAbsenWeb,
+            is_absen_web:datas.is_absen_web,
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -59,8 +59,7 @@ export const createKoreksisByDate: any = createAsyncThunk("createKoreksisByDate"
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });
@@ -184,20 +183,20 @@ export const koreksisSlice = createSlice({
             state.message = action.payload;
         })
 
-        // // create koreksi
-        // builder.addCase(createKoreksisByDate.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(createKoreksisByDate.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(createKoreksisByDate.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // })
+        // create koreksi
+        builder.addCase(createKoreksisByDate.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(createKoreksisByDate.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(createKoreksisByDate.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
 
         // // create koreksi
         // builder.addCase(updateKoreksis.pending, (state) => {

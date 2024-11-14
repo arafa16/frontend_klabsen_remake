@@ -61,7 +61,7 @@ const AbsenUserPage = () => {
     }
 
     const clickButton = (code:any) =>{
-        clickAbsen({codeTipeAbsen:code, uuid:dataMe.uuid});
+        clickAbsen({code_tipe_absen:code, uuid:dataMe.uuid});
     }
 
     return (
@@ -91,7 +91,7 @@ const AbsenUserPage = () => {
                             idButton2={1}
                             actionButton1={clickButton}
                             actionButton2={clickButton}
-                            isView={dataMe.privilege && dataMe.privilege.absenModal}
+                            isView={dataMe.privilege && dataMe.privilege.absen_modal}
                         />
                     </div>
                     <div className="mb-4">
@@ -103,7 +103,7 @@ const AbsenUserPage = () => {
                             idButton2={5}
                             actionButton1={clickButton}
                             actionButton2={clickButton}
-                            isView={dataMe.privilege && dataMe.privilege.shiftModal}
+                            isView={dataMe.privilege && dataMe.privilege.shift_modal}
                         />
                     </div>
                     <div className="mb-4">
@@ -115,7 +115,7 @@ const AbsenUserPage = () => {
                             idButton2={9}
                             actionButton1={clickButton}
                             actionButton2={clickButton}
-                            isView={dataMe.privilege && dataMe.privilege.wfhModal}
+                            isView={dataMe.privilege && dataMe.privilege.wfh_modal}
                         />
                     </div>
                 </div>

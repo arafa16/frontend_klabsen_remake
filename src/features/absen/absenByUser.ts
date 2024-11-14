@@ -44,10 +44,10 @@ export const getAbsenByUser = (datas:any) => {
     const clickAbsen = (data:any) => {
         const dateNow = dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss');
         dispatch(createInOutsByAbsenWeb({
-            userId:data.uuid,
-            tanggalMulai:dateNow,
-            tanggalSelesai:dateNow,
-            codeTipeAbsen:data.codeTipeAbsen
+            user_uuid:data.uuid,
+            tanggal_mulai:dateNow,
+            tanggal_selesai:dateNow,
+            code_tipe_absen:data.code_tipe_absen
         }));
     }
 

@@ -19,9 +19,11 @@ const initialState : variabel = {
 
 export const getInOutsById : any = createAsyncThunk("inOut2/getInOutsById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/in_out/user/${datas.uuid}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/in_out/data/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+
+        console
         
         return response.data;
     } catch (error : any) {

@@ -42,7 +42,7 @@ export const viewKoreksiByDate = () => {
                                     "pl-10 ml-auto whitespace-nowrap hidden lg:flex"
                                 ])}
                             >
-                            {data.status_koreksi.name}
+                            {data.status_koreksi && data.status_koreksi.name}
                             </div>
                         </div>
                         </div>
