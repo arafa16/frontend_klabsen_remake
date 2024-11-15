@@ -81,16 +81,16 @@ export const getDataKoreksiTableByUser = (props:any) => {
     const{dataMe} = props;
 
     const [datas, setDatas] = useState<any>([]);
-    const [id, setId] = useState<any>(null);
+    const [user_uuid, set_user_uuid] = useState<any>(null);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [allPage, setAllPage] = useState(0);
-    const [statusCode, setStatusCode] = useState<any>(1);
+    const [status_code, set_status_code] = useState<any>(1);
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        setId(dataMe.uuid)
+        set_user_uuid(dataMe.uuid)
     },[dataMe])
 
     const {data, isSuccess, isLoading} = useSelector(
@@ -100,20 +100,22 @@ export const getDataKoreksiTableByUser = (props:any) => {
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
-                setDatas(data);
-                countData(data.count);
+                setDatas(data && data.datas && data.datas.data);
+                countData(data && data.datas && data.datas.data && data.datas.data.count);
                 dispatch(resetKoreksis())
             }
         }
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
-        if(id !== null){
-            if(id !== undefined){
-                dispatch(getKoreksisTableByUser({limit, page, id, statusCode}));
+        if(user_uuid !== null){
+            if(user_uuid !== undefined){
+                const paramsObj : any = {limit, page, user_uuid, status_code};
+                const searchParams = new URLSearchParams(paramsObj);
+                dispatch(getKoreksisTableByUser(searchParams));
             }
         }
-    },[limit, page, id, statusCode]);
+    },[limit, page, user_uuid, status_code]);
 
     //table
     const countData = (allData : any) =>{
@@ -135,7 +137,7 @@ export const getDataKoreksiTableByUser = (props:any) => {
         }
     }
 
-    return {datas, page, limit, allPage, statusCode, setStatusCode, nextPage, prevPage}
+    return {datas, page, limit, allPage, status_code, set_status_code, nextPage, prevPage}
 }
 
 //general data for user
@@ -143,12 +145,12 @@ export const getGeneralDataUser = (props:any) => {
     const{dataMe} = props;
 
     const [datas, setDatas] = useState<any>([]);
-    const [id, setId] = useState<any>(null);
+    const [user_uuid, set_user_uuid] = useState<any>(null);
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        setId(dataMe.uuid)
+        set_user_uuid(dataMe.uuid)
     },[dataMe])
 
     const {data, isSuccess, isLoading} = useSelector(
@@ -158,19 +160,21 @@ export const getGeneralDataUser = (props:any) => {
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
-                setDatas(data);
+                setDatas(data && data.datas && data.datas.data);
                 dispatch(resetKoreksis())
             }
         }
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
-        if(id !== null){
-            if(id !== undefined){
-                dispatch(getKoreksisByUser({id}));
+        if(user_uuid !== null){
+            if(user_uuid !== undefined){
+                const paramsObj : any = {user_uuid};
+                const searchParams = new URLSearchParams(paramsObj);
+                dispatch(getKoreksisByUser(searchParams));
             }
         }
-    },[id]);
+    },[user_uuid]);
 
     return {datas}
 }
@@ -214,7 +218,7 @@ export const getGeneralDataApprover = (props:any) => {
 
 
 export const getDataKoreksiById = (props:any) => {
-    const {id} = props;
+    const {uuid} = props;
 
     const [datas, setDatas] = useState<any>([]);
     const dispatch = useDispatch();
@@ -227,14 +231,15 @@ export const getDataKoreksiById = (props:any) => {
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
-                setDatas(data);
+                console.log(data, 'datas')
+                setDatas(data && data.datas && data.datas.data);
                 dispatch(resetKoreksis())
             }
         }
     },[data, isSuccess, isLoading])
   
     useEffect(()=>{
-        dispatch(getKoreksisById({id}));
+        dispatch(getKoreksisById({uuid}));
     },[]);
 
     return {datas}

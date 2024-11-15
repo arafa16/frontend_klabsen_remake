@@ -16,6 +16,7 @@ import periodeKerjaReducer from "./features/periodeKerjaSlice";
 import inOut2Reducer from "./features/inOut2Slice";
 import inOutReducer from "./features/inOutSlice";
 import koreksiReducer from "./features/koreksiSlice";
+import koreksi2Reducer from "./features/koreksi2Slice";
 import pelanggaranReducer from "./features/pelanggaranSlice";
 import tipeAbsenReducer from "./features/tipeAbsenSlice";
 import JamOperasionalGroupReducer from "./features/jamOperasionalGroupSlice";
@@ -40,6 +41,7 @@ export const store = configureStore({
     inOut2: inOut2Reducer,
     inOut: inOutReducer,
     koreksi: koreksiReducer,
+    koreksi2: koreksi2Reducer,
     pelanggaran: pelanggaranReducer,
     tipeAbsen: tipeAbsenReducer,
     jamOperasionalGroup:JamOperasionalGroupReducer,

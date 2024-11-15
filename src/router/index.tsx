@@ -8,6 +8,11 @@ import ForgotPassword from "../pages/auth/forgotPassword";
 import ResetPassword from "../pages/auth/resetPassword";
 import ViewProfilePage from "../pages/profile/viewProfilePage";
 
+import KoreksiUserPage from "../pages/koreksi/koreksiUserPage";
+import ViewKoreksiPage from "../pages/koreksi/viewKoreksiPage";
+import KoreksiApproverPage from "../pages/koreksi/koreksiApproverPage";
+import ViewKoreksiApproverPage from "../pages/koreksi/viewKoreksiApproverPage"
+
 function Router() {
   const routes = [
     {
@@ -26,6 +31,14 @@ function Router() {
         {
           path: "/profile/data/:id",
           element: <ViewProfilePage />
+        },
+        {
+          path: "/koreksi/user",
+          element: <KoreksiUserPage />,
+        },
+        {
+          path: "/koreksi/view",
+          element: <ViewKoreksiPage />,
         },
       ],
     },
