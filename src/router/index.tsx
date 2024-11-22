@@ -37,8 +37,16 @@ function Router() {
           element: <KoreksiUserPage />,
         },
         {
+          path: "/koreksi/approver",
+          element: <KoreksiApproverPage />,
+        },
+        {
           path: "/koreksi/view",
           element: <ViewKoreksiPage />,
+        },
+        {
+          path: "/koreksi/view_approver",
+          element: <ViewKoreksiApproverPage />,
         },
       ],
     },

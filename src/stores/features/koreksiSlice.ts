@@ -146,9 +146,11 @@ export const getKoreksisByUser: any = createAsyncThunk("getKoreksisByUser", asyn
 
 export const getKoreksisByApprover: any = createAsyncThunk("getKoreksisByApprover", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/table?${datas}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/datas?${datas}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
+
+        console.log(response, 'getKoreksisByApprover')
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -240,20 +242,20 @@ export const koreksisSlice = createSlice({
             state.message = action.payload;
         })
 
-        // // get koreksi by approver
-        // builder.addCase(getKoreksisByApprover.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(getKoreksisByApprover.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.data = action.payload;
-        // });
-        // builder.addCase(getKoreksisByApprover.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // })
+        // get koreksi by approver
+        builder.addCase(getKoreksisByApprover.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getKoreksisByApprover.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getKoreksisByApprover.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
 
         // // get koreksi by approver
         // builder.addCase(approverKoreksis.pending, (state) => {

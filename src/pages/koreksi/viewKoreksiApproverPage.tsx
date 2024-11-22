@@ -5,15 +5,17 @@ import {getDataKoreksiById, actionApprover } from '../../features/koreksi/koreks
 import { getMessageShow } from "../../features/messageShow";
 
 const ViewKoreksiApprover = () => {
-  const {id, code} = useParams();
   const navigate = useNavigate();
+  const queryParameters = new URLSearchParams(window.location.search)
+  const uuid = queryParameters.get("uuid")
+  const code = queryParameters.get("code")
 
-  const {datas} = getDataKoreksiById({id});
+  const {datas} = getDataKoreksiById({uuid});
 
-  const {clickAction, message} = actionApprover(id);
+  const {clickAction, message} = actionApprover(uuid);
 
   const clickBack = () => {
-    navigate(`/koreksi/approver/${code}`);
+    navigate(`/koreksi/approver?${new URLSearchParams({code:`${code}`})}`);
   }
 
   //message

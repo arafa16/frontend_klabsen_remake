@@ -34,7 +34,7 @@ export const getKoreksisTableByUser: any = createAsyncThunk("getKoreksisTableByU
 
 export const getKoreksisTableByApprover: any = createAsyncThunk("getKoreksisTableByApprover", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksis/${datas.limit}&${datas.page}&${datas.id}&${datas.statusCode}/approver`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/table?${datas}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         

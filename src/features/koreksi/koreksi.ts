@@ -19,16 +19,16 @@ export const getDataKoreksiTableByApprover = (props:any) => {
     const{dataMe} = props;
 
     const [datas, setDatas] = useState<any>([]);
-    const [id, setId] = useState<any>(null);
+    const [atasan_id, set_atasan_id] = useState<any>(null);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [allPage, setAllPage] = useState(0);
-    const [statusCode, setStatusCode] = useState<any>(1);
+    const [status_code, set_status_code] = useState<any>(1);
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        setId(dataMe.uuid)
+        set_atasan_id(dataMe.uuid)
     },[dataMe])
 
     const {data, isSuccess, isLoading} = useSelector(
@@ -38,20 +38,22 @@ export const getDataKoreksiTableByApprover = (props:any) => {
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
-                setDatas(data);
-                countData(data.count);
+                setDatas(data && data.datas && data.datas.data);
+                countData(data && data.datas && data.datas.data && data.datas.data.count);
                 dispatch(resetKoreksis())
             }
         }
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
-        if(id !== null){
-            if(id !== undefined){
-                dispatch(getKoreksisTableByApprover({limit, page, id, statusCode}));
+        if(atasan_id !== null){
+            if(atasan_id !== undefined){
+                const paramsObj : any = {limit, page, atasan_id, status_code};
+                const searchParams = new URLSearchParams(paramsObj);
+                dispatch(getKoreksisTableByApprover(searchParams));
             }
         }
-    },[limit, page, id, statusCode]);
+    },[limit, page, atasan_id, status_code]);
 
     //table
     const countData = (allData : any) =>{
@@ -73,7 +75,7 @@ export const getDataKoreksiTableByApprover = (props:any) => {
         }
     }
 
-    return {datas, page, limit, allPage, statusCode, setStatusCode, nextPage, prevPage}
+    return {datas, page, limit, allPage, status_code, set_status_code, nextPage, prevPage}
 }
 
 //get data to data koreksi page
@@ -81,7 +83,7 @@ export const getDataKoreksiTableByUser = (props:any) => {
     const{dataMe} = props;
 
     const [datas, setDatas] = useState<any>([]);
-    const [user_uuid, set_user_uuid] = useState<any>(null);
+    const [user_id, set_user_id] = useState<any>(null);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [allPage, setAllPage] = useState(0);
@@ -90,7 +92,7 @@ export const getDataKoreksiTableByUser = (props:any) => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        set_user_uuid(dataMe.uuid)
+        set_user_id(dataMe.uuid)
     },[dataMe])
 
     const {data, isSuccess, isLoading} = useSelector(
@@ -108,15 +110,15 @@ export const getDataKoreksiTableByUser = (props:any) => {
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
-        console.log(status_code, 'status code')
-        if(user_uuid !== null){
-            if(user_uuid !== undefined){
-                const paramsObj : any = {limit, page, user_uuid, status_code};
+        
+        if(user_id !== null){
+            if(user_id !== undefined){
+                const paramsObj : any = {limit, page, user_id, status_code};
                 const searchParams = new URLSearchParams(paramsObj);
                 dispatch(getKoreksisTableByUser(searchParams));
             }
         }
-    },[limit, page, user_uuid, status_code]);
+    },[limit, page, user_id, status_code]);
 
     //table
     const countData = (allData : any) =>{
@@ -146,12 +148,12 @@ export const getGeneralDataUser = (props:any) => {
     const{dataMe} = props;
 
     const [datas, setDatas] = useState<any>([]);
-    const [user_uuid, set_user_uuid] = useState<any>(null);
+    const [user_id, set_user_id] = useState<any>(null);
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        set_user_uuid(dataMe.uuid)
+        set_user_id(dataMe.uuid)
     },[dataMe])
 
     const {data, isSuccess, isLoading} = useSelector(
@@ -168,14 +170,14 @@ export const getGeneralDataUser = (props:any) => {
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
-        if(user_uuid !== null){
-            if(user_uuid !== undefined){
-                const paramsObj : any = {user_uuid};
+        if(user_id !== null){
+            if(user_id !== undefined){
+                const paramsObj : any = {user_id};
                 const searchParams = new URLSearchParams(paramsObj);
                 dispatch(getKoreksisByUser(searchParams));
             }
         }
-    },[user_uuid]);
+    },[user_id]);
 
     return {datas}
 }
@@ -185,12 +187,12 @@ export const getGeneralDataApprover = (props:any) => {
     const{dataMe} = props;
 
     const [datas, setDatas] = useState<any>([]);
-    const [id, setId] = useState<any>(null);
+    const [atasan_id, set_atasan_id] = useState<any>(null);
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        setId(dataMe.uuid)
+        set_atasan_id(dataMe.uuid)
     },[dataMe])
 
     const {data, isSuccess, isLoading} = useSelector(
@@ -200,19 +202,22 @@ export const getGeneralDataApprover = (props:any) => {
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
-                setDatas(data);
+                console.log(data, 'data')
+                setDatas(data && data.datas && data.datas.data);
                 dispatch(resetKoreksis())
             }
         }
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
-        if(id !== null){
-            if(id !== undefined){
-                dispatch(getKoreksisByApprover({id}));
+        if(atasan_id !== null){
+            if(atasan_id !== undefined){
+                const paramsObj : any = {atasan_id};
+                const searchParams = new URLSearchParams(paramsObj);
+                dispatch(getKoreksisByApprover(searchParams));
             }
         }
-    },[id]);
+    },[atasan_id]);
 
     return {datas}
 }

@@ -7,26 +7,26 @@ import { getMeAuth } from '../../features/auth/meAuth';
 import { getDataKoreksiTableByApprover, getGeneralDataApprover} from '../../features/koreksi/koreksi';
 
 const koreksiApproverPage = () => {
-    
-    const {code : codeParams} = useParams();
+    const queryParameters = new URLSearchParams(window.location.search)
+    const code = queryParameters.get("code")
 
     useEffect(()=>{
-        if(codeParams !== undefined){
-          setStatusCode(codeParams)
+        if(code !== undefined){
+            set_status_code(code)
         }
-    },[codeParams])
+    },[code])
 
     //get data auth
     const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
 
     // get data table
-    const {datas, page, limit, allPage, statusCode, setStatusCode, nextPage, prevPage} = getDataKoreksiTableByApprover({dataMe});
+    const {datas, page, limit, allPage, status_code, set_status_code, nextPage, prevPage} = getDataKoreksiTableByApprover({dataMe});
     
     //get general data
     const {datas : dataGeneral} = getGeneralDataApprover({dataMe})
 
     const clickStatus = (code:any) => {
-        setStatusCode(code)
+        set_status_code(code)
     }
 
     return (
@@ -45,9 +45,9 @@ const koreksiApproverPage = () => {
                     nextPage={nextPage}
                     prevPage={prevPage}
                     allPage={allPage}
-                    linkView={'/koreksi/approver'}
-                    linkCreate={'/'}
-                    statusCode={statusCode}
+                    linkView={'/koreksi/view_approver'}
+                    linkCreate={'#'}
+                    status_code={status_code}
                 />
             </div>
         </div>

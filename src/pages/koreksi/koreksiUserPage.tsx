@@ -1,4 +1,4 @@
-import KoreksiTableUser from '../../components/koreksi/koreksiTable';
+import KoreksiTable from '../../components/koreksi/koreksiTable';
 import GeneralReportKoreksi from '../../components/koreksi/generalReportKoreksi';
 
 import { getMeAuth } from '../../features/auth/meAuth';
@@ -39,7 +39,7 @@ const koreksiUserPage = () => {
             />
         </div>
         <div>
-            <KoreksiTableUser 
+            <KoreksiTable
                 datas={datas}
                 page={page}
                 limit={limit}
