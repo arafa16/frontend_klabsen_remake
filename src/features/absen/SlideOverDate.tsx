@@ -157,9 +157,9 @@ export const SlideOverDate = () => {
                                         Jam Operasional
                                     </FormLabel>
                                     <div>
-                                        {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.name}
+                                        : {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.name}
                                     </div>
-                                    <div>
+                                    <div className='mx-2'>
                                         {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.jam_masuk} - {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.jam_pulang}
                                     </div>
                                 </div>

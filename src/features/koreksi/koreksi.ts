@@ -108,6 +108,7 @@ export const getDataKoreksiTableByUser = (props:any) => {
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
+        console.log(status_code, 'status code')
         if(user_uuid !== null){
             if(user_uuid !== undefined){
                 const paramsObj : any = {limit, page, user_uuid, status_code};

@@ -36,7 +36,8 @@ const AbsenUserPage = () => {
         form : formSlideOverDate, 
         setOpen : setOpenSlide, 
         setData,
-        message : messageDate, setMessage : setMessageDate
+        message : messageDate, 
+        setMessage : setMessageDate
     } = SlideOverDate();
     
     useEffect(()=>{

@@ -8,12 +8,12 @@ const ViewKoreksi = () => {
 
   const queryParameters = new URLSearchParams(window.location.search)
   const uuid = queryParameters.get("uuid")
-  const status_code = queryParameters.get("status_code")
+  const code = queryParameters.get("code")
 
   const {datas} = getDataKoreksiById({uuid});
 
   const clickBack = () => {
-    navigate(`/koreksi/user?${new URLSearchParams({status_code:`${status_code}`})}`);
+    navigate(`/koreksi/user?${new URLSearchParams({code:`${code}`})}`);
   }
 
   return (

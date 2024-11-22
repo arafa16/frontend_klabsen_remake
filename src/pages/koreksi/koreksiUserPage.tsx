@@ -7,13 +7,15 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const koreksiUserPage = () => {
-  const {code : codeParams} = useParams();
+  const queryParameters = new URLSearchParams(window.location.search)
+  const code = queryParameters.get("code")
 
   useEffect(()=>{
-    if(codeParams !== undefined){
-      set_status_code(codeParams)
+    console.log(code, 'code paramssss');
+    if(code !== null){
+      set_status_code(code)
     }
-  },[codeParams])
+  },[code])
 
   //get data auth
   const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();

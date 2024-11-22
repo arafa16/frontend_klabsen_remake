@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 export const viewKoreksiByDate = () => {
     const navigate = useNavigate();
     const [datas, setDatas] = useState([]);
+    const [status_code, set_status_code] = useState(1);
 
     const showData = (
         <div className="grid grid-cols-12 mt-5 box">
@@ -16,7 +17,7 @@ export const viewKoreksiByDate = () => {
                     <div 
                         key={index} 
                         className="intro-y"
-                        onClick={()=>navigate(`/koreksi/user/${data.uuid}/0`)}
+                        onClick={()=>navigate(`/koreksi/view?${new URLSearchParams({uuid:data.uuid, code:`${status_code}`})}`)}
                         >
                         <div
                             className={clsx([
@@ -54,7 +55,7 @@ export const viewKoreksiByDate = () => {
         </div>
     )
 
-    return {showData, setDatas}
+    return {showData, setDatas, set_status_code}
 }
 
 

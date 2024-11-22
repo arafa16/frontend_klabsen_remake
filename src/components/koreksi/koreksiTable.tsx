@@ -61,7 +61,7 @@ const koreksiTableUser = (props : any) => {
                     <div 
                         key={index} 
                         className="intro-y"
-                        onClick={()=>navigate(linkView+`?${new URLSearchParams({uuid:data.uuid, status_code:status_code})}`)}
+                        onClick={()=>navigate(linkView+`?${new URLSearchParams({uuid:data.uuid, code:status_code})}`)}
                         >
                         <div
                             className={clsx([
