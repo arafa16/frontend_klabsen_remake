@@ -40,6 +40,21 @@ export const changePassword: any = createAsyncThunk("user/changePassword", async
     }
 });
 
+export const getCountUser: any = createAsyncThunk("users/getCountUser", async(_, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/user/count`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            const message = error.response.data;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
+
 // export const getUsers: any = createAsyncThunk("users/getUsers", async(_, thunkAPI) => {
 //     try {
 //         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/users`,{
@@ -245,6 +260,21 @@ export const usersSlice = createSlice({
             state.message = action.payload;
         });
         builder.addCase(changePassword.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
+
+        //get count users
+        builder.addCase(getCountUser.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getCountUser.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getCountUser.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;

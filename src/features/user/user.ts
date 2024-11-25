@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getUsersTable, deleteUser, resetUser2 } from "../../stores/features/user2Slice";
+import { 
+    getUsersTable, 
+    // deleteUser, 
+    resetUser2 
+} from "../../stores/features/user2Slice";
 import { 
     getUserById, 
+    getCountUser,
     // getUsers, 
     // UpdateUser, 
     resetUsers, 
@@ -11,80 +16,103 @@ import {
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../stores/features/meSlice";
 
-// export const getDataUserTable = () => {
-//     const [datas, setDatas] = useState([]);
-//     const [limit, setLimit] = useState(10);
-//     const [page, setPage] = useState(1);
-//     const [allPage, setAllPage] = useState(0);
-//     const [statusCode, setStatusCode] = useState(1);
-//     const [search, setSearch] = useState('');
+export const getDataUserTable = () => {
+    const [datas, setDatas] = useState([]);
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
+    const [allPage, setAllPage] = useState(0);
+    const [status_code, set_status_code] = useState(1);
+    const [search, setSearch] = useState('');
 
-//     const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-//     const {data, isLoading, isSuccess} = useSelector(
-//         (state : any) => state.user2
-//     )
+    const {data, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user2
+    )
 
-//     useEffect(()=>{
-//         if(isSuccess && data){
-//             if(!isLoading){
-//                 setDatas(data);
-//                 countData(data.count);
-//                 dispatch(resetUser2());
-//             }
-//         }
-//     },[data, isSuccess, isLoading])
+    useEffect(()=>{
+        if(isSuccess && data){
+            if(!isLoading){
+                console.log()
+                setDatas(data && data.datas && data.datas.data);
+                countData(data && data.datas && data.datas.data && data.datas.data.count);
+                dispatch(resetUser2());
+            }
+        }
+    },[data, isSuccess, isLoading])
 
-//     useEffect(()=>{
-//         dispatch(getUsersTable({
-//             limit, 
-//             page, 
-//             statusCode, 
-//             search
-//         }));
-//     },[page, limit, statusCode, search])
+    useEffect(()=>{
+        const paramsObj : any = {page, limit, status_code, search};
+        const searchParams = new URLSearchParams(paramsObj);
+        dispatch(getUsersTable(searchParams));
+    },[page, limit, status_code, search])
 
-//     //table
-//     const countData = (allData : any) =>{
-//         const count = allData / limit;
-//         setAllPage(Math.ceil(count))
-//     }
+    //table
+    const countData = (allData : any) =>{
+        const count = allData / limit;
+        setAllPage(Math.ceil(count))
+    }
 
-//     const nextPage = () => {
-//         if(page < allPage){
-//             const count = page + 1;
-//             setPage(count);
-//         }
-//     }
+    const nextPage = () => {
+        if(page < allPage){
+            const count = page + 1;
+            setPage(count);
+        }
+    }
 
-//     const prevPage = () => {
-//         if(page > 1){
-//             const count = page - 1;
-//             setPage(count);
-//         }
-//     }
+    const prevPage = () => {
+        if(page > 1){
+            const count = page - 1;
+            setPage(count);
+        }
+    }
 
-//     const reload = () => {
-//         dispatch(getUsersTable({
-//             limit, 
-//             page, 
-//             statusCode, 
-//             search
-//         }));
-//     }
+    const reload = () => {
+        const paramsObj : any = {page, limit, status_code, search};
+        const searchParams = new URLSearchParams(paramsObj);
+        dispatch(getUsersTable(searchParams));
+    }
 
-//     return {
-//         datas,
-//         page, setPage,
-//         limit,setLimit,
-//         search, setSearch,
-//         allPage, 
-//         statusCode, setStatusCode, 
-//         nextPage, 
-//         prevPage,
-//         reload
-//     }
-// }
+    return {
+        datas,
+        page, setPage,
+        limit,setLimit,
+        search, setSearch,
+        allPage, 
+        status_code, set_status_code, 
+        nextPage, 
+        prevPage,
+        reload
+    }
+}
+
+export const getCountDataUser = () => {
+    const [datas, setDatas] = useState([]);
+    const dispatch = useDispatch();
+
+    const {data, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user
+    )
+
+    useEffect(()=>{
+        if(isSuccess && data){
+            if(!isLoading){
+                setDatas(data && data.datas && data.datas.data);
+                dispatch(resetUser2());
+            }
+        }
+    },[data, isSuccess, isLoading])
+
+    useEffect(()=>{
+        dispatch(getCountUser());
+    },[])
+
+    const reload = () => {
+        dispatch(getCountUser());
+    }
+
+    return {datas, reload}
+}
 
 // export const getDataUser = () => {
 //     const [datas, setDatas] = useState([]);

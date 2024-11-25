@@ -8,6 +8,7 @@ import resetPasswordReducer from "./features/resetPasswordSlice";
 import meReducer from "./features/meSlice";
 import eventReducer from "./features/eventSlice";
 import userReducer from "./features/userSlice";
+import user2Reducer from "./features/user2Slice";
 import photoReducer from "./features/photoSlice";
 import PenempatanReducer from "./features/penempatanSlice";
 import GanderReducer from "./features/ganderSlice";
@@ -34,6 +35,7 @@ export const store = configureStore({
     photo: photoReducer,
     event: eventReducer,
     user: userReducer,
+    user2: user2Reducer,
     penempatan:PenempatanReducer,
     periodeKerja: periodeKerjaReducer,
     gander: GanderReducer,
@@ -46,7 +48,6 @@ export const store = configureStore({
     tipeAbsen: tipeAbsenReducer,
     jamOperasionalGroup:JamOperasionalGroupReducer,
     jamOperasional: jamOperasionalReducer,
-    
   },
 });
 

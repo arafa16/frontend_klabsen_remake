@@ -7,7 +7,7 @@ import Register from "../pages/auth/registerPage";
 import ForgotPassword from "../pages/auth/forgotPassword";
 import ResetPassword from "../pages/auth/resetPassword";
 import ViewProfilePage from "../pages/profile/viewProfilePage";
-
+import AbsenCheckByUser from "../pages/absen/absenCheckByUser";
 import KoreksiUserPage from "../pages/koreksi/koreksiUserPage";
 import ViewKoreksiPage from "../pages/koreksi/viewKoreksiPage";
 import KoreksiApproverPage from "../pages/koreksi/koreksiApproverPage";
@@ -26,6 +26,10 @@ function Router() {
         {
           path: "/absen",
           element: <AbsenUserPage />,
+        },
+        {
+          path: "/absen/user",
+          element: <AbsenCheckByUser />
         },
         //profile
         {

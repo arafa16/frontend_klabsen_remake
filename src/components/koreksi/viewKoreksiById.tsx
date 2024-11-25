@@ -18,7 +18,7 @@ const viewKoreksiById = (props : any) => {
                         >
                         Back
                     </Button>
-                    <div className={`${datas && datas.status_koreksi && datas.status_koreksi.code !== '2' ? '' : 'hidden' }`}>
+                    <div className={`${datas && datas.status_koreksi && datas.status_koreksi.code !== 2 ? '' : 'hidden' }`}>
                         <Button
                             size='sm'
                             variant="primary"
@@ -28,7 +28,7 @@ const viewKoreksiById = (props : any) => {
                             Approve
                         </Button>
                     </div>
-                    <div className={`${datas && datas.status_koreksi && datas.status_koreksi.code !== '3' ? '' : 'hidden' }`}>
+                    <div className={`${datas && datas.status_koreksi && datas.status_koreksi.code !== 3 ? '' : 'hidden' }`}>
                         <Button
                             size='sm'
                             variant="danger"

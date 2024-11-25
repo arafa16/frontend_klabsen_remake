@@ -251,7 +251,7 @@ export const getDataKoreksiById = (props:any) => {
     return {datas}
 }
 
-export const actionApprover = (id:any) => {
+export const actionApprover = (uuid:any) => {
     const [message, setMessage] = useState<any>(null)
     const dispatch = useDispatch();
 
@@ -264,13 +264,13 @@ export const actionApprover = (id:any) => {
             if(!isLoading){
                 setMessage(messageKoreksi);
                 dispatch(resetKoreksis())
-                dispatch(getKoreksisById({id}));
+                dispatch(getKoreksisById({uuid}));
             }
         }
     },[messageKoreksi, isSuccess, isLoading])
 
     const clickAction = (code : any) => {
-        dispatch(approverKoreksis({id, codeStatusKoreksi:code}));
+        dispatch(approverKoreksis({uuid, code}));
     }
 
     return {clickAction, message}

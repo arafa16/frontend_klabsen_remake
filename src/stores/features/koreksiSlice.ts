@@ -87,8 +87,8 @@ export const createKoreksisByDate: any = createAsyncThunk("createKoreksisByDate"
 
 export const approverKoreksis: any = createAsyncThunk("approverKoreksis", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/table?${datas}`,{
-            statusKoreksiId : datas.codeStatusKoreksi,
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/approval/${datas.uuid}`,{
+            code : datas.code,
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -257,20 +257,20 @@ export const koreksisSlice = createSlice({
             state.message = action.payload;
         })
 
-        // // get koreksi by approver
-        // builder.addCase(approverKoreksis.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(approverKoreksis.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(approverKoreksis.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // })
+        // get koreksi by approver
+        builder.addCase(approverKoreksis.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(approverKoreksis.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(approverKoreksis.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
 
 
     }
