@@ -17,20 +17,19 @@ const initialState : variabel = {
     message: ""
 }
 
-// export const getPeriodeKerjas : any = createAsyncThunk("getPeriodeKerjas", async(_, thunkAPI) => {
-//     try {
-//         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode`,{
-//             withCredentials: true, // Now this is was the missing piece in the client side 
-//         });
-//         console.log(response.data, 'response')
-//         return response.data;
-//     } catch (error : any) {
-//         if(error.response){
-//             const message = error.response.data.msg;
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// });
+export const getPeriodeKerjas : any = createAsyncThunk("getPeriodeKerjas", async(_, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode_kerja/datas`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
 
 export const getPeriodeKerjasTable : any = createAsyncThunk("getPeriodeKerjasTable", async(datas : any, thunkAPI) => {
     try {
@@ -147,20 +146,20 @@ export const periodeKerjasSlice = createSlice({
     },
     extraReducers:(builder) => {
 
-        // // get jam operasional
-        // builder.addCase(getPeriodeKerjas.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(getPeriodeKerjas.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.data = action.payload;
-        // });
-        // builder.addCase(getPeriodeKerjas.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
+        // get jam operasional
+        builder.addCase(getPeriodeKerjas.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getPeriodeKerjas.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getPeriodeKerjas.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
 
         // get jam operasional table
         builder.addCase(getPeriodeKerjasTable.pending, (state) => {

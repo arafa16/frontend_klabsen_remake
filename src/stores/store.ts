@@ -12,9 +12,11 @@ import user2Reducer from "./features/user2Slice";
 import photoReducer from "./features/photoSlice";
 import PenempatanReducer from "./features/penempatanSlice";
 import GanderReducer from "./features/ganderSlice";
+import GroupReducer from "./features/groupSlice";
 import SliderReducer from "./features/sliderSlice";
 import statusInoutReducer from "./features/statusInoutSlice";
 import periodeKerjaReducer from "./features/periodeKerjaSlice";
+import PerhitunganReducer from "./features/perhitunganSlice";
 import inOut2Reducer from "./features/inOut2Slice";
 import inOutReducer from "./features/inOutSlice";
 import koreksiReducer from "./features/koreksiSlice";
@@ -39,7 +41,9 @@ export const store = configureStore({
     user2: user2Reducer,
     penempatan:PenempatanReducer,
     periodeKerja: periodeKerjaReducer,
+    perhitungan: PerhitunganReducer,
     gander: GanderReducer,
+    group: GroupReducer,
     slider:SliderReducer,
     statusInout: statusInoutReducer,
     inOut2: inOut2Reducer,

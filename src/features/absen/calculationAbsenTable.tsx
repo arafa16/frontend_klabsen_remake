@@ -88,7 +88,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.jumlahHari}
+                          {data && data.jumlah_hari}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -97,7 +97,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataIn}
+                          {data && data.data_in}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -106,7 +106,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataInNormal}
+                          {data && data.data_in_normal}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -115,7 +115,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataInPelanggaran}
+                          {data && data.data_in_pelanggaran}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -124,7 +124,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataOut}
+                          {data && data.data_out}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -133,7 +133,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataOutNormal}
+                          {data && data.data_out_normal}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -142,7 +142,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataOutPelanggaran}
+                          {data && data.data_out_pelanggaran}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -151,7 +151,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataCuti}
+                          {data && data.data_cuti}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -160,7 +160,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataSakit}
+                          {data && data.data_sakit}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -169,7 +169,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data && data.dataTidakAbsen * 2}
+                          {data && data.data_tidak_absen * 2}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -178,7 +178,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {data.dataTidakAbsen + data.dataOutPelanggaran + data.dataInPelanggaran}
+                          {data.data_tidak_absen + data.data_out_pelanggaran + data.data_in_pelanggaran}
                         </span>
                       </div>
                       <div className="w-64 truncate sm:w-24">
@@ -187,7 +187,7 @@ export const calculationAbsenTable = (props : any) => {
                           "ml-3 truncate"
                           ])}
                           >
-                          {(data.dataTidakAbsen + data.dataOutPelanggaran + data.dataInPelanggaran)*0.005}
+                          {(data.data_tidak_absen + data.data_out_pelanggaran + data.data_in_pelanggaran)*0.005}
                         </span>
                       </div>
                   </div>

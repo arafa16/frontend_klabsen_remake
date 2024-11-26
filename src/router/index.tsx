@@ -13,6 +13,7 @@ import KoreksiUserPage from "../pages/koreksi/koreksiUserPage";
 import ViewKoreksiPage from "../pages/koreksi/viewKoreksiPage";
 import KoreksiApproverPage from "../pages/koreksi/koreksiApproverPage";
 import ViewKoreksiApproverPage from "../pages/koreksi/viewKoreksiApproverPage"
+import PerhitunganAbsenPage from "../pages/absen/perhitunganAbsenPage";
 
 function Router() {
   const routes = [
@@ -35,6 +36,10 @@ function Router() {
         {
           path: "/absen/check/:uuid",
           element: <AbsenUserByIdPage />
+        },
+        {
+          path: "/absen/perhitungan",
+          element: <PerhitunganAbsenPage />
         },
         //profile
         {

@@ -5,13 +5,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPeriodeKerjas, resetPeriodeKerja } from '../../stores/features/periodeKerjaSlice'
 import { getGroups, resetGroup } from '../../stores/features/groupSlice'
 import LoadingIcon from '../../base-components/LoadingIcon'
-import { getPerhitunganByGroupPeriode, downloadPerhitunganByGroupPeriode, resetPerhitungan } from '../../stores/features/perhitunganSlice';
+import { 
+    getPerhitunganByGroupPeriode, 
+    downloadPerhitunganByGroupPeriode, 
+    resetPerhitungan 
+} from '../../stores/features/perhitunganSlice';
 
 export const SortingPeriodeGroup = () => {
 
     const [isView, setIsView] = useState(true);
-    const [idGroup, setIdGroup] = useState('');
-    const [idPeriode, setIdPeriode] = useState('');
+    const [group_uuid, setIdGroup] = useState('');
+    const [periode_uuid, setIdPeriode] = useState('');
 
     const [dataPeriode, setDataPeriode] = useState([]);
     const [dataGroup, setDataGroup] = useState([]);
@@ -32,7 +36,7 @@ export const SortingPeriodeGroup = () => {
     useEffect(()=>{
         if(periodeKerja && isPeriodeKerjaSuccess){
             if(!isPeriodeKerjaLoading){
-                setDataPeriode(periodeKerja);
+                setDataPeriode(periodeKerja && periodeKerja.datas && periodeKerja.datas.data);
                 dispatch(resetPeriodeKerja());
             }
         }
@@ -50,7 +54,7 @@ export const SortingPeriodeGroup = () => {
     useEffect(()=>{
         if(isGroupSuccess && group){
             if(!isGroupLoading){
-                setDataGroup(group);
+                setDataGroup(group && group.datas && group.datas.data);
                 dispatch(resetGroup());
             }
         }
@@ -65,7 +69,7 @@ export const SortingPeriodeGroup = () => {
     useEffect(()=>{
         if(dataPerhitungan && isPerhitunganSuccess){
             if(!isPerhitunganLoading){
-                setDataCalculation(dataPerhitungan);
+                setDataCalculation(dataPerhitungan && dataPerhitungan.datas && dataPerhitungan.datas.data && dataPerhitungan.datas.data.data_perhitungan);
                 dispatch(resetPerhitungan());
             }
         }
@@ -73,7 +77,9 @@ export const SortingPeriodeGroup = () => {
 
     const submitGroupPeriode = (e:any)=>{
         e.preventDefault();
-        dispatch(getPerhitunganByGroupPeriode({idGroup, idPeriode}))
+        const paramsObj : any = {periode_uuid, group_uuid};
+        const searchParams = new URLSearchParams(paramsObj);
+        dispatch(getPerhitunganByGroupPeriode(searchParams))
     }
 
     const clickClose = () => {
@@ -85,12 +91,10 @@ export const SortingPeriodeGroup = () => {
     }
 
     const downloadFile = async() => {
-        if(idGroup !== '' && idPeriode !== ''){
-            dispatch(downloadPerhitunganByGroupPeriode({
-                idGroup:idGroup,
-                idPeriode:idPeriode,
-                name:'data perhitungan.xlsx'
-            }))
+        if(group_uuid !== '' && periode_uuid !== ''){
+            const paramsObj : any = {periode_uuid, group_uuid};
+            const searchParams = new URLSearchParams(paramsObj);
+            dispatch(downloadPerhitunganByGroupPeriode({searchParams, name:'data perhitungan.xlsx'}))
         }
         else{
             setMessage('group and periode cannot be null')
@@ -107,7 +111,7 @@ export const SortingPeriodeGroup = () => {
                             formSelectSize="sm"
                             aria-label=".form-select-sm example"
                             name='isSelect'
-                            value={idPeriode}
+                            value={periode_uuid}
                             onChange={(e)=>setIdPeriode(e.target.value)}
                             required
                             >
@@ -123,7 +127,7 @@ export const SortingPeriodeGroup = () => {
                             formSelectSize="sm"
                             aria-label=".form-select-sm example"
                             name='isSelect'
-                            value={idGroup}
+                            value={group_uuid}
                             onChange={(e)=>setIdGroup(e.target.value)}
                             required
                             >
