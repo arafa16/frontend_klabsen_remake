@@ -25,13 +25,13 @@ const CalendarAdmin = (props : any) => {
 
   const inputAbsen = (datas : any) => {
     datas.map((data : any)=>{
-      if(data.tipe_absen.code !== '11'){
-        if(data.tipe_absen.code === '13' || data.tipe_absen.code === '14'){
+      if(data.tipe_absen.code !== 11){
+        if(data.tipe_absen.code === 13 || data.tipe_absen.code === 14){
           const newData : any = {
             id:data.uuid,
-            title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
-            start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
-            end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+            title:dayjs(data.tanggal_mulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
+            start:dayjs(data.tanggal_mulai).format('YYYY-MM-DD'),
+            end:dayjs(data.tanggal_selesai).format('YYYY-MM-DD'),
             color:'gray',
             className:'text-xs w-full px-0',
             groupId:'absen'
@@ -39,13 +39,13 @@ const CalendarAdmin = (props : any) => {
           setEvents((events: any)  => [...events, newData])
         }
         else{
-          if(data.pelanggaran.code === '2'){
-            if(data.status_inout.code === '2' || data.status_inout.code === '3'){
+          if(data.pelanggaran.code === 2){
+            if(data.status_inout.code === 2 || data.status_inout.code === 3){
               const newData : any = {
                 id:data.uuid,
-                title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
-                start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
-                end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+                title:dayjs(data.tanggal_mulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
+                start:dayjs(data.tanggal_mulai).format('YYYY-MM-DD'),
+                end:dayjs(data.tanggal_selesai).format('YYYY-MM-DD'),
                 color:'orange',
                 className:'text-xs w-full px-0',
                 groupId:'absen'
@@ -55,9 +55,9 @@ const CalendarAdmin = (props : any) => {
             else{
               const newData : any = {
                 id:data.uuid,
-                title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
-                start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
-                end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+                title:dayjs(data.tanggal_mulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
+                start:dayjs(data.tanggal_mulai).format('YYYY-MM-DD'),
+                end:dayjs(data.tanggal_selesai).format('YYYY-MM-DD'),
                 color:'red',
                 className:'text-xs w-full px-0',
                 groupId:'absen'
@@ -68,9 +68,9 @@ const CalendarAdmin = (props : any) => {
           else{
             const newData : any = {
               id:data.uuid,
-              title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
-              start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
-              end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+              title:dayjs(data.tanggal_mulai).locale('zh-cn').format('HH:mm:ss')+' '+data.tipe_absen.name,
+              start:dayjs(data.tanggal_mulai).format('YYYY-MM-DD'),
+              end:dayjs(data.tanggal_selesai).format('YYYY-MM-DD'),
               color:'',
               className:'text-xs w-full px-0',
               groupId:'absen'
@@ -82,9 +82,9 @@ const CalendarAdmin = (props : any) => {
       else{
         const newData : any = {
           id:data.uuid,
-          title:dayjs(data.tanggalMulai).locale('zh-cn').format('HH')+' '+data.tipe_absen.name,
-          start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
-          end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+          title:dayjs(data.tanggal_mulai).locale('zh-cn').format('HH')+' '+data.tipe_absen.name,
+          start:dayjs(data.tanggal_mulai).format('YYYY-MM-DD'),
+          end:dayjs(data.tanggal_selesai).format('YYYY-MM-DD'),
           color:data.pelanggaran.code == 2 ? '#ff3c00' : '',
           className:'text-xs w-full px-0',
           groupId:'absen'
@@ -126,7 +126,6 @@ const CalendarAdmin = (props : any) => {
     dayMaxEvents: true,
     events: {events},
     dateClick: (info)=>clickDate(info),
-    // eventClick: (info)=>alert(info.event._def),
     eventClick: (info)=>clickEvent(info.event._def),
     // drop: function (info) {
     //   if (

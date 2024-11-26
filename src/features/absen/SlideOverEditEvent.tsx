@@ -64,8 +64,6 @@ export const SlideOverEditEvent = (props : any) => {
         (state: any) => state.inOut
     );
 
-    console.log(dataInfo, 'data info');
-
     useEffect(()=>{
         if(dataInfo !== null){
             setIdAbsen(dataInfo && dataInfo.uuid);
@@ -73,14 +71,14 @@ export const SlideOverEditEvent = (props : any) => {
             setTipeAbsenId(dataInfo && dataInfo.tipe_absen.uuid);
             setStatusInOutId(dataInfo && dataInfo.status_inout.uuid);
             setJamOperasionalId(dataInfo && dataInfo.jam_operasional && dataInfo.jam_operasional.uuid);
-            setTime(dayjs(dataInfo && dataInfo.tanggalMulai).format('HH:mm:ss'))
+            setTime(dayjs(dataInfo && dataInfo.tanggal_mulai).format('HH:mm:ss'))
         }
     },[dataInfo])
 
     useEffect(()=>{
         if(pelanggaran && isPelanggaranSuccess){
             if(!isPelanggaranLoading){
-                setDataPelanggaran(pelanggaran);
+                setDataPelanggaran(pelanggaran && pelanggaran.datas && pelanggaran.datas.data);
                 resetPelanggaran();
             }
         }
@@ -89,7 +87,7 @@ export const SlideOverEditEvent = (props : any) => {
     useEffect(()=>{
         if(tipeAbsen && isTipeAbsenSuccess){
             if(!isTipeAbsenLoading){
-                setDataTipeAbsen(tipeAbsen);
+                setDataTipeAbsen(tipeAbsen && tipeAbsen.datas && tipeAbsen.datas.data);
                 resetTipeAbsen();
             }
         }
@@ -98,7 +96,7 @@ export const SlideOverEditEvent = (props : any) => {
     useEffect(()=>{
         if(isStatusInoutSuccess && statusInout){
             if(!isStatusInoutLoading){
-                setDataStatusInOut(statusInout);
+                setDataStatusInOut(statusInout && statusInout.datas && statusInout.datas.data);
                 dispatch(resetStatusInout());
             }
         }
@@ -107,7 +105,7 @@ export const SlideOverEditEvent = (props : any) => {
     useEffect(()=>{
         if(isJamOperasionalSuccess && jamOperasional){
             if(!isJamOperasionalLoading){
-                setDataJamOperasional(jamOperasional);
+                setDataJamOperasional(jamOperasional && jamOperasional.datas && jamOperasional.datas.data);
                 dispatch(resetJamOperasional());
             }
         }
@@ -122,7 +120,7 @@ export const SlideOverEditEvent = (props : any) => {
 
     useEffect(()=>{
         if(inOut2 && isInOutSuccess2){
-          setDataInfo(inOut2);
+          setDataInfo(inOut2 && inOut2.datas && inOut2.datas.data);
           setOpen(true);
           dispatch(resetInOut2());
         }
@@ -145,19 +143,21 @@ export const SlideOverEditEvent = (props : any) => {
 
     const submitForm = (e : any) => {
         e.preventDefault();
-        const dateAbsen = dayjs(dataInfo && dataInfo.tanggalMulai).format('YYYY-MM-DD');
+        const dateAbsen = dayjs(dataInfo && dataInfo.tanggal_mulai).format('YYYY-MM-DD');
         const dateStart = dateAbsen+' '+time;
-        const tanggalMulai = dayjs(dateStart).format('YYYY-MM-DD HH:mm:ss');
-        
+        const tanggal_mulai = dayjs(dateStart).format('YYYY-MM-DD HH:mm:ss');
+        const user_uuid = dataInfo && dataInfo.user && dataInfo.user.uuid;
+
         dispatch(updateInOuts({
             uuid:idAbsen,
-            tanggalMulai:tanggalMulai,
-            tanggalSelesai:tanggalMulai,
-            tipeAbsenId:tipeAbsenId,
-            pelanggaranId:pelanggaranId,
-            statusInoutId:statusInoutId,
-            jamOperasionalId:jamOperasionalId,
-            isAbsenWeb:isAbsenWeb
+            user_uuid:user_uuid,
+            tanggal_mulai:tanggal_mulai,
+            tanggal_selesai:tanggal_mulai,
+            tipe_absen_uuid:tipeAbsenId,
+            pelanggaran_uuid:pelanggaranId,
+            status_inout_uuid:statusInoutId,
+            jam_operasional_uuid:jamOperasionalId,
+            is_absen_web:isAbsenWeb
         }));
     }
 

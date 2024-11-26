@@ -20,7 +20,7 @@ import { createInOuts, resetInOut2 } from "../../stores/features/inOut2Slice";
 export const SlideOverEditDate = (props : any) => {
     const {uuid} = props;
 
-    const [dataUser, setDataUser] = useState<any>([]);
+    const [dataUser, setDataUser] = useState<any>(null);
     const [open, setOpen] = useState(false);
     const [dataInfo, setDataInfo] = useState<any>(null);
     const [message, setMessage] = useState<any>(null);
@@ -63,7 +63,7 @@ export const SlideOverEditDate = (props : any) => {
     useEffect(()=>{
         if(pelanggaran && isPelanggaranSuccess){
             if(!isPelanggaranLoading){
-                setDataPelanggaran(pelanggaran);
+                setDataPelanggaran(pelanggaran && pelanggaran.datas && pelanggaran.datas.data);
                 resetPelanggaran();
             }
         }
@@ -72,7 +72,7 @@ export const SlideOverEditDate = (props : any) => {
     useEffect(()=>{
         if(tipeAbsen && isTipeAbsenSuccess){
             if(!isTipeAbsenLoading){
-                setDataTipeAbsen(tipeAbsen);
+                setDataTipeAbsen(tipeAbsen && tipeAbsen.datas && tipeAbsen.datas.data);
                 resetTipeAbsen();
             }
         }
@@ -81,7 +81,7 @@ export const SlideOverEditDate = (props : any) => {
     useEffect(()=>{
         if(isStatusInoutSuccess && statusInout){
             if(!isStatusInoutLoading){
-                setDataStatusInOut(statusInout);
+                setDataStatusInOut(statusInout && statusInout.datas && statusInout.datas.data);
                 dispatch(resetStatusInout());
             }
         }
@@ -90,7 +90,7 @@ export const SlideOverEditDate = (props : any) => {
     useEffect(()=>{
         if(isJamOperasionalSuccess && jamOperasional){
             if(!isJamOperasionalLoading){
-                setDataJamOperasional(jamOperasional);
+                setDataJamOperasional(jamOperasional && jamOperasional.datas && jamOperasional.datas.data);
                 dispatch(resetJamOperasional());
             }
         }
@@ -117,16 +117,17 @@ export const SlideOverEditDate = (props : any) => {
     const submitForm = (e : any) => {
         e.preventDefault();
         const dateStart = dataInfo.dateStr+' '+time;
-        const tanggalMulai = dayjs(dateStart).format('YYYY-MM-DD HH:mm:ss');
+        const tanggal_mulai = dayjs(dateStart).format('YYYY-MM-DD HH:mm:ss');
         
         dispatch(createInOuts({
-            userId:dataUser.uuid,
-            tanggalMulai:tanggalMulai,
-            tanggalSelesai:tanggalMulai,
-            tipeAbsenId:tipeAbsenId,
-            pelanggaranId:pelanggaranId,
-            statusInoutId:statusInoutId,
-            isAbsenWeb:isAbsenWeb
+            user_uuid:dataUser.uuid,
+            tanggal_mulai:tanggal_mulai,
+            tanggal_selesai:tanggal_mulai,
+            tipe_absen_uuid:tipeAbsenId,
+            pelanggaran_uuid:pelanggaranId,
+            status_inout_uuid:statusInoutId,
+            jam_operasional_uuid:jamOperasionalId,
+            is_absen_web:isAbsenWeb
         }));
     }
 
@@ -227,7 +228,7 @@ export const SlideOverEditDate = (props : any) => {
                             <option 
                                 key={key} 
                                 value={data && data.uuid}
-                                >{data.jamMasuk}-{data.jamPulang} {data.name}</option>
+                                >{data.jam_masuk}-{data.jam_pulang} {data.name}</option>
                         ))}
                         </FormSelect>
                     </div>

@@ -13,6 +13,7 @@ import photoReducer from "./features/photoSlice";
 import PenempatanReducer from "./features/penempatanSlice";
 import GanderReducer from "./features/ganderSlice";
 import SliderReducer from "./features/sliderSlice";
+import statusInoutReducer from "./features/statusInoutSlice";
 import periodeKerjaReducer from "./features/periodeKerjaSlice";
 import inOut2Reducer from "./features/inOut2Slice";
 import inOutReducer from "./features/inOutSlice";
@@ -40,6 +41,7 @@ export const store = configureStore({
     periodeKerja: periodeKerjaReducer,
     gander: GanderReducer,
     slider:SliderReducer,
+    statusInout: statusInoutReducer,
     inOut2: inOut2Reducer,
     inOut: inOutReducer,
     koreksi: koreksiReducer,

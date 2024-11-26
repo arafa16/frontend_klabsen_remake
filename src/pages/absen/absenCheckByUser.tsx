@@ -42,7 +42,7 @@ const absenCheckByUser = () => {
           setLimit={setLimit}
           datas={datas}
           linkCreate='/createEmploye'
-          linkView='/absen/user'
+          linkView='/absen/check'
           page={page}
           allPage={allPage}
           nextPage={nextPage}

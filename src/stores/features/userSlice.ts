@@ -49,8 +49,7 @@ export const getCountUser: any = createAsyncThunk("users/getCountUser", async(_,
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });
