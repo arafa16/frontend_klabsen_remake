@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import clsx from "clsx";
 import DataAbsen from "./dataAbsen";
-import { getInOutsByIdAndMonth, resetInOuts } from '../../stores/features/inOutSlice';
+import { 
+    // getInOutsByIdAndMonth, 
+    resetInOuts 
+} from '../../stores/features/inOutSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
@@ -12,9 +15,14 @@ const AbsenReport = (props:any) => {
     const dispatch = useDispatch();
 
     const getData = async() => {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/inOuts/idAndMonth/${dataUser.uuid}&${dataPeriodeKerja.tanggalMulai}&${dataPeriodeKerja.tanggalSelesai}`);
-        // console.log(response.data, 'response');
-        setDataInOut(response.data);
+        const paramsObj : any = {uuid:dataUser.uuid, tanggal_mulai:dataPeriodeKerja.tanggal_mulai, tanggal_selesai:dataPeriodeKerja.tanggal_selesai};
+        const searchParams = new URLSearchParams(paramsObj);
+
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/in_out/count?${searchParams}`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+
+        setDataInOut(response.data && response.data.datas && response.data.datas.data);
         // console.log(response.data.tipe_absen, 'data response')
     } 
 
@@ -22,40 +30,40 @@ const AbsenReport = (props:any) => {
         getData();
     },[dataPeriodeKerja]);
 
-    const dataIn = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '0');
-    const dataInPelanggaran = dataIn.filter((data: { pelanggaran : any }) => data.pelanggaran.code === '2');
+    const dataIn = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 0);
+    const dataInPelanggaran = dataIn.filter((data: { pelanggaran : any }) => data.pelanggaran.code === 2);
     const dataInNormal = dataIn.length - dataInPelanggaran.length;
 
-    const dataOut = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '1');
-    const dataOutPelanggaran = dataOut.filter((data: { pelanggaran : any }) => data.pelanggaran.code === '2');
+    const dataOut = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 1);
+    const dataOutPelanggaran = dataOut.filter((data: { pelanggaran : any }) => data.pelanggaran.code === 2);
     const dataOutNormal = dataOut.length - dataOutPelanggaran.length;
 
-    const dataInShift = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '4');
-    const dataInShiftPelanggaran = dataInShift.filter((data: { pelanggaran : any }) => data.pelanggaran.code === '2');
+    const dataInShift = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 4);
+    const dataInShiftPelanggaran = dataInShift.filter((data: { pelanggaran : any }) => data.pelanggaran.code === 2);
     const dataInShiftNormal = dataInShift.length - dataInShiftPelanggaran.length;
 
-    const dataOutShift = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '5');
-    const dataOutShiftPelanggaran = dataOutShift.filter((data: { pelanggaran : any }) => data.pelanggaran.code === '2');
+    const dataOutShift = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 5);
+    const dataOutShiftPelanggaran = dataOutShift.filter((data: { pelanggaran : any }) => data.pelanggaran.code === 2);
     const dataOutShiftNormal = dataOutShift.length - dataOutShiftPelanggaran.length;
 
-    const dataInWFH = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '8');
-    const dataInWFHPelanggaran = dataInWFH.filter((data: { pelanggaran : any }) => data.pelanggaran.code === '2');
+    const dataInWFH = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 8);
+    const dataInWFHPelanggaran = dataInWFH.filter((data: { pelanggaran : any }) => data.pelanggaran.code === 2);
     const dataInWFHNormal = dataInWFH.length - dataInWFHPelanggaran.length;
 
-    const dataOutWFH = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '9');
-    const dataOutWFHPelanggaran = dataOutWFH.filter((data: { pelanggaran : any }) => data.pelanggaran.code === '2');
+    const dataOutWFH = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 9);
+    const dataOutWFHPelanggaran = dataOutWFH.filter((data: { pelanggaran : any }) => data.pelanggaran.code === 2);
     const dataOutWFHNormal = dataOutWFH.length - dataOutWFHPelanggaran.length;
 
-    const dataTidakAbsenMasuk = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '11');
+    const dataTidakAbsenMasuk = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 11);
     const dataTidakAbsenMasukPelanggaran = dataTidakAbsenMasuk.filter((data: { pelanggaran : any }) => data.pelanggaran.code === '2');
     const dataTidakAbsenMasukNormal = dataTidakAbsenMasuk.length - dataTidakAbsenMasukPelanggaran.length;
 
-    const dataTidakAbsenPulang = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '12');
+    const dataTidakAbsenPulang = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 12);
     const dataTidakAbsenPulangPelanggaran = dataTidakAbsenPulang.filter((data: { pelanggaran : any }) => data.pelanggaran.code === '2');
     const dataTidakAbsenPulangNormal = dataTidakAbsenPulang.length - dataTidakAbsenPulangPelanggaran.length;
 
-    const dataCuti = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '13');
-    const dataSakit = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === '14');
+    const dataCuti = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 13);
+    const dataSakit = dataInOut.filter((data: { tipe_absen : any }) => data.tipe_absen.code === 14);
     
     const dataInOutPelangaran = 
         dataInPelanggaran.length + 
@@ -105,7 +113,7 @@ const AbsenReport = (props:any) => {
 
     const dataAllNormal = (dataInOutNormal*0.5) + dataCuti.length + dataSakit.length;
 
-    const dataBelumAbsen = dataPeriodeKerja.jumlahHari - dataAllPelanggaran - dataAllNormal;
+    const dataBelumAbsen = dataPeriodeKerja.jumlah_hari - dataAllPelanggaran - dataAllNormal;
 
     return (
         <div>
@@ -130,7 +138,7 @@ const AbsenReport = (props:any) => {
                         </div>
                         <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full">
                         <div className="text-xl font-medium leading-7">{dataPeriodeKerja.name}</div>
-                        <div className="mt-1 text-slate-500">{dataPeriodeKerja.jumlahHari} Days</div>
+                        <div className="mt-1 text-slate-500">{dataPeriodeKerja.jumlah_hari} Days</div>
                         </div>
                     </div>
                     <div className="mx-auto mt-8 w-52 lg:w-auto">
@@ -172,7 +180,7 @@ const AbsenReport = (props:any) => {
                         <div className="flex items-center mt-4">
                             <div className="w-2 h-2 mr-3 border rounded-full bg-black/20 border-black/20"></div>
                             <span className="truncate">Belum Absen</span>
-                            <span className="ml-auto">{dataBelumAbsen * 2} kali</span>
+                            <span className="ml-auto">{dataBelumAbsen * 2 < 0 ? 0 : dataBelumAbsen * 2} kali</span>
                         </div>
                     </div>
                     </div>

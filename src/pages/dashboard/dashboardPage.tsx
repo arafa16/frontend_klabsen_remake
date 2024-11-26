@@ -25,7 +25,7 @@ const DasboardPage = () => {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-4 lg:col-span-4 sm:row-start-4 md:row-start-3 lg:row-start-auto">
             <UserProfile
-              dataUser={dataMe && dataMe.datas && dataMe.datas.data}
+              dataUser={dataMe}
             />
           </div>
           <div className="col-span-12 mt-4 sm:col-span-8 lg:col-span-8 sm:row-start-4 md:row-start-3 lg:row-start-auto">

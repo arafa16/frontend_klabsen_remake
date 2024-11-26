@@ -43,13 +43,6 @@ export const downloadPerhitunganByGroupPeriode : any = createAsyncThunk("downloa
 
         return fileDownload(response.data, datas.name);
 
-        // return await axios({
-        //     url:`${import.meta.env.VITE_REACT_APP_API_URL}/perhitungan/export/count?${datas.searchParams}`,
-        //     responseType: 'blob',
-        //     method: 'GET'
-        // }).then((response)=>{
-        //     fileDownload(response.data, 'test.xlsx');
-        // });
     } catch (error : any) {
         if(error.response){
             return thunkAPI.rejectWithValue(error.response);
