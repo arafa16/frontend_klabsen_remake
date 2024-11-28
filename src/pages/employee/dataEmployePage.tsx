@@ -13,7 +13,7 @@ import {
   getDataUserTable, 
   getCountDataUser
 } from '../../features/user/user';
-// import { FormImportUser } from '../../features/employee/formImportUser';
+import { FormImportUser } from '../../features/employee/formImportUser';
 import { exportUser } from '../../features/employee/user';
 import LoadingIcon from '../../base-components/LoadingIcon'
 
@@ -31,16 +31,16 @@ const dataEmployePage = () => {
     reload:reloadDataUserTable
   } = getDataUserTable();
 
-  const {datas: dataUsers} = getCountDataUser();
+  const {datas: dataUsers, reload} = getCountDataUser();
 
   const clickStatus = (code:any) => {
     set_status_code(code)
   }
 
-  // const {form:formImportUser, isView, setIsView} = FormImportUser({
-  //   reloadDataUserTable,
-  //   reloadDataUser
-  // })
+  const {form:formImportUser, isView, setIsView} = FormImportUser({
+    reloadDataUserTable,
+    reload
+  })
 
   const {downloadUser, isLoading} = exportUser();
 
@@ -60,18 +60,18 @@ const dataEmployePage = () => {
         />
       </div>
       <div className="col-span-12 xl:col-span-6">
-        {/* {formImportUser} */}
+        {formImportUser}
       </div>
       <div className="col-span-12 xl:col-span-6 content-end mt-4">
           <div className='flex justify-end'>
             <div className='mx-2'>
-              {/* <Button
+              <Button
                   variant={!isView ? "primary" : "danger"}
                   size='sm'
                   onClick={()=>setIsView(!isView)}
                   >
                   {!isView ? 'Show Form Upload User' : 'Close Form Upload User'}
-              </Button> */}
+              </Button>
             </div>
             <div>
               <Button

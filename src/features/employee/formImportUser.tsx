@@ -22,7 +22,7 @@ export const FormImportUser = (datas:any) => {
             if(!isLoading){
                 setMessage(messageUser);
                 datas.reloadDataUserTable();
-                datas.reloadDataUser();
+                datas.reload();
                 dispatch(getUsers());
                 setIsView(false);
                 handleReset();
@@ -45,7 +45,6 @@ export const FormImportUser = (datas:any) => {
 
     const submitUser = async(e : any) => {
         e.preventDefault();
-
         const formData = new FormData();
         formData.append('file', data);
         dispatch(importUsers({formData}))

@@ -87,18 +87,19 @@ export const downloadUsers : any = createAsyncThunk("downloadUsers", async(datas
     }
 })
 
-// export const importUsers: any = createAsyncThunk("users/importUsers", async(datas : any, thunkAPI) => {
-//     try {
-//         const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/users/import`, datas.formData,{
-//             withCredentials: true, // Now this is was the missing piece in the client side 
-//         });
-//         return response.data;
-//     } catch (error: any) {
-//         if(error.response){
-//             return thunkAPI.rejectWithValue(error.response);
-//         }
-//     }
-// });
+export const importUsers: any = createAsyncThunk("users/importUsers", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/user/import`, datas.formData,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+
+        return response.data;
+    } catch (error: any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
 
 // export const UpdateUser  : any = createAsyncThunk("users/UpdateUser", async(datas : any, thunkAPI) => {
 //     try {
@@ -324,20 +325,20 @@ export const usersSlice = createSlice({
             state.message = action.payload;
         });
 
-        // //importUsers
-        // builder.addCase(importUsers.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(importUsers.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(importUsers.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
+        //importUsers
+        builder.addCase(importUsers.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(importUsers.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(importUsers.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
 
         // //Update Status User
         // builder.addCase(UpdateStatusUser.pending, (state) => {
