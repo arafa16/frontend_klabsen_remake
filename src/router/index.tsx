@@ -2,6 +2,9 @@ import { useRoutes } from "react-router-dom";
 import Menu from "../layouts/SideMenu";
 import AbsenUserPage from "../pages/absen/absenUserPage";
 import Dashboard from "../pages/dashboard/dashboardPage";
+import EventPage from "../pages/event/eventPage";
+import EditEvent from "../pages/event/editEventPage";
+import CreateEvent from "../pages/event/createEventPage";
 import Login from "../pages/auth/login";
 import Register from "../pages/auth/registerPage";
 import ForgotPassword from "../pages/auth/forgotPassword";
@@ -40,6 +43,18 @@ function Router() {
         {
           path: "/absen/perhitungan",
           element: <PerhitunganAbsenPage />
+        },
+        {
+          path: "/event",
+          element: <EventPage />,
+        },
+        {
+          path: "/event/create",
+          element: <CreateEvent />,
+        },
+        {
+          path: "/event/edit/:id",
+          element: <EditEvent />,
         },
         //profile
         {

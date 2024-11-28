@@ -23,6 +23,7 @@ import koreksiReducer from "./features/koreksiSlice";
 import koreksi2Reducer from "./features/koreksi2Slice";
 import pelanggaranReducer from "./features/pelanggaranSlice";
 import tipeAbsenReducer from "./features/tipeAbsenSlice";
+import TipeEventReducer from "./features/tipeEventSlice";
 import JamOperasionalGroupReducer from "./features/jamOperasionalGroupSlice";
 import jamOperasionalReducer from "./features/jamOperasionalSlice";
 
@@ -52,6 +53,7 @@ export const store = configureStore({
     koreksi2: koreksi2Reducer,
     pelanggaran: pelanggaranReducer,
     tipeAbsen: tipeAbsenReducer,
+    tipeEvent: TipeEventReducer,
     jamOperasionalGroup:JamOperasionalGroupReducer,
     jamOperasional: jamOperasionalReducer,
   },
