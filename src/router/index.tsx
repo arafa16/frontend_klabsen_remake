@@ -4,6 +4,7 @@ import AbsenUserPage from "../pages/absen/absenUserPage";
 import Dashboard from "../pages/dashboard/dashboardPage";
 import EventPage from "../pages/event/eventPage";
 import EditEvent from "../pages/event/editEventPage";
+import DataEmployePage from "../pages/employee/dataEmployePage";
 import CreateEvent from "../pages/event/createEventPage";
 import Login from "../pages/auth/login";
 import Register from "../pages/auth/registerPage";
@@ -55,6 +56,11 @@ function Router() {
         {
           path: "/event/edit/:id",
           element: <EditEvent />,
+        },
+        //employe
+        {
+          path: "/employee/data",
+          element: <DataEmployePage />
         },
         //profile
         {

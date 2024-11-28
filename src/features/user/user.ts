@@ -114,33 +114,33 @@ export const getCountDataUser = () => {
     return {datas, reload}
 }
 
-// export const getDataUser = () => {
-//     const [datas, setDatas] = useState([]);
-//     const dispatch = useDispatch();
+export const getDataUser = () => {
+    const [datas, setDatas] = useState([]);
+    const dispatch = useDispatch();
 
-//     const {data, isLoading, isSuccess} = useSelector(
-//         (state : any) => state.user
-//     )
+    const {data, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user
+    )
 
-//     useEffect(()=>{
-//         if(isSuccess && data){
-//             if(!isLoading){
-//                 setDatas(data);
-//                 dispatch(resetUser2());
-//             }
-//         }
-//     },[data, isSuccess, isLoading])
+    useEffect(()=>{
+        if(isSuccess && data){
+            if(!isLoading){
+                setDatas(data);
+                dispatch(resetUser2());
+            }
+        }
+    },[data, isSuccess, isLoading])
 
-//     useEffect(()=>{
-//         dispatch(getUsers());
-//     },[])
+    useEffect(()=>{
+        dispatch(getUsers());
+    },[])
 
-//     const reload = () => {
-//         dispatch(getUsers());
-//     }
+    const reload = () => {
+        dispatch(getUsers());
+    }
 
-//     return {datas, reload}
-// }
+    return {datas, reload}
+}
 
 export const getDataUserById = (datas:any) => {
     const [dataResult, setDataResult] = useState([]);

@@ -54,37 +54,38 @@ export const getCountUser: any = createAsyncThunk("users/getCountUser", async(_,
     }
 });
 
-// export const getUsers: any = createAsyncThunk("users/getUsers", async(_, thunkAPI) => {
-//     try {
-//         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/users`,{
-//             withCredentials: true, // Now this is was the missing piece in the client side 
-//         });
+export const getUsers: any = createAsyncThunk("users/getUsers", async(_, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/users`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
         
-//         return response.data;
-//     } catch (error : any) {
-//         if(error.response){
-//             const message = error.response.data;
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// });
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            const message = error.response.data;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
 
-// export const downloadUsers : any = createAsyncThunk("downloadUsers", async(status : any, thunkAPI) => {
-//     try {
-//         return axios({
-//             url:`${import.meta.env.VITE_REACT_APP_API_URL}/usersExport/${status.code}`,
-//             responseType: 'blob',
-//             method: 'GET'
-//         }).then((response)=>{
-//             fileDownload(response.data, status.name);
-//         });
-//     } catch (error : any) {
-//         if(error.response){
-//             const message = error.response.data.msg;
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// })
+export const downloadUsers : any = createAsyncThunk("downloadUsers", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/user/export?${datas.searchParams}`,{
+            responseType: 'blob',
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+
+        console.log(datas.searchParams.toString(), response)
+
+        return fileDownload(response.data, datas.name);
+    } catch (error : any) {
+        if(error.response){
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+})
 
 // export const importUsers: any = createAsyncThunk("users/importUsers", async(datas : any, thunkAPI) => {
 //     try {
@@ -308,20 +309,20 @@ export const usersSlice = createSlice({
             state.message = action.payload;
         });
 
-        // //download user
-        // builder.addCase(downloadUsers.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(downloadUsers.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(downloadUsers.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
+        //download user
+        builder.addCase(downloadUsers.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(downloadUsers.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(downloadUsers.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
 
         // //importUsers
         // builder.addCase(importUsers.pending, (state) => {
