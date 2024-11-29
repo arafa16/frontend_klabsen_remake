@@ -5,6 +5,7 @@ import Dashboard from "../pages/dashboard/dashboardPage";
 import EventPage from "../pages/event/eventPage";
 import EditEvent from "../pages/event/editEventPage";
 import DataEmployePage from "../pages/employee/dataEmployePage";
+import ViewEmployePage from "../pages/employee/viewEmployePage";
 import CreateEvent from "../pages/event/createEventPage";
 import Login from "../pages/auth/login";
 import Register from "../pages/auth/registerPage";
@@ -61,6 +62,10 @@ function Router() {
         {
           path: "/employee/data",
           element: <DataEmployePage />
+        },
+        {
+          path: "/employee/data/:id",
+          element: <ViewEmployePage />
         },
         //profile
         {

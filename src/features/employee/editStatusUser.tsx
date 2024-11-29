@@ -40,7 +40,7 @@ export const editStatusUser = (props : any) => {
     useEffect(()=>{
         if(dataStatusResult && isSuccessStatus){
             if(!isLoadingStatus){
-                setDataStatus(dataStatusResult);
+                setDataStatus(dataStatusResult && dataStatusResult.datas && dataStatusResult.datas.data );
                 dispatch(resetStatus());
             }
         }

@@ -1,11 +1,4 @@
-// import React, {useState, useEffect} from 'react'
-// import { useParams } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getUsers, resetUsers, downloadUsers} from "../../stores/features/userSlice";
-// import { getUsersTable } from "../../stores/features/user2Slice";
-// import FormImportUser from '../../components/Form/User/FormImportUser';
 import Button from '../../base-components/Button';
-// import axios from 'axios';
 
 import GeneralReportEmploye from '../../components/employee/generalReportEmploye';
 import EmployeTable from '../../components/employee/employeTable';

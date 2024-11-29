@@ -15,6 +15,8 @@ import GanderReducer from "./features/ganderSlice";
 import GroupReducer from "./features/groupSlice";
 import SliderReducer from "./features/sliderSlice";
 import statusInoutReducer from "./features/statusInoutSlice";
+import StatusReducer from "./features/statusSlice";
+import PrivilegeReducer from "./features/privilegeSlice";
 import periodeKerjaReducer from "./features/periodeKerjaSlice";
 import PerhitunganReducer from "./features/perhitunganSlice";
 import inOut2Reducer from "./features/inOut2Slice";
@@ -46,6 +48,8 @@ export const store = configureStore({
     gander: GanderReducer,
     group: GroupReducer,
     slider:SliderReducer,
+    status: StatusReducer,
+    privilege: PrivilegeReducer,
     statusInout: statusInoutReducer,
     inOut2: inOut2Reducer,
     inOut: inOutReducer,

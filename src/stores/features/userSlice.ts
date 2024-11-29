@@ -211,22 +211,22 @@ export const importUsers: any = createAsyncThunk("users/importUsers", async(data
 //     }
 // });
 
-// export const UpdateStatusUser  : any = createAsyncThunk("users/UpdateStatusUser", async(datas : any, thunkAPI) => {
-//     try {
-//         const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/users/${datas.id}`, {
-//             statusId:datas.statusId,
-//             isActive:datas.isActive
-//         },{
-//             withCredentials: true, // Now this is was the missing piece in the client side 
-//         });
-//         return response.data;
-//     } catch (error : any) {
-//         if(error.response){
-//             const message = error.response.data;
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// });
+export const UpdateStatusUser  : any = createAsyncThunk("users/UpdateStatusUser", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/users/${datas.id}`, {
+            statusId:datas.statusId,
+            isActive:datas.isActive
+        },{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            const message = error.response.data;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
 
 export const getUserById : any = createAsyncThunk("users/getUserById", async(datas : varPassword, thunkAPI) => {
     try {

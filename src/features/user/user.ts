@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { 
     getUsersTable, 
-    // deleteUser, 
+    deleteUser, 
     resetUser2 
 } from "../../stores/features/user2Slice";
 import { 
@@ -114,33 +114,33 @@ export const getCountDataUser = () => {
     return {datas, reload}
 }
 
-export const getDataUser = () => {
-    const [datas, setDatas] = useState([]);
-    const dispatch = useDispatch();
+// export const getDataUser = () => {
+//     const [datas, setDatas] = useState([]);
+//     const dispatch = useDispatch();
 
-    const {data, isLoading, isSuccess} = useSelector(
-        (state : any) => state.user
-    )
+//     const {data, isLoading, isSuccess} = useSelector(
+//         (state : any) => state.user
+//     )
 
-    useEffect(()=>{
-        if(isSuccess && data){
-            if(!isLoading){
-                setDatas(data);
-                dispatch(resetUser2());
-            }
-        }
-    },[data, isSuccess, isLoading])
+//     useEffect(()=>{
+//         if(isSuccess && data){
+//             if(!isLoading){
+//                 setDatas(data);
+//                 dispatch(resetUser2());
+//             }
+//         }
+//     },[data, isSuccess, isLoading])
 
-    useEffect(()=>{
-        dispatch(getUsers());
-    },[])
+//     useEffect(()=>{
+//         dispatch(getUsers());
+//     },[])
 
-    const reload = () => {
-        dispatch(getUsers());
-    }
+//     const reload = () => {
+//         dispatch(getUsers());
+//     }
 
-    return {datas, reload}
-}
+//     return {datas, reload}
+// }
 
 export const getDataUserById = (datas:any) => {
     const [dataResult, setDataResult] = useState([]);
@@ -170,29 +170,29 @@ export const getDataUserById = (datas:any) => {
     return {dataResult, reload}
 }
 
-// export const deleteDataById = (datas:any) => {
-//     const dispatch = useDispatch();
-//     const navigate = useNavigate();
+export const deleteDataById = (datas:any) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-//     const {message, isLoading, isSuccess} = useSelector(
-//         (state : any) => state.user2
-//     )
+    const {message, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user2
+    )
 
-//     useEffect(()=>{
-//         if(isSuccess && message){
-//             if(!isLoading){
-//                 dispatch(resetUser2());
-//                 navigate('/employee/data');
-//             }
-//         }
-//     },[message, isSuccess, isLoading])
+    useEffect(()=>{
+        if(isSuccess && message){
+            if(!isLoading){
+                dispatch(resetUser2());
+                navigate('/employee/data');
+            }
+        }
+    },[message, isSuccess, isLoading])
 
-//     const deleteData = () => {
-//         dispatch(deleteUser({id:datas.id}));
-//     }
+    const deleteData = () => {
+        dispatch(deleteUser({id:datas.id}));
+    }
 
-//     return {deleteData}
-// }
+    return {deleteData}
+}
 
 // export const updateDataUserById = (datas:any) => {
 //     const [message, setMessage] = useState<any>(null)
