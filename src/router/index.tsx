@@ -4,6 +4,8 @@ import AbsenUserPage from "../pages/absen/absenUserPage";
 import Dashboard from "../pages/dashboard/dashboardPage";
 import EventPage from "../pages/event/eventPage";
 import EditEvent from "../pages/event/editEventPage";
+import CreateEmployeePage from "../pages/employee/createEmployeePage";
+import UpdateEmployeePage from "../pages/employee/updateEmployeePage";
 import DataEmployePage from "../pages/employee/dataEmployePage";
 import ViewEmployePage from "../pages/employee/viewEmployePage";
 import CreateEvent from "../pages/event/createEventPage";
@@ -62,6 +64,14 @@ function Router() {
         {
           path: "/employee/data",
           element: <DataEmployePage />
+        },
+        {
+          path: "/employee/create",
+          element: <CreateEmployeePage />
+        },
+        {
+          path: "/employee/update/:id",
+          element: <UpdateEmployeePage />
         },
         {
           path: "/employee/data/:id",

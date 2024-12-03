@@ -25,14 +25,6 @@ export const statusUser = (props : any) => {
                         {datas.status && datas.status.name}
                     </div>
                 </div>
-                <div>
-                    <div className="font-medium whitespace-nowrap">
-                        Is Active 
-                    </div>
-                    <div className="mt-1  text-slate-500">
-                        {datas && datas.isActive ? 'Yes' : 'No'}
-                    </div>
-                </div>
             </div>
         </div>
     )

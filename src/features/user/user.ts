@@ -9,9 +9,9 @@ import {
     getUserById, 
     getCountUser,
     // getUsers, 
-    // UpdateUser, 
+    UpdateUser, 
     resetUsers, 
-    // CreateUser 
+    CreateUser 
 } from "../../stores/features/userSlice";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../stores/features/meSlice";
@@ -194,66 +194,66 @@ export const deleteDataById = (datas:any) => {
     return {deleteData}
 }
 
-// export const updateDataUserById = (datas:any) => {
-//     const [message, setMessage] = useState<any>(null)
-//     const dispatch = useDispatch();
-//     const navigate = useNavigate();
+export const updateDataUserById = (datas:any) => {
+    const [message, setMessage] = useState<any>(null)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-//     const {message:messageUser, isLoading, isSuccess} = useSelector(
-//         (state : any) => state.user
-//     );
+    const {message:messageUser, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user
+    );
     
-//     useEffect(()=>{
-//         if(isSuccess && messageUser){
-//             if(!isLoading){
-//                 setMessage(messageUser);
-//                 dispatch(resetUsers());
-//                 dispatch(getMe());
-//                 navigate(-1)
-//             }
-//         }
-//     },[messageUser, isSuccess, isLoading])
+    useEffect(()=>{
+        if(isSuccess && messageUser){
+            if(!isLoading){
+                setMessage(messageUser && messageUser.datas  && messageUser.datas.data);
+                dispatch(resetUsers());
+                dispatch(getMe());
+                navigate(-1)
+            }
+        }
+    },[messageUser, isSuccess, isLoading])
 
-//     const submit = (e : any) => {
-//         e.preventDefault();
-//         dispatch(UpdateUser(datas));
-//     }
+    const submit = (e : any) => {
+        e.preventDefault();
+        dispatch(UpdateUser(datas));
+    }
 
-//     return {submit, isLoading, message, isSuccess}
-// }
+    return {submit, isLoading, message, isSuccess}
+}
 
-// export const createDataUser = (datas:any) => {
-//     const [message, setMessage] = useState<any>(null)
-//     const dispatch = useDispatch();
-//     const navigate = useNavigate();
+export const createDataUser = (datas:any) => {
+    const [message, setMessage] = useState<any>(null)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-//     const {message:messageUser, isLoading, isSuccess, isError} = useSelector(
-//         (state : any) => state.user
-//     );
+    const {message:messageUser, isLoading, isSuccess, isError} = useSelector(
+        (state : any) => state.user
+    );
     
-//     useEffect(()=>{
-//         if(isSuccess && messageUser){
-//             if(!isLoading){
-//                 setMessage(messageUser);
-//                 dispatch(resetUsers());
-//                 navigate(-1);
-//             }
-//         }
-//     },[messageUser, isSuccess, isLoading])
+    useEffect(()=>{
+        if(isSuccess && messageUser){
+            if(!isLoading){
+                setMessage(messageUser);
+                dispatch(resetUsers());
+                navigate(-1);
+            }
+        }
+    },[messageUser, isSuccess, isLoading])
 
-//     useEffect(()=>{
-//         if(isError && messageUser){
-//             if(!isLoading){
-//                 setMessage(messageUser);
-//                 dispatch(resetUsers());
-//             }
-//         }
-//     },[messageUser, isError, isLoading])
+    useEffect(()=>{
+        if(isError && messageUser){
+            if(!isLoading){
+                setMessage(messageUser);
+                dispatch(resetUsers());
+            }
+        }
+    },[messageUser, isError, isLoading])
 
-//     const submit = (e : any) => {
-//         e.preventDefault();
-//         dispatch(CreateUser(datas));
-//     }
+    const submit = (e : any) => {
+        e.preventDefault();
+        dispatch(CreateUser(datas));
+    }
 
-//     return {submit, message}
-// }
+    return {submit, message, isLoading}
+}

@@ -1,6 +1,9 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import AtasanReducer from "./features/atasanSlice";
+import BankReducer from "./features/bankSlice";
 import darkModeReducer from "./darkModeSlice";
 import colorSchemeReducer from "./colorSchemeSlice";
+import ContactReducer from "./features/contactSlice";
 import sideMenuReducer from "./sideMenuSlice";
 import authReducer from "./features/authSlice";
 import forgotPasswordReducer from "./features/forgotPasswordSlice";
@@ -13,12 +16,16 @@ import photoReducer from "./features/photoSlice";
 import PenempatanReducer from "./features/penempatanSlice";
 import GanderReducer from "./features/ganderSlice";
 import GroupReducer from "./features/groupSlice";
+import GolonganDarahReducer from "./features/golonganDarahSlice";
+import JabatanReducer from "./features/jabatanSlice";
 import SliderReducer from "./features/sliderSlice";
 import statusInoutReducer from "./features/statusInoutSlice";
 import StatusReducer from "./features/statusSlice";
+import StatusPerkawinanReducer from "./features/statusPerkawinanSlice";
 import PrivilegeReducer from "./features/privilegeSlice";
 import periodeKerjaReducer from "./features/periodeKerjaSlice";
 import PerhitunganReducer from "./features/perhitunganSlice";
+import PendidikanReducer from "./features/pendidikanSlice";
 import inOut2Reducer from "./features/inOut2Slice";
 import inOutReducer from "./features/inOutSlice";
 import koreksiReducer from "./features/koreksiSlice";
@@ -31,8 +38,11 @@ import jamOperasionalReducer from "./features/jamOperasionalSlice";
 
 export const store = configureStore({
   reducer: {
+    atasan:AtasanReducer,
+    bank:BankReducer,
     darkMode: darkModeReducer,
     colorScheme: colorSchemeReducer,
+    contact:ContactReducer,
     sideMenu: sideMenuReducer,
     auth: authReducer,
     forgotPassword: forgotPasswordReducer,
@@ -46,11 +56,14 @@ export const store = configureStore({
     periodeKerja: periodeKerjaReducer,
     perhitungan: PerhitunganReducer,
     gander: GanderReducer,
+    golonganDarah:GolonganDarahReducer,
     group: GroupReducer,
     slider:SliderReducer,
     status: StatusReducer,
     privilege: PrivilegeReducer,
+    pendidikan:PendidikanReducer,
     statusInout: statusInoutReducer,
+    statusPerkawinan: StatusPerkawinanReducer,
     inOut2: inOut2Reducer,
     inOut: inOutReducer,
     koreksi: koreksiReducer,
@@ -60,6 +73,7 @@ export const store = configureStore({
     tipeEvent: TipeEventReducer,
     jamOperasionalGroup:JamOperasionalGroupReducer,
     jamOperasional: jamOperasionalReducer,
+    jabatan:JabatanReducer,
   },
 });
 
