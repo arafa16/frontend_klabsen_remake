@@ -29,6 +29,9 @@ import ViewSlipBonusPage from "../pages/pendapatan/viewSlipBonusPage";
 import BankPage from "../pages/bank/bankPage";
 import CreateBankPage from "../pages/bank/createBankPage";
 import EditBankPage from "../pages/bank/editBankPage";
+import ContactEmergancyPage from "../pages/contactEmergancy/contactEmergancyPage";
+import CreateContactEmergancyPage from "../pages/contactEmergancy/createContactEmergancyPage";
+import EditContactEmergancyPage from "../pages/contactEmergancy/editContactEmergancyPage";
 
 function Router() {
   const routes = [
@@ -139,6 +142,19 @@ function Router() {
         {
           path: "/bank/create",
           element: <CreateBankPage />
+        },
+        //contact emergency
+        {
+          path: "/contact",
+          element: <ContactEmergancyPage />
+        },
+        {
+          path: "/contact/create",
+          element: <CreateContactEmergancyPage />
+        },
+        {
+          path: "/contact/edit/:uuid",
+          element: <EditContactEmergancyPage />
         },
       ],
     },
