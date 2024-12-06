@@ -26,6 +26,9 @@ import PerhitunganAbsenPage from "../pages/absen/perhitunganAbsenPage";
 import PendapatanPage from "../pages/pendapatan/pendapatanPage";
 import PendapatanLainPage from "../pages/pendapatan/pendapatanLainPage";
 import ViewSlipBonusPage from "../pages/pendapatan/viewSlipBonusPage";
+import BankPage from "../pages/bank/bankPage";
+import CreateBankPage from "../pages/bank/createBankPage";
+import EditBankPage from "../pages/bank/editBankPage";
 
 function Router() {
   const routes = [
@@ -123,6 +126,19 @@ function Router() {
         {
           path: "/pendapatan/admin",
           element: <AdminPendapatan />
+        },
+        //Bank
+        {
+          path: "/bank",
+          element: <BankPage />
+        },
+        {
+          path: "/bank/edit/:uuid",
+          element: <EditBankPage />
+        },
+        {
+          path: "/bank/create",
+          element: <CreateBankPage />
         },
       ],
     },
