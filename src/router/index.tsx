@@ -1,6 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import Menu from "../layouts/SideMenu";
 import AbsenUserPage from "../pages/absen/absenUserPage";
+import AdminPendapatan from "../pages/pendapatan/adminPendapatan";
 import Dashboard from "../pages/dashboard/dashboardPage";
 import EventPage from "../pages/event/eventPage";
 import EditEvent from "../pages/event/editEventPage";
@@ -14,6 +15,7 @@ import Register from "../pages/auth/registerPage";
 import ForgotPassword from "../pages/auth/forgotPassword";
 import ResetPassword from "../pages/auth/resetPassword";
 import ViewProfilePage from "../pages/profile/viewProfilePage";
+import ViewSlipPage from "../pages/pendapatan/viewSlipPage";
 import AbsenCheckByUser from "../pages/absen/absenCheckByUser";
 import AbsenUserByIdPage from "../pages/absen/absenUserByIdPage";
 import KoreksiUserPage from "../pages/koreksi/koreksiUserPage";
@@ -21,6 +23,9 @@ import ViewKoreksiPage from "../pages/koreksi/viewKoreksiPage";
 import KoreksiApproverPage from "../pages/koreksi/koreksiApproverPage";
 import ViewKoreksiApproverPage from "../pages/koreksi/viewKoreksiApproverPage"
 import PerhitunganAbsenPage from "../pages/absen/perhitunganAbsenPage";
+import PendapatanPage from "../pages/pendapatan/pendapatanPage";
+import PendapatanLainPage from "../pages/pendapatan/pendapatanLainPage";
+import ViewSlipBonusPage from "../pages/pendapatan/viewSlipBonusPage";
 
 function Router() {
   const routes = [
@@ -97,6 +102,27 @@ function Router() {
         {
           path: "/koreksi/view_approver",
           element: <ViewKoreksiApproverPage />,
+        },
+        //pendapatan
+        {
+          path: "/pendapatan/user",
+          element: <PendapatanPage />
+        },
+        {
+          path: "/pendapatan/slip/:id",
+          element: <ViewSlipPage />
+        },
+        {
+          path: "/pendapatan/lain",
+          element: <PendapatanLainPage />
+        },
+        {
+          path: "/pendapatan/bonus/:id",
+          element: <ViewSlipBonusPage />
+        },
+        {
+          path: "/pendapatan/admin",
+          element: <AdminPendapatan />
         },
       ],
     },

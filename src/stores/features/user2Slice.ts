@@ -48,8 +48,6 @@ export const deleteUser : any = createAsyncThunk("users/deleteUser", async(datas
         if(error.response){
             return thunkAPI.rejectWithValue(error.response);
         }
-
-        console.log(error.response);
     }
 });
 
