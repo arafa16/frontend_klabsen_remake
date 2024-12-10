@@ -32,6 +32,36 @@ import EditBankPage from "../pages/bank/editBankPage";
 import ContactEmergancyPage from "../pages/contactEmergancy/contactEmergancyPage";
 import CreateContactEmergancyPage from "../pages/contactEmergancy/createContactEmergancyPage";
 import EditContactEmergancyPage from "../pages/contactEmergancy/editContactEmergancyPage";
+import GanderPage from "../pages/gander/ganderPage";
+import CreateGanderPage from "../pages/gander/createGanderPage";
+import EditGanderPage from "../pages/gander/editGanderPage";
+import GolonganDarahPage from "../pages/golonganDarah/golonganDarahPage";
+import CreateGolonganDarahPage from "../pages/golonganDarah/createGolonganDarahPage";
+import EditGolonganDarahPage from "../pages/golonganDarah/editGolonganDarahPage";
+import GroupPage from "../pages/group/groupPage";
+import CreateGroupPage from "../pages/group/createGroupPage";
+import EditGroupPage from "../pages/group/editGroupPage";
+import JabatanPage from "../pages/jabatan/jabatanPage";
+import CreateJabatanPage from "../pages/jabatan/createJabatanPage";
+import EditJabatanPage from "../pages/jabatan/editJabatanPage";
+import JamOperasionalPage from "../pages/jamOperasional/jamOperasionalPage";
+import CreateJamOperasionalPage from "../pages/jamOperasional/createJamOperasionalPage";
+import EditJamOperasionalPage from "../pages/jamOperasional/editJamOperasionalPage";
+import PendidikanPage from "../pages/pendidikan/pendidikanPage";
+import CreatePendidikanPage from "../pages/pendidikan/createPendidikanPage";
+import EditPendidikanPage from "../pages/pendidikan/editPendidikanPage";
+import PenempatanPage from "../pages/penempatan/penempatanPage";
+import CreatePenempatanPage from "../pages/penempatan/createPenempatanPage";
+import EditPenempatanPage from "../pages/penempatan/editPenempatanPage";
+import SliderPage from "../pages/slider/sliderPage";
+import CreateSliderPage from "../pages/slider/createSliderPage";
+import ViewSliderPage from "../pages/slider/viewSliderPage";
+import PeriodeKerjaPage from "../pages/periodeKerja/periodeKerjaPage";
+import EditPeriodeKerjaPage from "../pages/periodeKerja/editPeriodeKerjaPage";
+import CreatePeriodeKerjaPage from "../pages/periodeKerja/createPeriodeKerjaPage";
+import StatusPerkawinanPage from "../pages/statusPerkawinan/statusPerkawinanPage";
+import CreateStatusPerkawinanPage from "../pages/statusPerkawinan/createStatusPerkawinanPage";
+import EditStatusPerkawinanPage from "../pages/statusPerkawinan/editStatusPerkawinanPage";
 
 function Router() {
   const routes = [
@@ -155,6 +185,136 @@ function Router() {
         {
           path: "/contact/edit/:uuid",
           element: <EditContactEmergancyPage />
+        },
+        //gander
+        {
+          path: "/gander",
+          element: <GanderPage />
+        },
+        {
+          path: "/gander/create",
+          element: <CreateGanderPage />
+        },
+        {
+          path: "/gander/edit/:uuid",
+          element: <EditGanderPage />
+        },
+        //golongan darah
+        {
+          path: "/golonganDarah",
+          element: <GolonganDarahPage />
+        },
+        {
+          path: "/golonganDarah/create",
+          element: <CreateGolonganDarahPage />
+        },
+        {
+          path: "/golonganDarah/edit/:uuid",
+          element: <EditGolonganDarahPage />
+        },
+        //group
+        {
+          path: "/group",
+          element: <GroupPage />
+        },
+        {
+          path: "/group/create",
+          element: <CreateGroupPage />
+        },
+        {
+          path: "/group/edit/:uuid",
+          element: <EditGroupPage />
+        },
+        //jabatan
+        {
+          path: "/jabatan",
+          element: <JabatanPage />
+        },
+        {
+          path: "/jabatan/create",
+          element: <CreateJabatanPage />
+        },
+        {
+          path: "/jabatan/edit/:uuid",
+          element: <EditJabatanPage />
+        },
+        //jam operasional
+        {
+          path: "/jamOperasional",
+          element: <JamOperasionalPage />
+        },
+        {
+          path: "/jamOperasional/create",
+          element: <CreateJamOperasionalPage />
+        },
+        {
+          path: "/jamOperasional/edit/:uuid",
+          element: <EditJamOperasionalPage />
+        },
+        //pendidikan
+        {
+          path: "/pendidikan",
+          element: <PendidikanPage />
+        },
+        {
+          path: "/pendidikan/create",
+          element: <CreatePendidikanPage />
+        },
+        {
+          path: "/pendidikan/edit/:uuid",
+          element: <EditPendidikanPage />
+        },
+        //penempatan
+        {
+          path: "/penempatan",
+          element: <PenempatanPage />
+        },
+        {
+          path: "/penempatan/create",
+          element: <CreatePenempatanPage />
+        },
+        {
+          path: "/penempatan/edit/:uuid",
+          element: <EditPenempatanPage />
+        },
+        //slider
+        {
+          path: "/slider",
+          element: <SliderPage />
+        },
+        {
+          path: "/slider/create",
+          element: <CreateSliderPage />
+        },
+        {
+          path: "/slider/view/:uuid",
+          element: <ViewSliderPage />
+        },
+        //periode kerja
+        {
+          path: "/periodeKerja",
+          element: <PeriodeKerjaPage />
+        },
+        {
+          path: "/periodeKerja/create",
+          element: <CreatePeriodeKerjaPage />
+        },
+        {
+          path: "/periodeKerja/edit/:uuid",
+          element: <EditPeriodeKerjaPage />
+        },
+        //status perkawinan
+        {
+          path: "/statusPerkawinan",
+          element: <StatusPerkawinanPage />
+        },
+        {
+          path: "/statusPerkawinan/create",
+          element: <CreateStatusPerkawinanPage />
+        },
+        {
+          path: "/statusPerkawinan/edit/:uuid",
+          element: <EditStatusPerkawinanPage />
         },
       ],
     },

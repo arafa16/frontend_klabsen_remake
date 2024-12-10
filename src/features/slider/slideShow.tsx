@@ -43,7 +43,7 @@ export const SlideShow = () => {
                         <div key={key} className={`h-fit md:h-fit lg:h-72 md:w-full px-2`}>
                             <div className=" rounded-md bg-slate-100 dark:bg-darkmode-400">
                                 <img 
-                                    src={import.meta.env.VITE_REACT_APP_API_URL+data.fileLink} 
+                                    src={import.meta.env.VITE_REACT_APP_API_URL+data.file_link} 
                                     alt="not found" 
                                     className="w-full"
                                 />

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 
 const table3 = (props : any) => {
-    const {datas, linkView, linkCreate, nextPage, prevPage, page, allPage} = props;
+    const {datas, limit, setLimit, linkView, linkCreate, nextPage, prevPage, page, allPage} = props;
     const navigate = useNavigate();
     
     return (
@@ -53,7 +53,7 @@ const table3 = (props : any) => {
                         <div className="flex px-5 py-3">
                             <div className="flex items-center flex-none mr-5 w-52">
                                 <div className='w-16'>
-                                    {index+1}
+                                    {(index+1)+(limit*(page-1))}
                                 </div>
                                 <div
                                     className={clsx([
@@ -122,7 +122,7 @@ const table3 = (props : any) => {
                                 "pl-10 ml-auto whitespace-nowrap"
                                 ])}
                                 >
-                                {data.isActive ? 'active' : 'non active'}
+                                {data.is_active ? 'active' : 'non active'}
                             </div>
                         </div>
                         </div>

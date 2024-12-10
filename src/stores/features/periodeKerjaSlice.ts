@@ -39,8 +39,7 @@ export const getPeriodeKerjasTable : any = createAsyncThunk("getPeriodeKerjasTab
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });
@@ -59,83 +58,79 @@ export const getPeriodeKerjasTable : any = createAsyncThunk("getPeriodeKerjasTab
 //     }
 // });
 
-// export const getPeriodeKerjasById : any = createAsyncThunk("getPeriodeKerjasById", async(datas : any, thunkAPI) => {
-//     try {
-//         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.uuid}`,{
-//             withCredentials: true, // Now this is was the missing piece in the client side 
-//         });
-//         console.log(response, 'response');
-//         return response.data;
-//     } catch (error : any) {
-//         if(error.response){
-//             const message = error.response.data.msg;
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// });
+export const getPeriodeKerjasById : any = createAsyncThunk("getPeriodeKerjasById", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode_kerja/data/${datas.uuid}`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        console.log(response, 'response');
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
 
-// export const createPeriodeKerjas : any = createAsyncThunk("createPeriodeKerjas", async(datas : any, thunkAPI) => {
-//     try {
-//         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/periode`,{
-//             name:datas.name,
-//             bulan:datas.bulan,
-//             tahun:datas.tahun,
-//             tanggalMulai:datas.tanggalMulai,
-//             tanggalSelesai:datas.tanggalSelesai,
-//             jumlahHari:datas.jumlahHari,
-//             code:datas.code,
-//             isActive:datas.isActive
-//         },{
-//             withCredentials: true, // Now this is was the missing piece in the client side 
-//         });
+export const createPeriodeKerjas : any = createAsyncThunk("createPeriodeKerjas", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/periode_kerja/data`,{
+            name:datas.name,
+            bulan:datas.bulan,
+            tahun:datas.tahun,
+            tanggal_mulai:datas.tanggal_mulai,
+            tanggal_selesai:datas.tanggal_selesai,
+            jumlah_hari:datas.jumlah_hari,
+            code:datas.code,
+            is_active:datas.is_active
+        },{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
 
-//         return response.data;
-//     } catch (error : any) {
-//         if(error.response){
-//             const message = error.response.data.msg;
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// });
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
 
-// export const updatePeriodeKerjas : any = createAsyncThunk("updatePeriodeKerjas", async(datas : any, thunkAPI) => {
-//     try {
-//         const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.uuid}`,{
-//             name:datas.name,
-//             bulan:datas.bulan,
-//             tahun:datas.tahun,
-//             tanggalMulai:datas.tanggalMulai,
-//             tanggalSelesai:datas.tanggalSelesai,
-//             jumlahHari:datas.jumlahHari,
-//             code:datas.code,
-//             isActive:datas.isActive
-//         },{
-//             withCredentials: true, // Now this is was the missing piece in the client side 
-//         });
+export const updatePeriodeKerjas : any = createAsyncThunk("updatePeriodeKerjas", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/periode_kerja/data/${datas.uuid}`,{
+            name:datas.name,
+            bulan:datas.bulan,
+            tahun:datas.tahun,
+            tanggal_mulai:datas.tanggal_mulai,
+            tanggal_selesai:datas.tanggal_selesai,
+            jumlah_hari:datas.jumlah_hari,
+            code:datas.code,
+            is_active:datas.is_active
+        },{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
 
-//         return response.data;
-//     } catch (error : any) {
-//         if(error.response){
-//             const message = error.response.data.msg;
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// });
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
 
-// export const deletePeriodeKerjas : any = createAsyncThunk("deletePeriodeKerjas", async(datas : any, thunkAPI) => {
-//     try {
-//         const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/periode/${datas.uuid}`,{
-//             withCredentials: true, // Now this is was the missing piece in the client side 
-//         });
+export const deletePeriodeKerjas : any = createAsyncThunk("deletePeriodeKerjas", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/periode_kerja/data/${datas.uuid}`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
 
-//         return response.data;
-//     } catch (error : any) {
-//         if(error.response){
-//             const message = error.response.data.msg;
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// });
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
 
 
 export const periodeKerjasSlice = createSlice({
@@ -146,7 +141,7 @@ export const periodeKerjasSlice = createSlice({
     },
     extraReducers:(builder) => {
 
-        // get jam operasional
+        // get periode kerja
         builder.addCase(getPeriodeKerjas.pending, (state) => {
             state.isLoading = true;
         });
@@ -161,7 +156,7 @@ export const periodeKerjasSlice = createSlice({
             state.message = action.payload;
         });
 
-        // get jam operasional table
+        // get periode kerja table
         builder.addCase(getPeriodeKerjasTable.pending, (state) => {
             state.isLoading = true;
         });
@@ -176,7 +171,7 @@ export const periodeKerjasSlice = createSlice({
             state.message = action.payload;
         });
 
-        // // get jam operasional table
+        // // get periode kerja table
         // builder.addCase(getPeriodeKerjasTableStatus.pending, (state) => {
         //     state.isLoading = true;
         // });
@@ -191,65 +186,65 @@ export const periodeKerjasSlice = createSlice({
         //     state.message = action.payload;
         // });
 
-        // // get jam operasional by id
-        // builder.addCase(getPeriodeKerjasById.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(getPeriodeKerjasById.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.data = action.payload;
-        // });
-        // builder.addCase(getPeriodeKerjasById.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
+        // get periode kerja id
+        builder.addCase(getPeriodeKerjasById.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getPeriodeKerjasById.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getPeriodeKerjasById.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
 
-        // // create jam operasional
-        // builder.addCase(createPeriodeKerjas.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(createPeriodeKerjas.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(createPeriodeKerjas.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
+        // create periode kerja
+        builder.addCase(createPeriodeKerjas.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(createPeriodeKerjas.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(createPeriodeKerjas.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
 
-        // // update jam operasional
-        // builder.addCase(updatePeriodeKerjas.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(updatePeriodeKerjas.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(updatePeriodeKerjas.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
+        // update periode kerja
+        builder.addCase(updatePeriodeKerjas.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(updatePeriodeKerjas.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(updatePeriodeKerjas.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
 
-        // // update jam operasional
-        // builder.addCase(deletePeriodeKerjas.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(deletePeriodeKerjas.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(deletePeriodeKerjas.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
+        // delete periode kerja
+        builder.addCase(deletePeriodeKerjas.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(deletePeriodeKerjas.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(deletePeriodeKerjas.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
     }
 })
 
