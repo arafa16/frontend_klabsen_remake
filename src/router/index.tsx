@@ -62,6 +62,36 @@ import CreatePeriodeKerjaPage from "../pages/periodeKerja/createPeriodeKerjaPage
 import StatusPerkawinanPage from "../pages/statusPerkawinan/statusPerkawinanPage";
 import CreateStatusPerkawinanPage from "../pages/statusPerkawinan/createStatusPerkawinanPage";
 import EditStatusPerkawinanPage from "../pages/statusPerkawinan/editStatusPerkawinanPage";
+import JamOperasionalGroupPage from "../pages/jamOperasionalGroup/jamOperasionalGroupPage";
+import CreateJamOperasionalGroupPage from "../pages/jamOperasionalGroup/createJamOperasionalGroupPage";
+import EditJamOperasionalGroupPage from "../pages/jamOperasionalGroup/editJamOperasionalGroupPage";
+import MesinAbsenPage from "../pages/mesinAbsen/mesinAbsenPage";
+import CreateMesinAbsenPage from "../pages/mesinAbsen/createMesinAbsenPage";
+import EditMesinAbsenPage from "../pages/mesinAbsen/editMesinAbsenPage";
+import TipeAbsenPage from "../pages/tipeAbsen/tipeAbsenPage";
+import EditTipeAbsenPage from "../pages/tipeAbsen/editTipeAbsenPage";
+import CreateTipeAbsenPage from "../pages/tipeAbsen/createTipeAbsenPage";
+import TipeEventPage from "../pages/tipeEvent/tipeEventPage";
+import CreateTipeEventPage from "../pages/tipeEvent/createTipeEventPage";
+import EditTipeEventPage from "../pages/tipeEvent/editTipeEventPage";
+import TipeNotificationPage from "../pages/tipeNotification/tipeNotificationPage";
+import CreateTipeNotificationPage from "../pages/tipeNotification/createTipeEventPage";
+import EditTipeNotificationPage from "../pages/tipeNotification/editTipeEventPage";
+import TipePendapatanPage from "../pages/tipePendapatan/tipePendapatanPage";
+import CreateTipePendapatanPage from "../pages/tipePendapatan/createTipePendapatanPage";
+import EditTipePendapatanPage from "../pages/tipePendapatan/editTipePendapatanPage";
+import PelanggaranPage from "../pages/pelanggaran/pelanggaranPage";
+import CreatePelanggaranPage from "../pages/pelanggaran/createPelanggaranPage";
+import EditPelanggaranPage from "../pages/pelanggaran/editPelanggaranPage";
+import StatusPage from "../pages/status/statusPage";
+import CreateStatusPage from "../pages/status/createStatusPage";
+import EditStatusPage from "../pages/status/editStatusPage";
+import StatusInOutPage from "../pages/statusInOut/statusInOutPage";
+import CreateStatusInOutPage from "../pages/statusInOut/createStatusInOutPage";
+import EditStatusInOutPage from "../pages/statusInOut/editStatusInOutPage";
+import StatusKoreksiPage from "../pages/statusKoreksi/statusKoreksiPage";
+import CreateStatusKoreksiPage from "../pages/statusKoreksi/createStatusKoreksiPage";
+import EditStatusKoreksiPage from "../pages/statusKoreksi/editStatusKoreksiPage";
 
 function Router() {
   const routes = [
@@ -315,6 +345,136 @@ function Router() {
         {
           path: "/statusPerkawinan/edit/:uuid",
           element: <EditStatusPerkawinanPage />
+        },
+        //jam operasional group
+        {
+          path: "/jamOperasionalGroup",
+          element: <JamOperasionalGroupPage />
+        },
+        {
+          path: "/jamOperasionalGroup/create",
+          element: <CreateJamOperasionalGroupPage />
+        },
+        {
+          path: "/jamOperasionalGroup/edit/:uuid",
+          element: <EditJamOperasionalGroupPage />
+        },
+        //mesin absen
+        {
+          path: "/mesinAbsen",
+          element: <MesinAbsenPage />
+        },
+        {
+          path: "/mesinAbsen/create",
+          element: <CreateMesinAbsenPage />
+        },
+        {
+          path: "/mesinAbsen/edit/:uuid",
+          element: <EditMesinAbsenPage />
+        },
+        //tipe absen
+        {
+          path: "/tipeAbsen",
+          element: <TipeAbsenPage />
+        },
+        {
+          path: "/tipeAbsen/create",
+          element: <CreateTipeAbsenPage />
+        },
+        {
+          path: "/tipeAbsen/edit/:uuid",
+          element: <EditTipeAbsenPage />
+        },
+         //tipe event
+         {
+          path: "/tipeEvent",
+          element: <TipeEventPage />
+        },
+        {
+          path: "/tipeEvent/create",
+          element: <CreateTipeEventPage />
+        },
+        {
+          path: "/tipeEvent/edit/:uuid",
+          element: <EditTipeEventPage />
+        },
+        //tipe notification
+        {
+          path: "/tipeNotification",
+          element: <TipeNotificationPage />
+        },
+        {
+          path: "/tipeNotification/create",
+          element: <CreateTipeNotificationPage />
+        },
+        {
+          path: "/tipeNotification/edit/:uuid",
+          element: <EditTipeNotificationPage />
+        },
+        //tipe pendapatan
+        {
+          path: "/tipePendapatan",
+          element: <TipePendapatanPage />
+        },
+        {
+          path: "/tipePendapatan/create",
+          element: <CreateTipePendapatanPage />
+        },
+        {
+          path: "/tipePendapatan/edit/:uuid",
+          element: <EditTipePendapatanPage />
+        },
+        //pelanggaran
+        {
+          path: "/pelanggaran",
+          element: <PelanggaranPage />
+        },
+        {
+          path: "/pelanggaran/create",
+          element: <CreatePelanggaranPage />
+        },
+        {
+          path: "/pelanggaran/edit/:uuid",
+          element: <EditPelanggaranPage />
+        },
+        //status
+        {
+          path: "/status",
+          element: <StatusPage />
+        },
+        {
+          path: "/status/create",
+          element: <CreateStatusPage />
+        },
+        {
+          path: "/status/edit/:uuid",
+          element: <EditStatusPage />
+        },
+        //statusInOut
+        {
+          path: "/statusInOut",
+          element: <StatusInOutPage />
+        },
+        {
+          path: "/statusInOut/create",
+          element: <CreateStatusInOutPage />
+        },
+        {
+          path: "/statusInOut/edit/:uuid",
+          element: <EditStatusInOutPage/>
+        },
+        //status koreksi
+        {
+          path: "/statusKoreksi",
+          element: <StatusKoreksiPage />
+        },
+        {
+          path: "/statusKoreksi/create",
+          element: <CreateStatusKoreksiPage />
+        },
+        {
+          path: "/statusKoreksi/edit/:uuid",
+          element: <EditStatusKoreksiPage/>
         },
       ],
     },

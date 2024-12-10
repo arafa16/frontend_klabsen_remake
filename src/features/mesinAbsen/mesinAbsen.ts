@@ -1,42 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { 
-    createStatus, 
-    deleteStatus, 
-    getStatus, 
-    getStatusById, 
-    getStatusTable, 
-    resetStatus, 
-    updateStatus 
-} from "../../stores/features/statusSlice";
+import { createMesinAbsens, deleteMesinAbsens, getMesinAbsensById, getMesinAbsensTable, resetMesinAbsen, updateMesinAbsens } from "../../stores/features/mesinAbsenSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const getDataStatusSelect = () => {
-    const [dataResult, setDataResult] = useState([]);
-
-    const dispatch = useDispatch();
-
-    const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.status
-    );
-
-    useEffect(()=>{
-        if(data && isSuccess){
-            if(!isLoading){
-                setDataResult(data && data.datas && data.datas.data);
-                dispatch(resetStatus());
-            }
-        }
-    })
-
-    useEffect(()=>{
-        dispatch(getStatus());
-    },[])
-
-    return {dataResult}
-}
-
-export const getDataStatusTable = () => {
+export const getDataMesinAbsenTable = () => {
     const [dataResult, setDataResult] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -45,13 +12,13 @@ export const getDataStatusTable = () => {
     const dispatch = useDispatch();
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.mesinAbsen
     );
 
     useEffect(()=>{
         const paramsObj : any = {page, limit};
         const searchParams = new URLSearchParams(paramsObj);
-        dispatch(getStatusTable(searchParams));
+        dispatch(getMesinAbsensTable(searchParams));
     },[limit, page]);
 
     useEffect(()=>{
@@ -59,7 +26,7 @@ export const getDataStatusTable = () => {
             if(!isLoading){
                 setDataResult(data && data.datas && data.datas.data);
                 countData(data && data.datas && data.datas.data && data.datas.data.count);
-                dispatch(resetStatus());
+                dispatch(resetMesinAbsen());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -87,61 +54,65 @@ export const getDataStatusTable = () => {
     return {dataResult, nextPage, prevPage, page, allPage}
 }
 
-export const createDataStatus = () => {
+export const createDataMesinAbsen = () => {
     const [name, setName] = useState('');
+    const [ip_mesin, set_ip_mesin] = useState('');
     const [code, setCode] = useState('');
+    const [day, setDay] = useState('');
     const [is_active, setIsActive] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.mesinAbsen
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/status');
-                dispatch(resetStatus());
+                navigate('/mesinAbsen');
+                dispatch(resetMesinAbsen());
             }
         }
     },[isSuccess, message, isLoading])
 
     const createDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(createStatus({
-            name, code, is_active
+        dispatch(createMesinAbsens({
+            name, ip_mesin, code, day, is_active
         }));
     }
 
-    return {createDataSetting, name, setName, code, setCode, is_active, setIsActive, isLoading}
+    return {createDataSetting, name, setName, ip_mesin, set_ip_mesin, code, setCode, day, setDay, is_active, setIsActive, isLoading}
 }
 
-export const updateDataStatus = (datas:any) => {
+export const updateDataMesinAbsen = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const [name, setName] = useState('');
+    const [ip_mesin, set_ip_mesin] = useState('');
     const [code, setCode] = useState('');
+    const [day, setDay] = useState('');
     const [is_active, setIsActive] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.mesinAbsen
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/status');
-                dispatch(resetStatus());
+                navigate('/mesinAbsen');
+                dispatch(resetMesinAbsen());
             }
         }
     },[isSuccess, message, isLoading])
 
     useEffect(()=>{
-        dispatch(getStatusById({uuid}));
+        dispatch(getMesinAbsensById({uuid}));
     },[uuid]);
 
     useEffect(()=>{
@@ -150,7 +121,9 @@ export const updateDataStatus = (datas:any) => {
                 setName(data && data.datas && data.datas.data && data.datas.data.name);
                 setCode(data && data.datas && data.datas.data && data.datas.data.code);
                 setIsActive(data && data.datas && data.datas.data && data.datas.data.is_active ? '1' : '0');
-                dispatch(resetStatus());
+                set_ip_mesin(data && data.datas && data.datas.data && data.datas.data.ip_mesin);
+                setDay(data && data.datas && data.datas.data && data.datas.data.day);
+                dispatch(resetMesinAbsen());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -158,42 +131,42 @@ export const updateDataStatus = (datas:any) => {
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/status');
-                dispatch(resetStatus());
+                navigate('/mesinAbsen');
+                dispatch(resetMesinAbsen());
             }
         }
     },[isSuccess, message])
 
     const changeDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(updateStatus({
-            uuid, name, code, is_active
+        dispatch(updateMesinAbsens({
+            uuid, name, ip_mesin, code, day, is_active
         }));
     }
 
-    return {changeDataSetting, name, setName, code, setCode, is_active, setIsActive, isLoading}
+    return {changeDataSetting, name, setName, ip_mesin, set_ip_mesin, code, setCode, day, setDay, is_active, setIsActive, isLoading}
 }
 
-export const deleteDataStatus = (datas:any) => {
+export const deleteDataMesinAbsen = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.mesinAbsen
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/status');
-                dispatch(resetStatus());
+                navigate('/mesinAbsen');
+                dispatch(resetMesinAbsen());
             }
         }
     },[isSuccess, message, isLoading])
 
     const deleteData = () => {
-        dispatch(deleteStatus({uuid}));
+        dispatch(deleteMesinAbsens({uuid}));
     }
 
     return {deleteData, isLoading}

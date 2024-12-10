@@ -8,6 +8,7 @@ const formTemplate5 = (props : any) => {
         name, setName, 
         ipMesin, setIpMesin,
         code, setCode,  
+        day, setDay,
         isActive, setIsActive, 
         linkBack,
         submitAction,
@@ -53,6 +54,17 @@ const formTemplate5 = (props : any) => {
                             name='code'
                             value={code}
                             onChange={(e)=>setCode(e.target.value)}
+                        />
+                    </div>
+                    <div className="col-span-12 intro-y sm:col-span-6">
+                        <FormLabel htmlFor="input-wizard-1">Day</FormLabel>
+                        <FormInput
+                            formInputSize="sm"
+                            id="code"
+                            type="text"
+                            name='day'
+                            value={day}
+                            onChange={(e)=>setDay(e.target.value)}
                         />
                     </div>
                     <div className="col-span-12 intro-y sm:col-span-6">

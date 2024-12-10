@@ -36,6 +36,10 @@ import tipeAbsenReducer from "./features/tipeAbsenSlice";
 import TipeEventReducer from "./features/tipeEventSlice";
 import JamOperasionalGroupReducer from "./features/jamOperasionalGroupSlice";
 import jamOperasionalReducer from "./features/jamOperasionalSlice";
+import MesinAbsenReducer from "./features/mesinAbsenSlice";
+import TipeNotificationReducer from "./features/tipeNotificationSlice";
+import TipePendapatanReducer from "./features/tipePendapatanSlice";
+import StatusKoreksiReducer from "./features/statusKoreksiSlice";
 
 export const store = configureStore({
   reducer: {
@@ -76,6 +80,10 @@ export const store = configureStore({
     jamOperasionalGroup:JamOperasionalGroupReducer,
     jamOperasional: jamOperasionalReducer,
     jabatan:JabatanReducer,
+    mesinAbsen:MesinAbsenReducer,
+    tipeNotification:TipeNotificationReducer,
+    tipePendapatan:TipePendapatanReducer,
+    statusKoreksi:StatusKoreksiReducer,
   },
 });
 

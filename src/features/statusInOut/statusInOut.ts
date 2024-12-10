@@ -1,42 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
-import { 
-    createStatus, 
-    deleteStatus, 
-    getStatus, 
-    getStatusById, 
-    getStatusTable, 
-    resetStatus, 
-    updateStatus 
-} from "../../stores/features/statusSlice";
 import { useEffect, useState } from "react";
+import { createStatusInout, deleteStatusInout, getStatusInout, getStatusInoutById, getStatusInoutTable, resetStatusInout, updateStatusInout } from "../../stores/features/statusInoutSlice";
 import { useNavigate } from "react-router-dom";
 
-export const getDataStatusSelect = () => {
+export const getStatusInOut = () => {
     const [dataResult, setDataResult] = useState([]);
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); 
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.statusInout
     );
 
     useEffect(()=>{
         if(data && isSuccess){
             if(!isLoading){
                 setDataResult(data && data.datas && data.datas.data);
-                dispatch(resetStatus());
+                dispatch(resetStatusInout());
             }
         }
-    })
+    },[data, isSuccess])
 
     useEffect(()=>{
-        dispatch(getStatus());
+        dispatch(getStatusInout());
     },[])
 
     return {dataResult}
 }
 
-export const getDataStatusTable = () => {
+export const getDataStatusInOutTable = () => {
     const [dataResult, setDataResult] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -45,13 +37,13 @@ export const getDataStatusTable = () => {
     const dispatch = useDispatch();
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.statusInout
     );
 
     useEffect(()=>{
         const paramsObj : any = {page, limit};
         const searchParams = new URLSearchParams(paramsObj);
-        dispatch(getStatusTable(searchParams));
+        dispatch(getStatusInoutTable(searchParams));
     },[limit, page]);
 
     useEffect(()=>{
@@ -59,7 +51,7 @@ export const getDataStatusTable = () => {
             if(!isLoading){
                 setDataResult(data && data.datas && data.datas.data);
                 countData(data && data.datas && data.datas.data && data.datas.data.count);
-                dispatch(resetStatus());
+                dispatch(resetStatusInout());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -87,7 +79,7 @@ export const getDataStatusTable = () => {
     return {dataResult, nextPage, prevPage, page, allPage}
 }
 
-export const createDataStatus = () => {
+export const createDataStatusInOut = () => {
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
     const [is_active, setIsActive] = useState('');
@@ -96,21 +88,21 @@ export const createDataStatus = () => {
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.statusInout
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/status');
-                dispatch(resetStatus());
+                navigate('/statusInout');
+                dispatch(resetStatusInout());
             }
         }
     },[isSuccess, message, isLoading])
 
     const createDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(createStatus({
+        dispatch(createStatusInout({
             name, code, is_active
         }));
     }
@@ -118,7 +110,7 @@ export const createDataStatus = () => {
     return {createDataSetting, name, setName, code, setCode, is_active, setIsActive, isLoading}
 }
 
-export const updateDataStatus = (datas:any) => {
+export const updateDataStatusInOut = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
@@ -128,20 +120,20 @@ export const updateDataStatus = (datas:any) => {
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.statusInout
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/status');
-                dispatch(resetStatus());
+                navigate('/statusInout');
+                dispatch(resetStatusInout());
             }
         }
     },[isSuccess, message, isLoading])
 
     useEffect(()=>{
-        dispatch(getStatusById({uuid}));
+        dispatch(getStatusInoutById({uuid}));
     },[uuid]);
 
     useEffect(()=>{
@@ -150,7 +142,7 @@ export const updateDataStatus = (datas:any) => {
                 setName(data && data.datas && data.datas.data && data.datas.data.name);
                 setCode(data && data.datas && data.datas.data && data.datas.data.code);
                 setIsActive(data && data.datas && data.datas.data && data.datas.data.is_active ? '1' : '0');
-                dispatch(resetStatus());
+                dispatch(resetStatusInout());
             }
         }
     },[data, isSuccess, isLoading]);
@@ -158,15 +150,15 @@ export const updateDataStatus = (datas:any) => {
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/status');
-                dispatch(resetStatus());
+                navigate('/statusInout');
+                dispatch(resetStatusInout());
             }
         }
     },[isSuccess, message])
 
     const changeDataSetting = (e : any) => {
         e.preventDefault();
-        dispatch(updateStatus({
+        dispatch(updateStatusInout({
             uuid, name, code, is_active
         }));
     }
@@ -174,26 +166,26 @@ export const updateDataStatus = (datas:any) => {
     return {changeDataSetting, name, setName, code, setCode, is_active, setIsActive, isLoading}
 }
 
-export const deleteDataStatus = (datas:any) => {
+export const deleteDataStatusInOut = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {data, isSuccess, message, isLoading} = useSelector(
-        (state : any) => state.status
+        (state : any) => state.statusInout
     )
 
     useEffect(()=>{
         if(isSuccess && message){
             if(!isLoading){
-                navigate('/status');
-                dispatch(resetStatus());
+                navigate('/statusInOut');
+                dispatch(resetStatusInout());
             }
         }
     },[isSuccess, message, isLoading])
 
     const deleteData = () => {
-        dispatch(deleteStatus({uuid}));
+        dispatch(deleteStatusInout({uuid}));
     }
 
     return {deleteData, isLoading}

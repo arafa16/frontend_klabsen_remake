@@ -17,52 +17,54 @@ const initialState : variabel = {
     message: '',
 }
 
-export const getTipeAbsens : any = createAsyncThunk("getTipeAbsens", async(_, thunkAPI) => {
-    try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_absen/datas`,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
 
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            return thunkAPI.rejectWithValue(error.response);
-        }
-    }
-});
-
-export const getTipeAbsensById : any = createAsyncThunk("getTipeAbsensById", async(datas : any, thunkAPI) => {
+export const getStatusKoreksi : any = createAsyncThunk("getStatusKoreksi", async(_, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_absen/data/${datas.uuid}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/status_koreksi/datas`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
     } catch (error : any) {
         if(error.response){
-            return thunkAPI.rejectWithValue(error.response);
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
         }
     }
 });
 
-export const getTipeAbsensTable : any = createAsyncThunk("getTipeAbsensTable", async(datas : any, thunkAPI) => {
+export const getStatusKoreksiById : any = createAsyncThunk("getStatusKoreksiById", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_absen/table?${datas}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/status_koreksi/data/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
     } catch (error : any) {
         if(error.response){
-            return thunkAPI.rejectWithValue(error.response);
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
         }
     }
 });
 
-export const createTipeAbsens : any = createAsyncThunk("createTipeAbsens", async(datas : any, thunkAPI) => {
+export const getStatusKoreksiTable : any = createAsyncThunk("getStatusKoreksiTable", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_absen/data`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/status_koreksi/table?${datas}`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
+
+export const createStatusKoreksi : any = createAsyncThunk("createStatusKoreksi", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/status_koreksi/data`,{
             name: datas.name,
             code: datas.code,
-            is_select : datas.is_select,
             is_active: datas.is_active
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
@@ -70,17 +72,17 @@ export const createTipeAbsens : any = createAsyncThunk("createTipeAbsens", async
         return response.data;
     } catch (error : any) {
         if(error.response){
-            return thunkAPI.rejectWithValue(error.response);
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
         }
     }
 });
 
-export const updateTipeAbsens : any = createAsyncThunk("updateTipeAbsens", async(datas : any, thunkAPI) => {
+export const updateStatusKoreksi : any = createAsyncThunk("updateStatusKoreksi", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_absen/data/${datas.uuid}`,{
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/status_koreksi/data/${datas.uuid}`,{
             name: datas.name,
             code: datas.code,
-            is_select : datas.is_select,
             is_active: datas.is_active
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
@@ -88,122 +90,125 @@ export const updateTipeAbsens : any = createAsyncThunk("updateTipeAbsens", async
         return response.data;
     } catch (error : any) {
         if(error.response){
-            return thunkAPI.rejectWithValue(error.response);
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
         }
     }
 });
 
-export const deleteTipeAbsens : any = createAsyncThunk("deleteTipeAbsens", async(datas : any, thunkAPI) => {
+export const deleteStatusKoreksi : any = createAsyncThunk("deleteStatusKoreksi", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_absen/data/${datas.uuid}`,{
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/status_koreksi/data/${datas.uuid}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         return response.data;
     } catch (error : any) {
         if(error.response){
-            return thunkAPI.rejectWithValue(error.response);
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
         }
     }
 });
 
-export const tipeAbsensSlice = createSlice({
-    name: "tipeAbsens",
+export const statusKoreksiSlice = createSlice({
+    name: "StatusKoreksi",
     initialState,
     reducers:{
-        resetTipeAbsen: (state) => initialState
+        resetStatusKoreksi: (state) => initialState
     },
     extraReducers:(builder) => {
-        // get tipeAbsens
-        builder.addCase(getTipeAbsens.pending, (state) => {
+        // get StatusKoreksi
+        builder.addCase(getStatusKoreksi.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeAbsens.fulfilled, (state, action) => {
+        builder.addCase(getStatusKoreksi.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getTipeAbsens.rejected, (state, action) => {
+        builder.addCase(getStatusKoreksi.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get data by id
-        builder.addCase(getTipeAbsensById.pending, (state) => {
+        // get StatusKoreksi by id
+        builder.addCase(getStatusKoreksiById.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeAbsensById.fulfilled, (state, action) => {
+        builder.addCase(getStatusKoreksiById.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getTipeAbsensById.rejected, (state, action) => {
+        builder.addCase(getStatusKoreksiById.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // get tipeAbsens table
-        builder.addCase(getTipeAbsensTable.pending, (state) => {
+
+        // get StatusKoreksi table
+        builder.addCase(getStatusKoreksiTable.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getTipeAbsensTable.fulfilled, (state, action) => {
+        builder.addCase(getStatusKoreksiTable.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getTipeAbsensTable.rejected, (state, action) => {
+        builder.addCase(getStatusKoreksiTable.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // create tipeAbsens
-        builder.addCase(createTipeAbsens.pending, (state) => {
+        // create StatusKoreksi 
+        builder.addCase(createStatusKoreksi.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(createTipeAbsens.fulfilled, (state, action) => {
+        builder.addCase(createStatusKoreksi.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(createTipeAbsens.rejected, (state, action) => {
+        builder.addCase(createStatusKoreksi.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // update tipeAbsens 
-        builder.addCase(updateTipeAbsens.pending, (state) => {
+        // create StatusKoreksi 
+        builder.addCase(updateStatusKoreksi.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(updateTipeAbsens.fulfilled, (state, action) => {
+        builder.addCase(updateStatusKoreksi.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(updateTipeAbsens.rejected, (state, action) => {
+        builder.addCase(updateStatusKoreksi.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         })
 
-        // delete tipeAbsens 
-        builder.addCase(deleteTipeAbsens.pending, (state) => {
+        // create StatusKoreksi 
+        builder.addCase(deleteStatusKoreksi.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(deleteTipeAbsens.fulfilled, (state, action) => {
+        builder.addCase(deleteStatusKoreksi.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(deleteTipeAbsens.rejected, (state, action) => {
+        builder.addCase(deleteStatusKoreksi.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
-        });
+        })
     }
 })
 
-export const {resetTipeAbsen} = tipeAbsensSlice.actions;
-export default tipeAbsensSlice.reducer;
+export const {resetStatusKoreksi} = statusKoreksiSlice.actions;
+export default statusKoreksiSlice.reducer;

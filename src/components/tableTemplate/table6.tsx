@@ -75,12 +75,12 @@ const table6 = (props : any) => {
                                 <div
                                     className={clsx(["pl-10 ml-auto whitespace-nowrap"])}
                                     >
-                                    {data.isSelect ? 'active select' : 'non active select'}
+                                    {data.is_select ? 'active select' : 'non active select'}
                                 </div>
                                 <div
                                     className={clsx(["pl-10 ml-auto whitespace-nowrap"])}
                                     >
-                                    {data.isActive ? 'active' : 'non active'}
+                                    {data.is_active ? 'active' : 'non active'}
                                 </div>
                             </div>
                         </div>

@@ -33,8 +33,7 @@ export const createKoreksi: any = createAsyncThunk("createKoreksi", async(datas 
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });

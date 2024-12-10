@@ -68,10 +68,10 @@ const table5 = (props : any) => {
                                     "ml-3 truncate"
                                     ])}
                                 >
-                                    {data.ipMesin}
+                                    {data.ip_mesin}
                                 </span>
                             </div>
-                            <div className="w-64 truncate sm:w-auto">
+                            <div className="w-64 truncate sm:w-32">
                                 <span
                                     className={clsx([
                                     "ml-3 truncate"
@@ -80,12 +80,21 @@ const table5 = (props : any) => {
                                     {data.code}
                                 </span>
                             </div>
+                            <div className="w-64 truncate sm:w-32">
+                                <span
+                                    className={clsx([
+                                    "ml-3 truncate"
+                                    ])}
+                                >
+                                    {data.day}
+                                </span>
+                            </div>
                             <div
                             className={clsx([
                                 "pl-10 ml-auto whitespace-nowrap"
                             ])}
                             >
-                            {data.isActive ? 'active' : 'non active'}
+                            {data.is_active ? 'active' : 'non active'}
                             </div>
                         </div>
                         </div>
