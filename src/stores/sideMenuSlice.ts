@@ -249,6 +249,18 @@ const initialState: SideMenuState = {
           title: "Status Koreksi",
           code: 'setting',
         },
+        {
+          icon: "Shuffle",
+          pathname: "/statusEmail",
+          title: "Status Email",
+          code: 'setting',
+        },
+        {
+          icon: "Send",
+          pathname: "/dataEmail",
+          title: "Email",
+          code: 'setting',
+        },
       ],
     }
   ],

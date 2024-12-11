@@ -40,6 +40,8 @@ import MesinAbsenReducer from "./features/mesinAbsenSlice";
 import TipeNotificationReducer from "./features/tipeNotificationSlice";
 import TipePendapatanReducer from "./features/tipePendapatanSlice";
 import StatusKoreksiReducer from "./features/statusKoreksiSlice";
+import DataEmailReducer from "./features/dataEmailSlice";
+import StatusEmailReducer from "./features/statusEmailSlice";
 
 export const store = configureStore({
   reducer: {
@@ -84,6 +86,8 @@ export const store = configureStore({
     tipeNotification:TipeNotificationReducer,
     tipePendapatan:TipePendapatanReducer,
     statusKoreksi:StatusKoreksiReducer,
+    dataEmail:DataEmailReducer,
+    statusEmail:StatusEmailReducer
   },
 });
 

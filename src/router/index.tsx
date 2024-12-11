@@ -92,6 +92,14 @@ import EditStatusInOutPage from "../pages/statusInOut/editStatusInOutPage";
 import StatusKoreksiPage from "../pages/statusKoreksi/statusKoreksiPage";
 import CreateStatusKoreksiPage from "../pages/statusKoreksi/createStatusKoreksiPage";
 import EditStatusKoreksiPage from "../pages/statusKoreksi/editStatusKoreksiPage";
+import DataEmailPage from "../pages/dataEmail/dataEmailPage";
+import ViewDataEmailPage from "../pages/dataEmail/viewDataEmailPage";
+import EditDataEmailPage from "../pages/dataEmail/editDataEmailPage";
+import CreateDataEmailPage from "../pages/dataEmail/createDataEmailPage";
+import StatusEmailPage from "../pages/statusEmail/statusEmailPage";
+import CreateStatusEmailPage from "../pages/statusEmail/createStatusEmailPage";
+import EditStatusEmailPage from "../pages/statusEmail/editStatusEmailPage";
+
 
 function Router() {
   const routes = [
@@ -475,6 +483,36 @@ function Router() {
         {
           path: "/statusKoreksi/edit/:uuid",
           element: <EditStatusKoreksiPage/>
+        },
+        //statusEmail
+        {
+          path: "/statusEmail",
+          element: <StatusEmailPage />
+        },
+        {
+          path: "/statusEmail/create",
+          element: <CreateStatusEmailPage />
+        },
+        {
+          path: "/statusEmail/edit/:uuid",
+          element: <EditStatusEmailPage/>
+        },
+        //email
+        {
+          path: "/dataEmail",
+          element: <DataEmailPage />
+        },
+        {
+          path: "/dataEmail/view/:uuid",
+          element: <ViewDataEmailPage/>
+        },
+        {
+          path: "/dataEmail/create",
+          element: <CreateDataEmailPage/>
+        },
+        {
+          path: "/dataEmail/edit/:uuid",
+          element: <EditDataEmailPage/>
         },
       ],
     },
