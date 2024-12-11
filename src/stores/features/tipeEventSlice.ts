@@ -63,6 +63,7 @@ export const createTipeEvents : any = createAsyncThunk("createTipeEvents", async
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_event/data`,{
             name: datas.name,
             code: datas.code,
+            color: datas.color,
             is_active: datas.is_active
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
@@ -80,6 +81,7 @@ export const updateTipeEvents : any = createAsyncThunk("updateTipeEvents", async
         const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/tipe_event/data/`+datas.uuid,{
             name: datas.name,
             code: datas.code,
+            color: datas.color,
             is_active: datas.is_active
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 

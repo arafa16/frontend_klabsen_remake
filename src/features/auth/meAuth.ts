@@ -37,5 +37,16 @@ export const getMeAuth = () => {
         dispatch(getMe());
     },[])
 
+    useEffect(()=>{
+        const interval = setInterval(()=>{
+            dispatch(getMe());
+            console.log('check auth')
+        }, 60000);
+
+        return () => clearInterval(interval)
+    },[])
+
+    
+
     return {data, loading, message}
 }

@@ -1,4 +1,4 @@
-import Table1 from '../../components/tableTemplate/table1';
+import Table8 from '../../components/tableTemplate/table8';
 import { getDataTipeEventTable } from '../../features/tipeEvent/tipeEvent';
 
 const tipeEventPage = () => {
@@ -7,7 +7,7 @@ const tipeEventPage = () => {
 
     return (
         <div className='w-full'>
-            <Table1
+            <Table8
                 datas={dataResult}
                 linkView="/tipeEvent/edit"
                 linkCreate="/tipeEvent/create"

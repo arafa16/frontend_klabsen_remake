@@ -8,8 +8,6 @@ export const reportAbsenMonth = () => {
     const [page, setPage] = useState(1);
     const [allPage, setAllPage] = useState(0);
 
-    console.log(dataPeriodeKerjas, 'data pesriode kerja')
-
     const dispatch = useDispatch();
 
     //get periode data

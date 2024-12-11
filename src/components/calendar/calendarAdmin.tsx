@@ -103,7 +103,7 @@ const CalendarAdmin = (props : any) => {
           end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
           className:'text-sm text-white py-1 text-center w-full px-0',
           groupId:'event',
-          color:'red',
+          color:data.tipe_event.color,
           textColor:'white',
         } 
         setEvents((events: any)  => [...events, newData])

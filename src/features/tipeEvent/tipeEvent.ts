@@ -90,6 +90,7 @@ export const getDataTipeEventTable = () => {
 export const createDataTipeEvent = () => {
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
+    const [color, setColor] = useState('');
     const [is_active, setIsActive] = useState('');
 
     const dispatch = useDispatch();
@@ -111,17 +112,18 @@ export const createDataTipeEvent = () => {
     const createDataSetting = (e : any) => {
         e.preventDefault();
         dispatch(createTipeEvents({
-            name, code, is_active
+            name, code, color, is_active
         }));
     }
 
-    return {createDataSetting, name, setName, code, setCode, is_active, setIsActive, isLoading}
+    return {createDataSetting, name, setName, code, setCode, color, setColor, is_active, setIsActive, isLoading}
 }
 
 export const updateDataTipeEvent = (datas:any) => {
     const [uuid, setUuid] = useState(datas && datas.uuid);
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
+    const [color, setColor] = useState('');
     const [is_active, setIsActive] = useState('');
 
     const dispatch = useDispatch();
@@ -149,6 +151,7 @@ export const updateDataTipeEvent = (datas:any) => {
             if(!isLoading){
                 setName(data && data.datas && data.datas.data && data.datas.data.name);
                 setCode(data && data.datas && data.datas.data && data.datas.data.code);
+                setColor(data && data.datas && data.datas.data && data.datas.data.color);
                 setIsActive(data && data.datas && data.datas.data && data.datas.data.is_active ? '1' : '0');
                 dispatch(resetTipeEvent());
             }
@@ -167,11 +170,11 @@ export const updateDataTipeEvent = (datas:any) => {
     const changeDataSetting = (e : any) => {
         e.preventDefault();
         dispatch(updateTipeEvents({
-            uuid, name, code, is_active
+            uuid, name, code, color, is_active
         }));
     }
 
-    return {changeDataSetting, name, setName, code, setCode, is_active, setIsActive, isLoading}
+    return {changeDataSetting, name, setName, code, setCode, color, setColor, is_active, setIsActive, isLoading}
 }
 
 export const deleteDataTipeEvent = (datas:any) => {

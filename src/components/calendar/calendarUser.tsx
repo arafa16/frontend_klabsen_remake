@@ -22,7 +22,7 @@ const CalendarUser = (props : any) => {
   useEffect(()=>{
     setEvents([]);
     inputAbsen(dataAbsen);
-    // inputEvent(dataEventInternal)
+    inputEvent(dataEventInternal)
   },[dataAbsen, dataEventInternal]);
 
   const inputAbsen = (datas : any) => {
@@ -97,6 +97,7 @@ const CalendarUser = (props : any) => {
   }
 
   const inputEvent = (datas : any) => {
+    console.log(datas, 'event')
     datas.map((data : any)=>{
         const newData : any = {
           id:data.uuid,
@@ -105,7 +106,7 @@ const CalendarUser = (props : any) => {
           end:dayjs(data.tanggal_selesai).format('YYYY-MM-DD'),
           className:'text-sm text-white py-1 text-center w-full px-0',
           groupId:'event',
-          color:'red',
+          color:data.tipe_event.color,
           textColor:'white',
         } 
         setEvents((events: any)  => [...events, newData])
