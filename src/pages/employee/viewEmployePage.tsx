@@ -4,7 +4,7 @@ import Button from '../../base-components/Button';
 import { Menu } from '../../base-components/Headless';
 import EditViewPrivilege from '../../features/employee/editViewPrivilege';
 import CreatePrivilege from '../../features/employee/createPrivilege';
-import { getDataUserById, deleteDataById } from '../../features/user/user';
+import { getDataUserById, deleteDataById, getDataUsers } from '../../features/user/user';
 import DataUser from '../../components/employee/dataUser';
 import ProfileCover from '../../components/employee/profileCover';
 import { changePhotoProfile } from "../../features/user/setPhotoProfile";
@@ -12,6 +12,10 @@ import { statusUser } from '../../features/employee/statusUser';
 import { viewPrivilege } from '../../features/employee/viewPrivilege';
 import { editStatusUser } from '../../features/employee/editStatusUser';
 import { resetPassword } from '../../features/user/resetPassword';
+import { createDataUserRelate, deleteDataUserRelate, getDataUserRelateTable } from "../../features/userRelate/userRelate";
+import UserRelate from "../../components/dashboard/userRelate";
+import AddUserRelate from '../../components/dashboard/addUserRelate';
+
 
 const viewEmployePage = () => {
     //get uuid
@@ -87,6 +91,36 @@ const viewEmployePage = () => {
 
     const {modalResetPassword, message, showModal, setShowModal} = resetPassword({uuid:id});
 
+    const {
+        dataResult:dataUserRelates,
+        page:pageRelate,
+        limit:limitRelate,
+        search,
+        setSearch,
+        allPage:allPageRelate, 
+        status_code, set_status_code, 
+        nextPage:nextPageRelate, 
+        prevPage:prevPageRelate,
+        reload:reloadData
+      } = getDataUserRelateTable({uuid:id});
+
+      //search user
+      const {datas:datasSearch, search:serachUser, setSearch:setSearchUser} = getDataUsers();
+
+      //add user
+      const {message:messageUserRelate, addSubmit} = createDataUserRelate({reloadData});
+
+      //add user
+      const {message:messageDeleteUserRelate, deleteAction} = deleteDataUserRelate({reloadData});
+
+      const addDataUserRelate = (datas:any) => {
+            addSubmit({
+                user_uuid:id,
+                user_relate_uuid:datas.user_relate_uuid,
+                is_active:datas.is_active
+            });
+      }
+
     return (
         <div className="grid grid-cols-12 gap-4 mt-5 text-xs">
             {modalChangePhoto}
@@ -132,10 +166,35 @@ const viewEmployePage = () => {
                 />
             </div>
             <div className="col-span-12 xl:col-span-8">
-                <DataUser 
-                    users={dataUser}
-                    title={`Data User`}
-                />
+                <div>
+                    <DataUser 
+                        users={dataUser}
+                        title={`Data User`}
+                    />
+                </div>
+                <div className='mt-4'>
+                    <UserRelate
+                        datas={dataUserRelates}
+                        page={pageRelate}
+                        limit={limitRelate}
+                        nextPage={nextPageRelate}
+                        prevPage={prevPageRelate}
+                        allPage={allPageRelate}
+                        search={search}
+                        setSearch={setSearch}
+                        link='/absen/view/'
+                        viewTrash={true}
+                        deleteAction={deleteAction}
+                    />
+                </div>
+                <div className='mt-4'>
+                    <AddUserRelate 
+                        addSubmit={addDataUserRelate}
+                        datas={datasSearch}
+                        search={serachUser}
+                        setSearch={setSearchUser}
+                    />
+                </div>
             </div>
             <div className="col-span-12 xl:col-span-4">
                 <div>
@@ -157,9 +216,6 @@ const viewEmployePage = () => {
                         viewCreatePriviege={isViewPrivilege}
                     />
                 </div>
-            </div>
-            <div className="col-span-12 xl:col-span-4">
-                
             </div>
         </div>
     )

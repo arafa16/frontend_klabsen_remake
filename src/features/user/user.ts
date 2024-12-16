@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { 
     getUsersTable, 
     deleteUser, 
+    getUsers, 
     resetUser2 
 } from "../../stores/features/user2Slice";
 import { 
     getUserById, 
     getCountUser,
-    // getUsers, 
     UpdateUser, 
     resetUsers, 
     CreateUser 
@@ -114,33 +114,37 @@ export const getCountDataUser = () => {
     return {datas, reload}
 }
 
-// export const getDataUser = () => {
-//     const [datas, setDatas] = useState([]);
-//     const dispatch = useDispatch();
+export const getDataUsers = () => {
+    const [datas, setDatas] = useState([]);
+    const [search, setSearch] = useState<any>('');
 
-//     const {data, isLoading, isSuccess} = useSelector(
-//         (state : any) => state.user
-//     )
+    const dispatch = useDispatch();
 
-//     useEffect(()=>{
-//         if(isSuccess && data){
-//             if(!isLoading){
-//                 setDatas(data);
-//                 dispatch(resetUser2());
-//             }
-//         }
-//     },[data, isSuccess, isLoading])
+    const {data, isLoading, isSuccess} = useSelector(
+        (state : any) => state.user2
+    )
 
-//     useEffect(()=>{
-//         dispatch(getUsers());
-//     },[])
+    useEffect(()=>{
+        if(isSuccess && data){
+            if(!isLoading){
+                setDatas(data && data.datas && data.datas.data);
+                dispatch(resetUser2());
+            }
+        }
+    },[data, isSuccess, isLoading])
 
-//     const reload = () => {
-//         dispatch(getUsers());
-//     }
+    useEffect(()=>{
+        if(search !== null && search !== ''){
+            const paramsObj : any = {search};
+            const searchParams = new URLSearchParams(paramsObj);
+            dispatch(getUsers(searchParams));
+        }else{
+            setDatas([]);
+        }
+    },[search])
 
-//     return {datas, reload}
-// }
+    return {datas, search, setSearch}
+}
 
 export const getDataUserById = (datas:any) => {
     const [dataResult, setDataResult] = useState([]);

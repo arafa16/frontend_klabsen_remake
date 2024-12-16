@@ -124,20 +124,20 @@ const AbsenReport = (props:any) => {
                     "mt-4 intro-y",
                     "before:content-[''] before:w-[90%] before:shadow-[0px_3px_5px_#0000000b] before:h-full before:bg-slate-50 before:border before:border-slate-200 before:mt-3 before:absolute before:rounded-lg before:mx-auto before:inset-x-0 before:dark:bg-darkmode-600/70 before:dark:border-darkmode-500/60",
                     ])}
-                >
+                    >
                     <div className="p-5 box">
                     <div className="relative px-3">
                         <div className="w-40 mx-auto lg:w-auto">
                         <DataAbsen
                             className="relative z-10 mt-3"
-                            height={190}
+                            height={150}
                             dataBelumAbsen={dataBelumAbsen}
                             dataNormal={dataAllNormal}
                             dataPelanggaran={dataAllPelanggaran}
                         />
                         </div>
                         <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full">
-                        <div className="text-xl font-medium leading-7">{dataPeriodeKerja.name}</div>
+                        <div className="text-lg font-medium leading-7">{dataPeriodeKerja.name}</div>
                         <div className="mt-1 text-slate-500">{dataPeriodeKerja.jumlah_hari} Days</div>
                         </div>
                     </div>

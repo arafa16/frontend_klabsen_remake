@@ -17,9 +17,9 @@ const initialState : variabel = {
     message: ""
 }
 
-export const getUsersTable : any = createAsyncThunk("users/getUsersTable", async(datas : any, thunkAPI) => {
+export const getUserRelateTable : any = createAsyncThunk("getUserRelateTable", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/user/table?${datas}`,{
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/user_relate/table?${datas}`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         
@@ -31,27 +31,16 @@ export const getUsersTable : any = createAsyncThunk("users/getUsersTable", async
     }
 });
 
-export const getUsers: any = createAsyncThunk("users/getUsers", async(datas, thunkAPI) => {
+export const createUserRelate : any = createAsyncThunk("createUserRelate", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/user/datas?`+datas,{
+        const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/user_relate/data`,{
+            user_uuid:datas.user_uuid,
+            user_relate_uuid:datas.user_relate_uuid,
+            is_active:datas.is_active
+        },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            const message = error.response.data;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-});
-
-export const deleteUser : any = createAsyncThunk("users/deleteUser", async(datas : any, thunkAPI) => {
-    try {
-        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+'/user/data/'+datas.id,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
-
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -60,60 +49,76 @@ export const deleteUser : any = createAsyncThunk("users/deleteUser", async(datas
     }
 });
 
-export const usersSlice = createSlice({
-    name: "users",
+export const deleteUserRelate : any = createAsyncThunk("deleteUserRelate", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/user_relate/data/${datas.uuid}`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
+
+export const userRelateSlice = createSlice({
+    name: "userRelates",
     initialState,
     reducers:{
-        resetUser2: (state) => initialState
+        resetUserRelate: (state) => initialState
     },
     extraReducers:(builder) => {
 
-        //get users table
-        builder.addCase(getUsersTable.pending, (state) => {
+        //get user relate table
+        builder.addCase(getUserRelateTable.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getUsersTable.fulfilled, (state, action) => {
+        builder.addCase(getUserRelateTable.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.data = action.payload;
         });
-        builder.addCase(getUsersTable.rejected, (state, action) => {
+        builder.addCase(getUserRelateTable.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         });
 
-        //deleteUser
-        builder.addCase(deleteUser.pending, (state) => {
+
+        //create user relate table
+        builder.addCase(createUserRelate.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(deleteUser.fulfilled, (state, action) => {
+        builder.addCase(createUserRelate.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.message = action.payload;
         });
-        builder.addCase(deleteUser.rejected, (state, action) => {
+        builder.addCase(createUserRelate.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         });
 
-        //get users
-        builder.addCase(getUsers.pending, (state) => {
+        //create user relate table
+        builder.addCase(deleteUserRelate.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getUsers.fulfilled, (state, action) => {
+        builder.addCase(deleteUserRelate.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.data = action.payload;
+            state.message = action.payload;
         });
-        builder.addCase(getUsers.rejected, (state, action) => {
+        builder.addCase(deleteUserRelate.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
         });
+
     }
 })
 
-export const {resetUser2} = usersSlice.actions;
-export default usersSlice.reducer;
+export const {resetUserRelate} = userRelateSlice.actions;
+export default userRelateSlice.reducer;

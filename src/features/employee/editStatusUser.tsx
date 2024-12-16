@@ -19,11 +19,11 @@ export const editStatusUser = (props : any) => {
     
     const [isView, setIsView] = useState(false);
     const [isActive, setIsActive] = useState<any>('');
-    const [statusId, setStatusId] = useState<any>('');
+    const [status_id, set_status_id] = useState<any>('');
 
     useEffect(()=>{
         setIsActive(user && user.isActive === true ? '1' : '0');
-        setStatusId(user && user.statusId);
+        set_status_id(user && user.status_id);
     },[user]);
 
     //data select
@@ -62,15 +62,14 @@ export const editStatusUser = (props : any) => {
     const updateStatus = (e:any) => {
         e.preventDefault();
         dispatch(UpdateStatusUser({
-            id, statusId, isActive
+            id, status_id
         }));
     }
 
     const cancelForm = () => {
         setIsViewStatusUser(true);
         setIsView(false);
-        setIsActive(user && user.isActive === true ? '1' : '0');
-        setStatusId(user && user.statusId);
+        set_status_id(user && user.status_id);
     }
 
     const form = (
@@ -84,7 +83,7 @@ export const editStatusUser = (props : any) => {
                     />
             </div>
             <form onSubmit={updateStatus}>
-                <div className='grid grid-cols-2 md:grid-cols-2 gap-y-10 gap-x-4'>
+                <div className='grid grid-cols-1 md:grid-cols-1 gap-y-10 gap-x-4'>
                     <div>
                         <div className="font-medium whitespace-nowrap">
                             Status
@@ -93,32 +92,14 @@ export const editStatusUser = (props : any) => {
                             <FormSelect
                                 formSelectSize="sm"
                                 aria-label=".form-select-sm example"
-                                name='statusPerkawinanId'
-                                value={statusId}
-                                onChange={(e)=>setStatusId(e.target.value)}
+                                name='status_id'
+                                value={status_id}
+                                onChange={(e)=>set_status_id(e.target.value)}
                                 >
                                 <option></option>
                                 {dataStatus.map((data :any, index : any)=>(
                                     <option key={index} value={data.id}>{data.name}</option>
                                 ))}
-                            </FormSelect>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="font-medium whitespace-nowrap">
-                            Is Active 
-                        </div>
-                        <div className="mt-1  text-slate-500">
-                            <FormSelect
-                                formSelectSize="sm"
-                                aria-label=".form-select-sm example"
-                                name='statusPerkawinanId'
-                                value={isActive}
-                                onChange={(e)=>setIsActive(e.target.value)}
-                                >
-                                <option></option>
-                                <option value={0}>no</option>
-                                <option value={1}>yes</option>
                             </FormSelect>
                         </div>
                     </div>

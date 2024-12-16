@@ -54,20 +54,7 @@ export const getCountUser: any = createAsyncThunk("users/getCountUser", async(_,
     }
 });
 
-export const getUsers: any = createAsyncThunk("users/getUsers", async(_, thunkAPI) => {
-    try {
-        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/users`,{
-            withCredentials: true, // Now this is was the missing piece in the client side 
-        });
-        
-        return response.data;
-    } catch (error : any) {
-        if(error.response){
-            const message = error.response.data;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
-});
+
 
 export const downloadUsers : any = createAsyncThunk("downloadUsers", async(datas : any, thunkAPI) => {
     try {
@@ -109,7 +96,6 @@ export const UpdateUser  : any = createAsyncThunk("users/UpdateUser", async(data
             name:datas.name,
             gander_id:datas.gander_id, 
             email:datas.email,
-            // password:datas.password,
             extention:datas.extention,
             nomor_hp:datas.nomor_hp,
             penempatan_id:datas.penempatan_id,
@@ -214,9 +200,8 @@ export const CreateUser  : any = createAsyncThunk("users/CreateUser", async(data
 
 export const UpdateStatusUser  : any = createAsyncThunk("users/UpdateStatusUser", async(datas : any, thunkAPI) => {
     try {
-        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/users/${datas.id}`, {
-            statusId:datas.statusId,
-            isActive:datas.isActive
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/user/data/${datas.id}`, {
+            status_id:datas.status_id
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
@@ -281,21 +266,6 @@ export const usersSlice = createSlice({
             state.message = action.payload;
         });
 
-        // //get users
-        // builder.addCase(getUsers.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(getUsers.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.data = action.payload;
-        // });
-        // builder.addCase(getUsers.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
-
         //get users
         builder.addCase(getUserById.pending, (state) => {
             state.isLoading = true;
@@ -341,20 +311,20 @@ export const usersSlice = createSlice({
             state.message = action.payload;
         });
 
-        // //Update Status User
-        // builder.addCase(UpdateStatusUser.pending, (state) => {
-        //     state.isLoading = true;
-        // });
-        // builder.addCase(UpdateStatusUser.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
-        //     state.message = action.payload;
-        // });
-        // builder.addCase(UpdateStatusUser.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload;
-        // });
+        //Update Status User
+        builder.addCase(UpdateStatusUser.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(UpdateStatusUser.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(UpdateStatusUser.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
 
         //Update Status User
         builder.addCase(UpdateUser.pending, (state) => {

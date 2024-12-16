@@ -81,6 +81,7 @@ export const createEvents : any = createAsyncThunk("createEvents", async(datas :
             tanggal_mulai: datas.tanggal_mulai,
             tanggal_selesai: datas.tanggal_selesai,
             tipe_event_id: datas.tipe_event_id,
+            note: datas.note,
             code: datas.code,
             is_active: datas.is_active
         },{
@@ -103,6 +104,7 @@ export const updateEvents : any = createAsyncThunk("updateEvents", async(datas :
             tanggal_mulai: datas.tanggal_mulai,
             tanggal_selesai: datas.tanggal_selesai,
             tipe_event_id: datas.tipe_event_id,
+            note: datas.note,
             code: datas.code,
             is_active: datas.is_active
         },{

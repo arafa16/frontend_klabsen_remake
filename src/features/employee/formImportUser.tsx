@@ -1,7 +1,9 @@
 import {useEffect, useState, useRef} from 'react'
 import { FormInput} from '../../base-components/Form'
 import Button from '../../base-components/Button'
-import { importUsers, getUsers, resetUsers } from '../../stores/features/userSlice';
+import { importUsers, 
+    // getUsers, 
+    resetUsers } from '../../stores/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingIcon from '../../base-components/LoadingIcon'
 
@@ -23,7 +25,7 @@ export const FormImportUser = (datas:any) => {
                 setMessage(messageUser);
                 datas.reloadDataUserTable();
                 datas.reload();
-                dispatch(getUsers());
+                // dispatch(getUsers());
                 setIsView(false);
                 handleReset();
                 setData([]);

@@ -1,4 +1,4 @@
-import { FormLabel, FormSelect, FormInput } from '../../base-components/Form';
+import { FormLabel, FormSelect, FormInput, FormTextarea } from '../../base-components/Form';
 import Button from '../../base-components/Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ const FormCreate = (props : any) => {
         tanggal_mulai, set_tanggal_mulai,
         tanggal_selesai, set_tanggal_selesai,
         tipe_event_id, set_tipe_event_id,
+        note, setNote,
         code, setCode, 
         is_active, set_is_active, 
         dataTipeEvents,
@@ -71,6 +72,16 @@ const FormCreate = (props : any) => {
                             ))}
                             
                         </FormSelect>
+                    </div>
+                    <div className="col-span-12 intro-y sm:col-span-6">
+                        <FormLabel htmlFor="input-wizard-1">Note</FormLabel>
+                        <FormTextarea
+                            formTextareaSize="sm"
+                            id="note"
+                            name='note'
+                            value={note}
+                            onChange={(e)=>setNote(e.target.value)}
+                        />
                     </div>
                     <div className="col-span-12 intro-y sm:col-span-6">
                         <FormLabel htmlFor="input-wizard-1">Code</FormLabel>

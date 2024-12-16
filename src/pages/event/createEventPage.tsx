@@ -9,6 +9,7 @@ const createEvent = () => {
         tanggal_selesai, set_tanggal_selesai,
         tipe_event_id, set_tipe_event_id,
         dataTipeEvents, setDataTipeEvents,
+        note, setNote,
         code, setCode,
         is_active, set_is_active,
         submitEvent
@@ -25,6 +26,8 @@ const createEvent = () => {
                 set_tanggal_selesai={set_tanggal_selesai}
                 tipe_event_id={tipe_event_id}
                 set_tipe_event_id={set_tipe_event_id}
+                note={note}
+                setNote={setNote}
                 code={code}
                 setCode={setCode}
                 is_active={is_active}

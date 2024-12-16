@@ -42,6 +42,7 @@ import TipePendapatanReducer from "./features/tipePendapatanSlice";
 import StatusKoreksiReducer from "./features/statusKoreksiSlice";
 import DataEmailReducer from "./features/dataEmailSlice";
 import StatusEmailReducer from "./features/statusEmailSlice";
+import UserRelateReducer from "./features/userRelateSlice";
 
 export const store = configureStore({
   reducer: {
@@ -87,7 +88,8 @@ export const store = configureStore({
     tipePendapatan:TipePendapatanReducer,
     statusKoreksi:StatusKoreksiReducer,
     dataEmail:DataEmailReducer,
-    statusEmail:StatusEmailReducer
+    statusEmail:StatusEmailReducer,
+    userRelate:UserRelateReducer
   },
 });
 

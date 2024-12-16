@@ -12,27 +12,27 @@ const editViewPrivilege = (props : any) => {
 
     const [userId, setUserId] = useState(0);
     const [dashboard, setDashboard] = useState(0);
-    const [editUserSub, setEditUserSub] = useState(0);
+    const [edit_user_sub, set_edit_user_sub] = useState(0);
     const [absen, setAbsen] = useState(0);
-    const [kalendarSub, setKalendarSub] = useState(0);
-    const [absenModal, setAbsenModal] = useState(0);
-    const [wfhModal, setWfhModal] = useState(0);
-    const [shiftModal, setShiftModal] = useState(0);
-    const [absenCheck, setAbsenCheck] = useState(0);
-    const [adminEvent, setAdminEvent] = useState(0);
-    const [perhitunganAbsen, setPerhitunganAbsen] = useState(0);
-    const [pengajuanKoreksiSub, setPengajuanKoreksiSub] = useState(0);
-    const [approvalKoreksiSub, setApprovalKoreksiSub] = useState(0);
-    const [approvalAllKoreksiSub, setApprovalAllKoreksiSub] = useState(0);
+    const [kalendar_sub, setKalendarSub] = useState(0);
+    const [absen_modal, setAbsenModal] = useState(0);
+    const [wfh_modal, setWfhModal] = useState(0);
+    const [shift_modal, setShiftModal] = useState(0);
+    const [absen_check, setAbsenCheck] = useState(0);
+    const [admin_event, setAdminEvent] = useState(0);
+    const [perhitungan_absen, setPerhitunganAbsen] = useState(0);
+    const [pengajuan_koreksi_sub, setPengajuanKoreksiSub] = useState(0);
+    const [approval_koreksi_sub, setApprovalKoreksiSub] = useState(0);
+    const [approval_all_koreksi_sub, setApprovalAllKoreksiSub] = useState(0);
     const [employees, setEmployees] = useState(0);
-    const [dataEmployee, setDataEmployee] = useState(0);
-    const [slipGaji, setSlipGaji] = useState(0);
-    const [pendapatanSub, setPendapatanSub] = useState(0);
-    const [pendapatanLainSub, setPendapatanLainSub] = useState(0);
-    const [pendapatanAdminSub, setPendapatanAdminSub] = useState(0);
+    const [data_employee, setDataEmployee] = useState(0);
+    const [slip_gaji, setSlipGaji] = useState(0);
+    const [pendapatan_sub, setPendapatanSub] = useState(0);
+    const [pendapatan_lain_sub, setPendapatanLainSub] = useState(0);
+    const [pendapatan_admin_sub, setPendapatanAdminSub] = useState(0);
     const [attribute, setAttribute] = useState(0);
     const [setting, setSetting] = useState(0);
-    const [idPrivilege, setIdPrivilege] = useState(null);
+    const [id_privilege, setIdPrivilege] = useState(null);
 
     const dispatch = useDispatch();
 
@@ -43,24 +43,24 @@ const editViewPrivilege = (props : any) => {
     useEffect(()=>{
         if(datas.privilegeId !== 0){
             setDashboard(datas.privilege && datas.privilege.dashboard ? 1 : 0);
-            setEditUserSub(datas.privilege && datas.privilege.editUserSub ? 1 : 0);
+            set_edit_user_sub(datas.privilege && datas.privilege.edit_user_sub ? 1 : 0);
             setAbsen(datas.privilege && datas.privilege.absen ? 1 : 0);
-            setKalendarSub(datas.privilege && datas.privilege.kalendarSub ? 1 : 0);
-            setAbsenModal(datas.privilege && datas.privilege.absenModal ? 1 : 0);
-            setWfhModal(datas.privilege && datas.privilege.wfhModal ? 1 : 0);
-            setShiftModal(datas.privilege && datas.privilege.shiftModal ? 1 : 0);
-            setAbsenCheck(datas.privilege && datas.privilege.absenCheck ? 1 : 0);
-            setAdminEvent(datas.privilege && datas.privilege.adminEvent ? 1 : 0);
-            setPerhitunganAbsen(datas.privilege && datas.privilege.perhitunganAbsen ? 1 : 0);
-            setPengajuanKoreksiSub(datas.privilege && datas.privilege.pengajuanKoreksiSub ? 1 : 0);
-            setApprovalKoreksiSub(datas.privilege && datas.privilege.approvalKoreksiSub ? 1 : 0);
-            setApprovalAllKoreksiSub(datas.privilege && datas.privilege.approvalAllKoreksiSub ? 1 : 0);
+            setKalendarSub(datas.privilege && datas.privilege.kalendar_sub ? 1 : 0);
+            setAbsenModal(datas.privilege && datas.privilege.absen_modal ? 1 : 0);
+            setWfhModal(datas.privilege && datas.privilege.wfh_modal ? 1 : 0);
+            setShiftModal(datas.privilege && datas.privilege.shift_modal ? 1 : 0);
+            setAbsenCheck(datas.privilege && datas.privilege.absen_check ? 1 : 0);
+            setAdminEvent(datas.privilege && datas.privilege.admin_event ? 1 : 0);
+            setPerhitunganAbsen(datas.privilege && datas.privilege.perhitungan_absen ? 1 : 0);
+            setPengajuanKoreksiSub(datas.privilege && datas.privilege.pengajuan_koreksi_sub ? 1 : 0);
+            setApprovalKoreksiSub(datas.privilege && datas.privilege.approval_koreksi_sub ? 1 : 0);
+            setApprovalAllKoreksiSub(datas.privilege && datas.privilege.approval_all_koreksi_sub ? 1 : 0);
             setEmployees(datas.privilege && datas.privilege.employees ? 1 : 0);
-            setDataEmployee(datas.privilege && datas.privilege.dataEmployee ? 1 : 0);
-            setSlipGaji(datas.privilege && datas.privilege.slipGaji ? 1 : 0);
-            setPendapatanSub(datas.privilege && datas.privilege.pendapatanSub ? 1 : 0);
-            setPendapatanLainSub(datas.privilege && datas.privilege.pendapatanLainSub ? 1 : 0);
-            setPendapatanAdminSub(datas.privilege && datas.privilege.pendapatanAdminSub ? 1 : 0);
+            setDataEmployee(datas.privilege && datas.privilege.data_employee ? 1 : 0);
+            setSlipGaji(datas.privilege && datas.privilege.slip_gaji ? 1 : 0);
+            setPendapatanSub(datas.privilege && datas.privilege.pendapatan_sub ? 1 : 0);
+            setPendapatanLainSub(datas.privilege && datas.privilege.pendapatan_lain_sub ? 1 : 0);
+            setPendapatanAdminSub(datas.privilege && datas.privilege.pendapatan_admin_sub ? 1 : 0);
             setAttribute(datas.privilege && datas.privilege.attribute ? 1 : 0);
             setSetting(datas.privilege && datas.privilege.setting ? 1 : 0);
             setIdPrivilege(datas.privilege && datas.privilege.uuid);
@@ -80,27 +80,27 @@ const editViewPrivilege = (props : any) => {
     const sumbitPrivilege = (e : any) => {
         e.preventDefault();
         dispatch(updatePrivileges({
-            idPrivilege,
+            uuid:id_privilege,
             userId, 
             dashboard, 
-            editUserSub, 
+            edit_user_sub, 
             absen, 
-            kalendarSub,
-            absenModal,
-            wfhModal,
-            shiftModal,
-            absenCheck,
-            adminEvent,
-            perhitunganAbsen,
-            pengajuanKoreksiSub, 
-            approvalKoreksiSub,
-            approvalAllKoreksiSub,
+            kalendar_sub,
+            absen_modal,
+            wfh_modal,
+            shift_modal,
+            absen_check,
+            admin_event,
+            perhitungan_absen,
+            pengajuan_koreksi_sub, 
+            approval_koreksi_sub,
+            approval_all_koreksi_sub,
             employees,
-            dataEmployee,
-            slipGaji,
-            pendapatanSub,
-            pendapatanLainSub,
-            pendapatanAdminSub,
+            data_employee,
+            slip_gaji,
+            pendapatan_sub,
+            pendapatan_lain_sub,
+            pendapatan_admin_sub,
             attribute,
             setting
         }));
@@ -157,9 +157,9 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='editUserSub'
-                                    value={editUserSub}
-                                    onChange={(e : any)=>setEditUserSub(e.target.value)}
+                                    name='edit_user_sub'
+                                    value={edit_user_sub}
+                                    onChange={(e : any)=>set_edit_user_sub(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
                                     <option value={1}>active</option>
@@ -195,8 +195,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='kalendarSub'
-                                    value={kalendarSub}
+                                    name='kalendar_sub'
+                                    value={kalendar_sub}
                                     onChange={(e : any)=>setKalendarSub(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -212,8 +212,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='absenModal'
-                                    value={absenModal}
+                                    name='absen_modal'
+                                    value={absen_modal}
                                     onChange={(e : any)=>setAbsenModal(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -229,8 +229,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='wfhModal'
-                                    value={wfhModal}
+                                    name='wfh_modal'
+                                    value={wfh_modal}
                                     onChange={(e : any)=>setWfhModal(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -246,8 +246,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='shiftModal'
-                                    value={shiftModal}
+                                    name='shift_modal'
+                                    value={shift_modal}
                                     onChange={(e : any)=>setShiftModal(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -265,8 +265,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='absenCheck'
-                                    value={absenCheck}
+                                    name='absen_check'
+                                    value={absen_check}
                                     onChange={(e : any)=>setAbsenCheck(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -282,8 +282,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='adminEvent'
-                                    value={adminEvent}
+                                    name='admin_event'
+                                    value={admin_event}
                                     onChange={(e : any)=>setAdminEvent(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -299,8 +299,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='perhitunganAbsen'
-                                    value={perhitunganAbsen}
+                                    name='perhitungan_absen'
+                                    value={perhitungan_absen}
                                     onChange={(e : any)=>setPerhitunganAbsen(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -316,8 +316,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='pengajuanKoreksiSub'
-                                    value={pengajuanKoreksiSub}
+                                    name='pengajuan_koreksi_sub'
+                                    value={pengajuan_koreksi_sub}
                                     onChange={(e : any)=>setPengajuanKoreksiSub(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -333,8 +333,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='approvalKoreksiSub'
-                                    value={approvalKoreksiSub}
+                                    name='approval_koreksi_sub'
+                                    value={approval_koreksi_sub}
                                     onChange={(e : any)=>setApprovalKoreksiSub(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -350,8 +350,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='approvalAllKoreksiSub'
-                                    value={approvalAllKoreksiSub}
+                                    name='approval_all_koreksi_sub'
+                                    value={approval_all_koreksi_sub}
                                     onChange={(e : any)=>setApprovalAllKoreksiSub(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -388,8 +388,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='dataEmployee'
-                                    value={dataEmployee}
+                                    name='data_employee'
+                                    value={data_employee}
                                     onChange={(e : any)=>setDataEmployee(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -407,8 +407,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='slipGaji'
-                                    value={slipGaji}
+                                    name='slip_gaji'
+                                    value={slip_gaji}
                                     onChange={(e : any)=>setSlipGaji(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -426,8 +426,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='pendapatanSub'
-                                    value={pendapatanSub}
+                                    name='pendapatan_sub'
+                                    value={pendapatan_sub}
                                     onChange={(e : any)=>setPendapatanSub(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -443,8 +443,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='pendapatanLainSub'
-                                    value={pendapatanLainSub}
+                                    name='pendapatan_lain_sub'
+                                    value={pendapatan_lain_sub}
                                     onChange={(e : any)=>setPendapatanLainSub(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
@@ -460,8 +460,8 @@ const editViewPrivilege = (props : any) => {
                                 <FormSelect
                                     formSelectSize="sm"
                                     aria-label=".form-select-sm example"
-                                    name='pendapatanAdminSub'
-                                    value={pendapatanAdminSub}
+                                    name='pendapatan_admin_sub'
+                                    value={pendapatan_admin_sub}
                                     onChange={(e : any)=>setPendapatanAdminSub(e.target.value)}
                                     >
                                     <option value={0}>non active</option>

@@ -57,6 +57,7 @@ export const getAbsenByUser = (datas:any) => {
 export const getAbsenById = (uuid:any) => {
     const dispatch = useDispatch();
     const [dataResult, setDataResult] = useState<any>([]);
+    const [dataUser, setDataUser] = useState<any>({})
 
     const {data, message, isSuccess, isLoading, isError} = useSelector(
         (state: any) => state.inOut
@@ -66,6 +67,7 @@ export const getAbsenById = (uuid:any) => {
         if(data && isSuccess){
             if(!isLoading){
                 setDataResult(data && data.datas && data.datas.data);
+                setDataUser(data && data.datas && data.datas.user);
                 dispatch(resetInOuts());
             }
         }
@@ -77,5 +79,5 @@ export const getAbsenById = (uuid:any) => {
         }
     },[uuid]);
 
-    return {dataResult}
+    return {dataResult, dataUser}
 }

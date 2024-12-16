@@ -12,6 +12,7 @@ const EditEvent = () => {
         tanggal_selesai, set_tanggal_selesai,
         tipe_event_id, set_tipe_event_id,
         dataTipeEvents, setDataTipeEvents,
+        note, setNote,
         code, setCode,
         changeDataSetting,
         is_active, set_is_active,
@@ -30,6 +31,8 @@ const EditEvent = () => {
                 set_tanggal_selesai={set_tanggal_selesai}
                 tipe_event_id={tipe_event_id}
                 set_tipe_event_id={set_tipe_event_id}
+                note={note}
+                setNote={setNote}
                 code={code}
                 setCode={setCode}
                 is_active={is_active}

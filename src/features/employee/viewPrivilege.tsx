@@ -45,7 +45,7 @@ export const viewPrivilege = (props : any) => {
                             Edit User Sub
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.editUserSub ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.edit_user_sub ? 'Yes' : 'No'}
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ export const viewPrivilege = (props : any) => {
                             Kalendar Sub
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.kalendarSub ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.kalendar_sub ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -73,7 +73,7 @@ export const viewPrivilege = (props : any) => {
                             Absen Modal
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.absenModal ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.absen_modal ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -81,7 +81,7 @@ export const viewPrivilege = (props : any) => {
                             Wfh Modal
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.wfhModal ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.wfh_modal ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -89,7 +89,7 @@ export const viewPrivilege = (props : any) => {
                             Shift Modal
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.shiftModal ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.shift_modal ? 'Yes' : 'No'}
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ export const viewPrivilege = (props : any) => {
                             Absen Check
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.absenCheck ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.absen_check ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -107,7 +107,7 @@ export const viewPrivilege = (props : any) => {
                             Admin Event
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.adminEvent ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.admin_event ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -115,7 +115,7 @@ export const viewPrivilege = (props : any) => {
                             Perhitungan Absen
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.perhitunganAbsen ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.perhitungan_absen ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -123,7 +123,7 @@ export const viewPrivilege = (props : any) => {
                             Pengajuan Koreksi Sub
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.pengajuanKoreksiSub ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.pengajuan_koreksi_sub ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -131,7 +131,7 @@ export const viewPrivilege = (props : any) => {
                             Approval Koreksi Sub
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.approvalKoreksiSub ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.approval_koreksi_sub ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -139,7 +139,7 @@ export const viewPrivilege = (props : any) => {
                             Approval All Koreksi Sub
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.approvalAllKoreksiSub ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.approval_all_koreksi_sub ? 'Yes' : 'No'}
                         </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@ export const viewPrivilege = (props : any) => {
                             Data Employee
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.dataEmployee ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.data_employee ? 'Yes' : 'No'}
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@ export const viewPrivilege = (props : any) => {
                             Slip Gaji
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.slipGaji ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.slip_gaji ? 'Yes' : 'No'}
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@ export const viewPrivilege = (props : any) => {
                             Pendapatan Sub
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.pendapatanSub ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.pendapatan_sub ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -187,7 +187,7 @@ export const viewPrivilege = (props : any) => {
                             Pendapatan Lain Sub
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.pendapatanLainSub ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.pendapatan_lain_sub ? 'Yes' : 'No'}
                         </div>
                     </div>
                     <div>
@@ -195,7 +195,7 @@ export const viewPrivilege = (props : any) => {
                             Pendapatan Admin Sub
                         </div>
                         <div className="mt-1  text-slate-500">
-                            {datas.privilege && datas.privilege.pendapatanAdminSub ? 'Yes' : 'No'}
+                            {datas.privilege && datas.privilege.pendapatan_admin_sub ? 'Yes' : 'No'}
                         </div>
                     </div>
                 </div>

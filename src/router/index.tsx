@@ -18,6 +18,8 @@ import ViewProfilePage from "../pages/profile/viewProfilePage";
 import ViewSlipPage from "../pages/pendapatan/viewSlipPage";
 import AbsenCheckByUser from "../pages/absen/absenCheckByUser";
 import AbsenUserByIdPage from "../pages/absen/absenUserByIdPage";
+import ViewAbsenByAtasan from "../pages/absen/viewAbsenByAtasan";
+
 import KoreksiUserPage from "../pages/koreksi/koreksiUserPage";
 import ViewKoreksiPage from "../pages/koreksi/viewKoreksiPage";
 import KoreksiApproverPage from "../pages/koreksi/koreksiApproverPage";
@@ -122,6 +124,10 @@ function Router() {
         {
           path: "/absen/check/:uuid",
           element: <AbsenUserByIdPage />
+        },
+        {
+          path: "/absen/view/:uuid",
+          element: <ViewAbsenByAtasan />
         },
         {
           path: "/absen/perhitungan",

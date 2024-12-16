@@ -154,6 +154,7 @@ export const createDataEvent = () => {
   const [tanggal_selesai, set_tanggal_selesai] = useState('');
   const [tipe_event_id, set_tipe_event_id] = useState('');
   const [dataTipeEvents, setDataTipeEvents] = useState([]);
+  const [note, setNote] = useState('');
   const [code, setCode] = useState('');
   const [is_active, set_is_active] = useState('');
 
@@ -199,6 +200,7 @@ export const createDataEvent = () => {
           tanggal_mulai, 
           tanggal_selesai, 
           tipe_event_id, 
+          note,
           code, 
           is_active
       }));
@@ -210,6 +212,7 @@ export const createDataEvent = () => {
     tanggal_selesai, set_tanggal_selesai,
     tipe_event_id, set_tipe_event_id,
     dataTipeEvents, setDataTipeEvents,
+    note, setNote,
     code, setCode,
     is_active, set_is_active,
     submitEvent
@@ -223,6 +226,7 @@ export const updateDataEvent = (props:any) => {
     const [tanggal_selesai, set_tanggal_selesai] = useState('');
     const [tipe_event_id, set_tipe_event_id] = useState('');
     const [dataTipeEvents, setDataTipeEvents] = useState([]);
+    const [note, setNote] = useState('');
     const [code, setCode] = useState('');
     const [is_active, set_is_active] = useState('');
     const [message, setMessage] = useState<any>(null)
@@ -249,6 +253,7 @@ export const updateDataEvent = (props:any) => {
             set_tanggal_mulai(dayjs(dataEvent && dataEvent.datas && dataEvent.datas.data &&  dataEvent.datas.data.tanggal_mulai).format('YYYY-MM-DD HH:mm:ss') );
             set_tanggal_selesai(dayjs(dataEvent && dataEvent.datas && dataEvent.datas.data &&  dataEvent.datas.data.tanggal_selesai).format('YYYY-MM-DD HH:mm:ss'));
             set_tipe_event_id(dataEvent && dataEvent.datas && dataEvent.datas.data &&  dataEvent.datas.data.tipe_event &&  dataEvent.datas.data.tipe_event.uuid);
+            setNote(dataEvent && dataEvent.datas && dataEvent.datas.data &&  dataEvent.datas.data.note);
             setCode(dataEvent && dataEvent.datas && dataEvent.datas.data &&  dataEvent.datas.data.code);
             set_is_active(dataEvent && dataEvent.datas && dataEvent.datas.data &&  dataEvent.datas.data.is_active ? '1' : '0');
             dispatch(resetEvents());
@@ -290,6 +295,7 @@ export const updateDataEvent = (props:any) => {
             tanggal_mulai, 
             tanggal_selesai, 
             tipe_event_id, 
+            note,
             code, 
             is_active
         }));
@@ -301,6 +307,7 @@ export const updateDataEvent = (props:any) => {
       tanggal_selesai, set_tanggal_selesai,
       tipe_event_id, set_tipe_event_id,
       dataTipeEvents, setDataTipeEvents,
+      note, setNote,
       code, setCode,
       changeDataSetting,
       is_active, set_is_active,

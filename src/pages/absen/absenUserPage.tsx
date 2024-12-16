@@ -65,6 +65,22 @@ const AbsenUserPage = () => {
         clickAbsen({code_tipe_absen:code, uuid:dataMe.uuid});
     }
 
+    const clickButtonWFH = (code:any) =>{
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position)=>{
+                    const { latitude, longitude } = position.coords;
+                    clickAbsen({code_tipe_absen:code, uuid:dataMe.uuid, latitude, longitude});
+                },
+                (error)=>{
+                    // display an error if we cant get the users position
+                    console.error('Error getting user location:', error);
+                    alert(error.message)
+                }
+            )
+        }
+    }
+
     return (
         <>
             {messageShow}
@@ -114,8 +130,8 @@ const AbsenUserPage = () => {
                             nameButton2='Pulang'
                             idButton1={8}
                             idButton2={9}
-                            actionButton1={clickButton}
-                            actionButton2={clickButton}
+                            actionButton1={clickButtonWFH}
+                            actionButton2={clickButtonWFH}
                             isView={dataMe.privilege && dataMe.privilege.wfh_modal}
                         />
                     </div>
