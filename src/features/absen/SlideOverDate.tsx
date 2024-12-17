@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getInOutsById, resetInOut2 } from '../../stores/features/inOut2Slice';
 import { viewKoreksiByDate } from '../koreksi/koreksiTable';
 import { createKoreksi, resetKoreksis } from '../../stores/features/koreksiSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const SlideOverDate = () => {
 
@@ -22,6 +23,7 @@ export const SlideOverDate = () => {
     const [keterangan, setKeterangan] = useState('');
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const {data:dataInOut, isSuccess, isLoading, isError } = useSelector(
         (state : any) => state.inOut2
@@ -161,6 +163,16 @@ export const SlideOverDate = () => {
                                     </div>
                                     <div className='mx-2'>
                                         {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.jam_masuk} - {dataResult && dataResult.jam_operasional && dataResult.jam_operasional.jam_pulang}
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <FormLabel htmlFor="modal-form-3">
+                                        Lat, Long
+                                    </FormLabel>
+                                    <div
+                                        onClick={()=>navigate(``)}
+                                        >
+                                        : {dataResult && dataResult.latitude} {dataResult && dataResult.longitude}
                                     </div>
                                 </div>
                             </div>

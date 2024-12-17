@@ -34,7 +34,7 @@ function Tab({
             fullWidth && "flex-1",
             list.variant == "tabs" && "-mb-px",
           ])}
-          {...props}
+          // {...props}
         >
           <tabContext.Provider
             value={{

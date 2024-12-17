@@ -47,6 +47,8 @@ export const getAbsenByUser = (datas:any) => {
             user_uuid:data.uuid,
             tanggal_mulai:dateNow,
             tanggal_selesai:dateNow,
+            latitude:data.latitude, 
+            longitude:data.longitude,
             code_tipe_absen:data.code_tipe_absen
         }));
     }

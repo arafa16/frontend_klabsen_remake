@@ -114,7 +114,7 @@ const FormDataDiriUpdate = (props : any) => {
                     },
                     }}
                     className="block mx-auto"
-                    formInputSize='sm'
+                    // formInputSize='sm'
                 />
             </div>
             <div className="col-span-12 intro-y sm:col-span-3">

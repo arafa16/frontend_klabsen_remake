@@ -70,6 +70,7 @@ const AbsenUserPage = () => {
             navigator.geolocation.getCurrentPosition(
                 (position)=>{
                     const { latitude, longitude } = position.coords;
+                    console.log(latitude, longitude)
                     clickAbsen({code_tipe_absen:code, uuid:dataMe.uuid, latitude, longitude});
                 },
                 (error)=>{
