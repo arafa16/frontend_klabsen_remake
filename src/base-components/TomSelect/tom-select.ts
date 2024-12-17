@@ -48,7 +48,7 @@ const init = (
     };
   }
 
-  clonedEl.TomSelect = new TomSelect(clonedEl, computedOptions);
+  // clonedEl.TomSelect = new TomSelect(clonedEl, computedOptions);
 
   // On change
   clonedEl.TomSelect.on("change", function (selectedItems: string[] | string) {
