@@ -22,5 +22,15 @@ export default defineConfig({
     alias: {
       "tailwind-config": path.resolve(__dirname, "./tailwind.config.js"),
     },
+    extensions: [
+      '.tsx',
+      '.ts',
+      '.mjs',
+      '.js',
+      '.jsx',
+      '.vue',
+      '.json',
+      '.wasm'
+    ],
   },
 });
