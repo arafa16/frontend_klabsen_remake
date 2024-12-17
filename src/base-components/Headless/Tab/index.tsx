@@ -36,7 +36,7 @@ function Tab({
           ])}
           // {...props}
         >
-          <tabContext.Provider
+          {/* <tabContext.Provider
             value={{
               selected: selected,
             }}
@@ -46,7 +46,7 @@ function Tab({
                   selected: selected,
                 })
               : children}
-          </tabContext.Provider>
+          </tabContext.Provider> */}
         </li>
       )}
     </HeadlessTab>
