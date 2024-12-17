@@ -86,16 +86,16 @@ const updateValue = (
   for (const [optionKey, option] of Object.entries(
     clonedEl.TomSelect.options
   )) {
-    if (
-      !getOptions(originalEl.children).filter((optionEl) => {
-        return (
-          optionEl instanceof HTMLOptionElement &&
-          optionEl.value === option.value
-        );
-      }).length
-    ) {
-      clonedEl.TomSelect.removeOption(option.value);
-    }
+    // if (
+    //   !getOptions(originalEl.children).filter((optionEl) => {
+    //     return (
+    //       optionEl instanceof HTMLOptionElement &&
+    //       optionEl.value === option.value
+    //     );
+    //   }).length
+    // ) {
+    //   clonedEl.TomSelect.removeOption(option.value);
+    // }
   }
 
   // Update classnames
