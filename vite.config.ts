@@ -6,7 +6,7 @@ import pluginRewriteAll from 'vite-plugin-rewrite-all';
 // https://vitejs.dev/config/
 export default defineConfig({
   server:{
-    host:true,
+    // host:true,
     port:4000
   },
   build: {
@@ -19,7 +19,6 @@ export default defineConfig({
   },
   plugins: [react(), pluginRewriteAll()],
   resolve: {
-    extensions: [".js", ".json", ".ts", ".tsx"],
     alias: {
       "tailwind-config": path.resolve(__dirname, "./tailwind.config.js"),
     },
