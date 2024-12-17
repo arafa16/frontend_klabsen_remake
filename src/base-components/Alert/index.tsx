@@ -44,7 +44,7 @@ type AlertComponent = <C extends React.ElementType = "div">(
   props: AlertProps<C>
 ) => React.ReactElement | null;
 
-const Alert: AlertComponent = forwardRef(
+const Alert: any = forwardRef(
   <C extends React.ElementType>(
     { as, dismissible, variant, ...props }: AlertProps<C>,
     ref?: PolymorphicRef<C>
