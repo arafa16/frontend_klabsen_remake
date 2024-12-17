@@ -28,7 +28,7 @@ type Variant =
 type AlertProps<C extends React.ElementType> = PolymorphicComponentPropWithRef<
   C,
   {
-    children:any;
+    // children:any;
     dismissible?: boolean;
     variant?: Variant;
     onShow?: () => {};
