@@ -5,7 +5,7 @@ import { Fragment, createContext, useContext } from "react";
 type Variant = "tabs" | "pills" | "boxed-tabs" | "link-tabs";
 
 const tabContext = createContext<{
-  selected: boolean;
+  selected: any;
 }>({
   selected: false,
 });
