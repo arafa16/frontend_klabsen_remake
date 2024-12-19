@@ -99,8 +99,8 @@ const CalendarAdmin = (props : any) => {
         const newData : any = {
           id:data.uuid,
           title:data.name,
-          start:dayjs(data.tanggalMulai).format('YYYY-MM-DD'),
-          end:dayjs(data.tanggalSelesai).format('YYYY-MM-DD'),
+          start:dayjs(data.tanggal_mulai).format('YYYY-MM-DD'),
+          end:dayjs(data.tanggal_selesai).format('YYYY-MM-DD'),
           className:'text-sm text-white py-1 text-center w-full px-0',
           groupId:'event',
           color:data.tipe_event.color,
