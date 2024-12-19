@@ -53,7 +53,7 @@ export const getAbsenByUser = (datas:any) => {
         }));
     }
 
-    return {dataResult, clickAbsen, message}
+    return {dataResult, isLoading, clickAbsen, message}
 }
 
 export const getAbsenById = (uuid:any) => {

@@ -19,7 +19,7 @@ const AbsenUserPage = () => {
     //get data auth
     const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
 
-    const {dataResult:dataAbsen, clickAbsen, message:messageAbsen } = getAbsenByUser(dataMe);
+    const {dataResult:dataAbsen, clickAbsen, isLoading, message:messageAbsen } = getAbsenByUser(dataMe);
 
     useEffect(()=>{
         setMessage(messageAbsen);
@@ -65,7 +65,7 @@ const AbsenUserPage = () => {
         clickAbsen({code_tipe_absen:code, uuid:dataMe.uuid});
     }
 
-    const clickButtonWFH = (code:any) =>{
+    const clickButtonWFA = (code:any) =>{
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position)=>{
@@ -122,18 +122,20 @@ const AbsenUserPage = () => {
                             actionButton1={clickButton}
                             actionButton2={clickButton}
                             isView={dataMe.privilege && dataMe.privilege.shift_modal}
+                            isLoading={isLoading}
                         />
                     </div>
                     <div className="mb-4">
                         <ButtonAbsen 
-                            name='Absen WFH'
+                            name='Absen WFA'
                             nameButton1='Masuk'
                             nameButton2='Pulang'
                             idButton1={8}
                             idButton2={9}
-                            actionButton1={clickButtonWFH}
-                            actionButton2={clickButtonWFH}
+                            actionButton1={clickButtonWFA}
+                            actionButton2={clickButtonWFA}
                             isView={dataMe.privilege && dataMe.privilege.wfh_modal}
+                            isLoading={isLoading}
                         />
                     </div>
                 </div>
