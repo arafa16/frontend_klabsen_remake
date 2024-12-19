@@ -51,13 +51,13 @@ const Table7 = (props : any) => {
                             ])}
                             >
                             <div className="flex px-5 py-3">
-                                <div className="flex items-center flex-none mr-5 w-44">
+                                <div className="flex items-center flex-none mr-5 sm:w-72">
                                     <div className='w-16'>
                                         {index+1}
                                     </div>
                                     <div
                                         className={clsx([
-                                        "ml-3 truncate"
+                                        "ml-3 truncate w-64"
                                         ])}
                                         >
                                         {data.name}
