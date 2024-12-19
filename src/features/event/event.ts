@@ -43,7 +43,7 @@ export const eventData = () => {
     const [dataEvents, setDataEvents] = useState<any>([]);
     const [bulan, setBulan] = useState(dayjs(Date.now()).format("M"));
     const [tahun, setTahun] = useState(dayjs(Date.now()).format("YYYY"));
-    const [limit, setLimit] = useState(3);
+    const [limit, setLimit] = useState(5);
     const [page, setPage] = useState(1);
     const [allPage, setAllPage] = useState(0);
 

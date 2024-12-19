@@ -111,7 +111,7 @@ const employeTable = (props : any) => {
                               "pl-10 ml-auto whitespace-nowrap"
                             ])}
                             >
-                            {data.isActive ? 'active' : 'non active'}
+                            {data && data.status && data.status.name}
                           </div>
                       </div>
                       </div>

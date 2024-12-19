@@ -47,18 +47,19 @@ const EventShow = (props:any) => {
             <div className="mt-4">
                 {dataEvents.map((data:any, index:any) => (
                 <div key={index} className="intro-x">
-                    <div className="flex items-center px-5 py-3 mb-3 box zoom-in">
-                    <div className="mr-auto">
-                        <div className="font-medium">{data.name}</div>
-                        <div className="mt-1 text-xs text-slate-500">
-                            {dayjs(data.tanggalMulai).format('YYYY-MM-DD') }
+                    <div className="px-5 py-3 mb-3 box zoom-in">
+                        <div
+                            className={`${'text-'+data.tipe_event.color+'-500'} mb-4`}
+                            >
+                            {data.tipe_event.name}
                         </div>
-                    </div>
-                    <div
-                        className={`${'text-'+data.tipe_event.color+'-500'}`}
-                        >
-                        {data.tipe_event.name}
-                    </div>
+                        <div className="mr-auto">
+                            <div className="font-medium">{data.name}</div>
+                            <div className="mt-1 text-xs text-slate-500">
+                                {dayjs(data.tanggal_mulai).format('YYYY-MM-DD') }
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 ))}

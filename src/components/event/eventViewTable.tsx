@@ -66,19 +66,19 @@ const eventViewTable = (props : any) => {
                                 ])}
                             >
                             <div className="flex px-5 py-3">
-                                <div className="flex items-center flex-none mr-5 w-52">
+                                <div className="flex items-center flex-none mr-5 w-96">
                                     <div className='w-16'>
                                         {index+1}
                                     </div>
                                     <div
                                         className={clsx([
-                                        "ml-3 truncate"
+                                        "ml-3 truncate w-72"
                                         ])}
                                     >
                                         {data.name}
                                     </div>
                                 </div>
-                                <div className="w-64 truncate sm:w-64">
+                                <div className="w-64 truncate sm:w-32">
                                     <span
                                         className={clsx([
                                         "ml-3 truncate"
@@ -87,7 +87,7 @@ const eventViewTable = (props : any) => {
                                         {dayjs(data.tanggal_mulai).format('YYYY-MM-DD HH:mm:ss')}
                                     </span>
                                 </div>
-                                <div className="w-72 truncate sm:w-64">
+                                <div className="w-72 truncate sm:w-32">
                                     <span
                                         className={clsx([
                                         "ml-3 truncate"
@@ -96,7 +96,7 @@ const eventViewTable = (props : any) => {
                                         {dayjs(data.tanggal_selesai).format('YYYY-MM-DD HH:mm:ss') }
                                     </span>
                                 </div>
-                                <div className="w-48 truncate">
+                                <div className="w-64 truncate">
                                     <span
                                         className={clsx([
                                         "ml-3 truncate"
