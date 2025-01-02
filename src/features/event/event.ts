@@ -104,9 +104,9 @@ export const eventTable = () => {
   )
 
   useEffect(()=>{
-      dispatch(getEventsTable({
-          limit, page
-      }));
+      const paramsObj : any = {limit, page};
+      const searchParams = new URLSearchParams(paramsObj);
+      dispatch(getEventsTable(searchParams));
   },[limit, page]);
 
   useEffect(()=>{

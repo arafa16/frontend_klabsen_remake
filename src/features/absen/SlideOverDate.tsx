@@ -13,7 +13,7 @@ import { viewKoreksiByDate } from '../koreksi/koreksiTable';
 import { createKoreksi, resetKoreksis } from '../../stores/features/koreksiSlice';
 import { useNavigate } from 'react-router-dom';
 
-export const SlideOverDate = () => {
+export const SlideOverDate = (datas:any) => {
 
     const [open, setOpen] = useState(false);
     const [data, setData] = useState<any>(null);
@@ -64,6 +64,7 @@ export const SlideOverDate = () => {
             if(!isLoading){
                 setMessage(messageKoreksi);
                 dispatch(resetKoreksis());
+                datas.reload();
                 clouseSlice();
             }
         }

@@ -31,10 +31,16 @@ export const getAbsenByUser = (datas:any) => {
         }
     },[datas]);
 
+    const reload = () => {
+        if(datas.uuid !== undefined){
+            dispatch(getInOutsByUser({uuid:datas.uuid}));
+        }
+    }
+
     useEffect(()=>{
         if(messageInOut && isSuccess){
             if(!isLoading){
-                setMessage(messageInOut);
+                // setMessage(messageInOut);
                 dispatch(resetInOuts());
                 dispatch(getInOutsByUser({uuid:datas.uuid}));
             }
@@ -53,7 +59,7 @@ export const getAbsenByUser = (datas:any) => {
         }));
     }
 
-    return {dataResult, isLoading, clickAbsen, message}
+    return {dataResult, isLoading, clickAbsen, message, reload}
 }
 
 export const getAbsenById = (uuid:any) => {

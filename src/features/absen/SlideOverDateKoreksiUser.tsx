@@ -20,7 +20,7 @@ import { getTipeAbsen } from "../tipeAbsen/tipeAbsen";
 import { getDataJamOperasional } from "../jamOperasional/jamOperasional";
 import LoadingIcon from "../../base-components/LoadingIcon";
 
-export const SlideOverDateKoreksiUser = () => {
+export const SlideOverDateKoreksiUser = (datas:any) => {
 
     const [open, setOpen] = useState(false);
     const [dataInfo, setDataInfo] = useState<any>([]);
@@ -50,6 +50,7 @@ export const SlideOverDateKoreksiUser = () => {
                 setMessage(messageKoreksi);
                 dispatch(resetKoreksis());
                 dispatch(getInOutsByUser({uuid}));
+                datas.reload();
                 resetValue();
                 setOpen(false);
             }

@@ -1,6 +1,7 @@
 import { FormLabel, FormSelect, FormInput } from '../../base-components/Form';
 import Button from '../../base-components/Button';
 import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 const ViewDataEmail = (props : any) => {
     const {datas, linkBack} = props;

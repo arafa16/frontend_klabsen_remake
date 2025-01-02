@@ -3,7 +3,14 @@ import { eventTable } from '../../features/event/event';
 
 const eventPage = () => {
     
-    const {dataResult, allPage, limit, setLimit, page, setPage} = eventTable();
+    const {
+        dataResult, 
+        allPage, 
+        limit, setLimit, 
+        page, setPage,
+        nextPage,
+        prevPage,
+    } = eventTable();
     
     return (
         <div className='text-xs'>
@@ -16,6 +23,8 @@ const eventPage = () => {
                 limit={limit}
                 setLimit={setLimit}
                 setPage={setPage}
+                nextPage={nextPage}
+                prevPage={prevPage}
             />
         </div>
     )

@@ -19,7 +19,7 @@ const AbsenUserPage = () => {
     //get data auth
     const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuth();
 
-    const {dataResult:dataAbsen, clickAbsen, isLoading, message:messageAbsen } = getAbsenByUser(dataMe);
+    const {dataResult:dataAbsen, clickAbsen, isLoading, message:messageAbsen, reload } = getAbsenByUser(dataMe);
 
     useEffect(()=>{
         setMessage(messageAbsen);
@@ -30,7 +30,7 @@ const AbsenUserPage = () => {
         form : formKoreksiUser, 
         setOpen, setDataInfo, 
         setDataUser
-    } = SlideOverDateKoreksiUser();
+    } = SlideOverDateKoreksiUser({reload});
 
     const {
         form : formSlideOverDate, 
@@ -38,7 +38,7 @@ const AbsenUserPage = () => {
         setData,
         message : messageDate, 
         setMessage : setMessageDate
-    } = SlideOverDate();
+    } = SlideOverDate({reload});
     
     useEffect(()=>{
         setMessage(messageKoreksi);

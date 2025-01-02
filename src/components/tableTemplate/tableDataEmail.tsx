@@ -57,31 +57,31 @@ const tableDataEmail = (props : any) => {
                             ])}
                         >
                         <div className="flex px-5 py-3">
-                            <div className="flex items-center flex-none mr-5 w-64">
+                            <div className="flex items-center flex-none mr-5 w-96">
                             <div className='w-16'>
                                 {index+1}
                             </div>
                             <div
                                 className={clsx([
-                                "ml-3 truncate"
+                                "ml-3 truncate w-72"
                                 ])}
                             >
                                 {data.subject}
                             </div>
                             </div>
-                            <div className="w-32 truncate sm:w-32">
+                            <div className="w-32 truncate sm:w-72">
                                 <span
                                     className={clsx([
-                                    "ml-3 truncate"
+                                    "ml-3 truncate w-72"
                                     ])}
                                     >
                                     {data.from}
                                 </span>
                             </div>
-                            <div className="w-32 truncate sm:w-32">
+                            <div className="w-32 truncate sm:w-72">
                                 <span
                                     className={clsx([
-                                    "ml-3 truncate"
+                                    "ml-3 truncate w-72"
                                     ])}
                                     >
                                     {data.to}
