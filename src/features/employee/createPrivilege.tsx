@@ -225,7 +225,7 @@ const CreatePrivilege = (props : any) => {
                         </div>
                         <div>
                             <div className="font-medium whitespace-nowrap">
-                                Wfh Modal
+                                Wfa Modal
                             </div>
                             <div className="mt-1 text-sm text-slate-500 pr-6">
                                 <FormSelect

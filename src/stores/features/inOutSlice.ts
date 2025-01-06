@@ -75,8 +75,6 @@ export const getInOutsByUser : any = createAsyncThunk("getInOutsByUser", async(d
 
 export const createInOutsByAbsenWeb : any = createAsyncThunk("createInOutsByAbsenWeb", async(datas : any, thunkAPI) => {
     try {
-        console.log(datas, 'datas')
-
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/in_out/web`,{
             user_uuid:datas.user_uuid,
             tanggal_mulai:datas.tanggal_mulai,

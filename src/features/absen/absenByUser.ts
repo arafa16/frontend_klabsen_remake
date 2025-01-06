@@ -40,7 +40,7 @@ export const getAbsenByUser = (datas:any) => {
     useEffect(()=>{
         if(messageInOut && isSuccess){
             if(!isLoading){
-                // setMessage(messageInOut);
+                setMessage(messageInOut);
                 dispatch(resetInOuts());
                 dispatch(getInOutsByUser({uuid:datas.uuid}));
             }

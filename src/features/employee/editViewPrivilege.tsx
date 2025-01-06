@@ -223,7 +223,7 @@ const editViewPrivilege = (props : any) => {
                         </div>
                         <div>
                             <div className="font-medium whitespace-nowrap">
-                                Wfh Modal
+                                Wfa Modal
                             </div>
                             <div className="mt-1  text-slate-500 pr-6">
                                 <FormSelect

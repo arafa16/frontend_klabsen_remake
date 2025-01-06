@@ -78,7 +78,7 @@ export const viewPrivilege = (props : any) => {
                     </div>
                     <div>
                         <div className="font-medium whitespace-nowrap">
-                            Wfh Modal
+                            Wfa Modal
                         </div>
                         <div className="mt-1  text-slate-500">
                             {datas.privilege && datas.privilege.wfh_modal ? 'Yes' : 'No'}
