@@ -17,7 +17,7 @@ export const reportAbsenMonth = () => {
     )
 
     useEffect(()=>{
-      const paramsObj : any = {limit, page};
+      const paramsObj : any = {limit, page, is_active:1};
       const searchParams = new URLSearchParams(paramsObj);
       dispatch(getPeriodeKerjasTable(searchParams))
     },[limit, page, allPage])
