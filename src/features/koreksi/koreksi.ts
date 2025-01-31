@@ -3,6 +3,7 @@ import {
     getKoreksisById,
     getKoreksisByApprover, 
     approverKoreksis,
+    getCounts,
     resetKoreksis 
 } from "../../stores/features/koreksiSlice"
 import { 
@@ -23,7 +24,7 @@ export const getDataKoreksiTableByApprover = (props:any) => {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [allPage, setAllPage] = useState(0);
-    const [status_code, set_status_code] = useState<any>(1);
+    const [status_code, set_status_code] = useState<any>('1');
 
     const dispatch = useDispatch();
 
@@ -149,6 +150,7 @@ export const getGeneralDataUser = (props:any) => {
 
     const [datas, setDatas] = useState<any>([]);
     const [user_id, set_user_id] = useState<any>(null);
+    const [atasan_id, set_atasan_id] = useState<any>(null);
 
     const dispatch = useDispatch();
 
@@ -174,7 +176,7 @@ export const getGeneralDataUser = (props:any) => {
             if(user_id !== undefined){
                 const paramsObj : any = {user_id};
                 const searchParams = new URLSearchParams(paramsObj);
-                dispatch(getKoreksisByUser(searchParams));
+                dispatch(getCounts(searchParams));
             }
         }
     },[user_id]);
@@ -214,7 +216,7 @@ export const getGeneralDataApprover = (props:any) => {
             if(atasan_id !== undefined){
                 const paramsObj : any = {atasan_id};
                 const searchParams = new URLSearchParams(paramsObj);
-                dispatch(getKoreksisByApprover(searchParams));
+                dispatch(getCounts(searchParams));
             }
         }
     },[atasan_id]);

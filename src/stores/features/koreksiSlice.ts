@@ -143,6 +143,19 @@ export const getKoreksisByUser: any = createAsyncThunk("getKoreksisByUser", asyn
     }
 });
 
+export const getCounts: any = createAsyncThunk("getCounts", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/count?${datas}`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+
+        return response.data;
+    } catch (error : any) {
+        return thunkAPI.rejectWithValue(error.response);
+        
+    }
+});
+
 export const getKoreksisByApprover: any = createAsyncThunk("getKoreksisByApprover", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/koreksi/datas?${datas}`,{
@@ -236,6 +249,21 @@ export const koreksisSlice = createSlice({
             state.data = action.payload;
         });
         builder.addCase(getKoreksisByUser.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
+
+        // get count table by user
+        builder.addCase(getCounts.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getCounts.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getCounts.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;

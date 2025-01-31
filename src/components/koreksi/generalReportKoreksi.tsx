@@ -5,22 +5,6 @@ import Tippy from "../../base-components/Tippy";
 
 const generalReportKoreksi = (props : any) => {
   const {datas, clickStatus} = props;
-  const [dataNeedApprove, setDataNeedApprove] = useState([]);
-  const [dataApprove, setDataApprove] = useState([]);
-  const [dataNotApprove, setDataNotApprove] = useState([]);
-  const [dataAll, setDataAll] = useState([]);
-
-  useEffect(()=>{
-    const needApprove = datas && datas.filter((data : any)=>data.status_koreksi.code == 1);
-    const approve = datas && datas.filter((data : any)=>data.status_koreksi.code == 2);
-    const notApprove = datas && datas.filter((data : any)=>data.status_koreksi.code == 3);
-    const all = datas && datas;
-
-    setDataNeedApprove(needApprove && needApprove.length);
-    setDataApprove(approve && approve.length);
-    setDataNotApprove(notApprove && notApprove.length);
-    setDataAll(all && all.length);
-  },[datas])
 
   return (
     <div>
@@ -60,7 +44,7 @@ const generalReportKoreksi = (props : any) => {
                           className="flex items-center pl-2 cursor-pointer text-warning gap-2"
                           content="data pengajuan"
                         >
-                          {dataNeedApprove}
+                          {datas && datas.pengajuan}
                           <Lucide icon="Info" className="w-4 h-4 ml-0.5" />
                         </Tippy>
                       </div>
@@ -95,7 +79,7 @@ const generalReportKoreksi = (props : any) => {
                           className="flex items-center pl-2 cursor-pointer text-success gap-2"
                           content="pengajuan di setujui"
                         >
-                          {dataApprove}
+                          {datas && datas.approved}
                           <Lucide icon="Check" className="w-4 h-4 ml-0.5" />
                         </Tippy>
                       </div>
@@ -130,7 +114,7 @@ const generalReportKoreksi = (props : any) => {
                           className="flex items-center pl-2 cursor-pointer text-danger gap-2"
                           content="pengajuan di tolak"
                         >
-                          {dataNotApprove}
+                          {datas && datas.not_approved}
                           <Lucide icon="XCircle" className="w-4 h-4 ml-0.5" />
                         </Tippy>
                       </div>
@@ -165,7 +149,7 @@ const generalReportKoreksi = (props : any) => {
                           className="flex items-center pl-2 cursor-pointer text-primary gap-2"
                           content="pengajuan di tolak"
                         >
-                          {dataAll}
+                          {datas && datas.all}
                           <Lucide icon="BookOpen" className="w-4 h-4 ml-0.5" />
                         </Tippy>
                       </div>

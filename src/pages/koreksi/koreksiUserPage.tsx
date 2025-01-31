@@ -11,7 +11,7 @@ const koreksiUserPage = () => {
   const code = queryParameters.get("code")
 
   useEffect(()=>{
-    console.log(code, 'code paramssss');
+    // console.log(code, 'code paramssss');
     if(code !== null){
       set_status_code(code)
     }

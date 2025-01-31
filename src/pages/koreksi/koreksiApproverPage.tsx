@@ -11,7 +11,7 @@ const koreksiApproverPage = () => {
     const code = queryParameters.get("code")
 
     useEffect(()=>{
-        if(code !== undefined){
+        if(code !== null && code !== undefined ){
             set_status_code(code)
         }
     },[code])
