@@ -112,7 +112,7 @@ const table2 = (props : any) => {
                                 "pl-10 ml-auto whitespace-nowrap w-1/12"
                                 ])}
                                 >
-                                {data.isActive ? 'active' : 'non active'}
+                                {data.is_active ? 'active' : 'non active'}
                             </div>
                         </div>
                         </div>
