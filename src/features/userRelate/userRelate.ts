@@ -24,7 +24,6 @@ export const getDataUserRelateTable = (datas:any) => {
     useEffect(()=>{
         if(isSuccess && data){
             if(!isLoading){
-                console.log()
                 setDataResult(data && data.datas && data.datas.data && data.datas.data.rows);
                 countData(data && data.datas && data.datas.data && data.datas.data.count);
                 dispatch(resetUserRelate());
@@ -33,9 +32,11 @@ export const getDataUserRelateTable = (datas:any) => {
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
-        const paramsObj : any = {page, limit, user_uuid:datas.uuid, search};
-        const searchParams = new URLSearchParams(paramsObj);
-        dispatch(getUserRelateTable(searchParams));
+        if(datas.uuid !== null){
+            const paramsObj : any = {page, limit, user_uuid:datas.uuid, search};
+            const searchParams = new URLSearchParams(paramsObj);
+            dispatch(getUserRelateTable(searchParams));
+        }
     },[page, limit, datas.uuid, search])
 
     //table
@@ -59,9 +60,11 @@ export const getDataUserRelateTable = (datas:any) => {
     }
 
     const reload = () => {
-        const paramsObj : any = {page, limit, user_uuid:datas.uuid, search};
-        const searchParams = new URLSearchParams(paramsObj);
-        dispatch(getUserRelateTable(searchParams));
+        if(datas.uuid !== null){
+            const paramsObj : any = {page, limit, user_uuid:datas.uuid, search};
+            const searchParams = new URLSearchParams(paramsObj);
+            dispatch(getUserRelateTable(searchParams));
+        }
     }
 
     return {
