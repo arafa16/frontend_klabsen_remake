@@ -67,7 +67,7 @@ const updateEmployeePage = () => {
     const [atasan_id, set_atasan_id] = useState();
     const [is_atasan, set_is_atasan] = useState('');
     const [jam_operasional_group_id, set_jam_operasional_group_id] = useState('');
-    const [group_id, setGroupId] = useState('');
+    const [group_id, set_group_id] = useState('');
     const [extention, set_extention] = useState('');
     const [quote, set_quote] = useState('');
 
@@ -169,7 +169,7 @@ const updateEmployeePage = () => {
         set_atasan_id(data && data.atasan_id);
         set_is_atasan(data && data.is_atasan ? '1' : '0');
         set_jam_operasional_group_id(data && data.jam_operasional_group_id);
-        setGroupId(data && data.group_id);
+        set_group_id(data && data.group_id);
         set_extention(data && data.extention);
         set_quote(data && data.quote);
     
@@ -739,10 +739,10 @@ const updateEmployeePage = () => {
                             <FormSelect
                                 formSelectSize="sm"
                                 aria-label=".form-select-sm example"
-                                name='groupsId'
+                                name='group_id'
                                 required
                                 value={group_id}
-                                onChange={(e)=>setGroupId(e.target.value)}
+                                onChange={(e)=>set_group_id(e.target.value)}
                                 >
                                     <option></option>
                                     {dataGroup && dataGroup.map((data : any, index : any)=>(

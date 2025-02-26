@@ -69,15 +69,6 @@ const table3 = (props : any) => {
                                     "ml-3 truncate"
                                     ])}
                                     >
-                                    {data.bulan}
-                                </div>
-                            </div>
-                            <div className="flex items-center flex-none mr-5 w-24">
-                                <div
-                                    className={clsx([
-                                    "ml-3 truncate"
-                                    ])}
-                                    >
                                     {data.tahun}
                                 </div>
                             </div>
@@ -87,7 +78,7 @@ const table3 = (props : any) => {
                                     "ml-3 truncate"
                                     ])}
                                     >
-                                    {dayjs(data.tanggalMulai).format('YYYY-MM-DD HH:mm:ss')}
+                                    {dayjs(data.tanggal_mulai).format('YYYY-MM-DD HH:mm:ss')}
                                 </span>
                             </div>
                             <div className="w-64 truncate sm:w-48">
@@ -96,7 +87,7 @@ const table3 = (props : any) => {
                                     "ml-3 truncate"
                                     ])}
                                     >
-                                    {dayjs(data.tanggalSelesai).format('YYYY-MM-DD HH:mm:ss')}
+                                    {dayjs(data.tanggal_selesai).format('YYYY-MM-DD HH:mm:ss')}
                                 </span>
                             </div>
                             <div className="w-24 truncate sm:w-48 text-center">
@@ -105,7 +96,7 @@ const table3 = (props : any) => {
                                     "ml-3 truncate "
                                     ])}
                                     >
-                                    {data.jumlahHari}
+                                    {data.jumlah_hari}
                                 </span>
                             </div>
                             <div className="w-24 truncate sm:w-48 text-center">
