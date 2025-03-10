@@ -46,7 +46,7 @@ const viewKoreksiById = (props : any) => {
                         Tanggal Absen
                     </div>
                     <div className="mt-1 text-sm text-slate-500">
-                        {dayjs(datas.in_out && datas.in_out.tanggalMulai).format('YYYY-MM-DD')}
+                        {dayjs(datas.in_out && datas.in_out.tanggal_mulai).format('YYYY-MM-DD')}
                     </div>
                 </div>
                 <div>
@@ -54,7 +54,7 @@ const viewKoreksiById = (props : any) => {
                         Waktu/Jam
                     </div>
                     <div className="mt-1 text-sm text-slate-500">
-                    {dayjs(datas.in_out && datas.in_out.tanggalMulai).format('HH:mm:ss')}
+                    {dayjs(datas.in_out && datas.in_out.tanggal_mulai).format('HH:mm:ss')}
                     </div>
                 </div>
                 <div>
