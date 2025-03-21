@@ -41,8 +41,7 @@ export const importPendapatans : any = createAsyncThunk("importPendapatans", asy
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });
@@ -57,8 +56,7 @@ export const getPendapatansById : any = createAsyncThunk("getPendapatansById", a
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });
@@ -72,8 +70,7 @@ export const getPendapatansTable : any = createAsyncThunk("getPendapatansTable",
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });
@@ -89,8 +86,7 @@ export const getPendapatansTableById : any = createAsyncThunk("getPendapatansTab
         return response.data;
     } catch (error : any) {
         if(error.response){
-            const message = error.response.data.msg;
-            return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 });

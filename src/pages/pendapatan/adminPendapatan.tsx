@@ -10,6 +10,7 @@ import { formUploadPendapatan } from '../../features/pendapatan/formUploadPendap
 import { FormInput, FormLabel } from '../../base-components/Form'
 import { useNavigate } from 'react-router-dom'
 import { getDataPendapatansTable } from '../../features/pendapatan/pendapatan';
+import { getMessageShow } from "../../features/messageShow";
 
 const AdminPendapatan = () => {
   const dispatch = useDispatch();
@@ -38,21 +39,12 @@ const viewSlip = (data : any) => {
   }
 }
 
+  //message
+  const messageShow = getMessageShow(messagePendapatan);
+
   return (
     <div className='w-full'>
-      {/* <Notification
-        getRef={(el) => {
-          NotificationRegister.current = el;
-        }}
-        options={{
-          duration: 3000,
-        }}
-        className="flex flex-col sm:flex-row"
-      >
-        <div className="font-medium normal-case">
-          {msg}
-        </div>
-      </Notification> */}
+      {messageShow}
       <div className='grid grid-cols-12 grid-rows-2 mt-5'>
         <div className='col-start-1 col-span-6 row-span-2'>
           {formPendapatan}

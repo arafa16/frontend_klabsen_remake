@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FormInput} from '../../base-components/Form'
 import Button from '../../base-components/Button'
-import { importPendapatans } from '../../stores/features/pendapatanSlice';
+import { importPendapatans, resetPendapatans } from '../../stores/features/pendapatanSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingIcon from '../../base-components/LoadingIcon';
 
@@ -13,7 +13,7 @@ export const formUploadPendapatan = (props : any) => {
 
     const dispatch = useDispatch();
 
-    const {message:messagePendapatan, isSuccess, isLoading} = useSelector(
+    const {message:messagePendapatan, isSuccess, isError, isLoading} = useSelector(
         (state : any) => state.pendapatan
     );
 
@@ -22,8 +22,22 @@ export const formUploadPendapatan = (props : any) => {
             if(!isLoading){
                 setData([]);
                 setIsView(false);
-                // reload();
+                reload();
                 setMessage(messagePendapatan);
+                dispatch(resetPendapatans());
+            }
+        }
+    },[messagePendapatan, isSuccess, isLoading])
+
+    useEffect(()=>{
+        if(messagePendapatan && isError){
+            if(!isLoading){
+                setData([]);
+                setIsView(false);
+                reload();
+                console.log("message error",messagePendapatan.data)
+                setMessage(messagePendapatan.data);
+                dispatch(resetPendapatans());
             }
         }
     },[messagePendapatan, isSuccess, isLoading])
