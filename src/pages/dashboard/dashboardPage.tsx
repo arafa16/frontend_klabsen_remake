@@ -8,7 +8,7 @@ import { reportAbsenMonth } from "../../features/periodeKerja/absenReport";
 import AbsenReport from "../../components/dashboard/absenReport";
 import { SlideShow } from "../../features/slider/slideShow";
 import UserRelate from "../../components/dashboard/userRelate";
-import { getDataUserRelateTable } from "../../features/userRelate/userRelate";
+import { getDataUserRelateTableDashboard } from "../../features/userRelate/userRelate";
 
 const DasboardPage = () => {
 
@@ -32,7 +32,7 @@ const DasboardPage = () => {
     nextPage:nextPageRelate, 
     prevPage:prevPageRelate,
     reload
-  } = getDataUserRelateTable({uuid:dataMe.uuid});
+  } = getDataUserRelateTableDashboard();
 
   return (
     <div className="grid grid-cols-12 gap-6 mb-10 text-xs">

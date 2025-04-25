@@ -12,11 +12,7 @@ import { statusUser } from '../../features/employee/statusUser';
 import { viewPrivilege } from '../../features/employee/viewPrivilege';
 import { editStatusUser } from '../../features/employee/editStatusUser';
 import { resetPassword } from '../../features/user/resetPassword';
-import { 
-    createDataUserRelate, 
-    deleteDataUserRelate, 
-    getDataUserRelateTableDashboard 
-} from "../../features/userRelate/userRelate";
+import { createDataUserRelate, deleteDataUserRelate, getDataUserRelateTable } from "../../features/userRelate/userRelate";
 import UserRelate from "../../components/dashboard/userRelate";
 import AddUserRelate from '../../components/dashboard/addUserRelate';
 
@@ -106,7 +102,7 @@ const viewEmployePage = () => {
         nextPage:nextPageRelate, 
         prevPage:prevPageRelate,
         reload:reloadData
-      } = getDataUserRelateTableDashboard();
+      } = getDataUserRelateTable({uuid:id});
 
       //search user
       const {datas:datasSearch, search:serachUser, setSearch:setSearchUser} = getDataUsers();
