@@ -31,6 +31,20 @@ export const getUserRelateTable : any = createAsyncThunk("getUserRelateTable", a
     }
 });
 
+export const getUserRelateTableByUser : any = createAsyncThunk("getUserRelateTableByUser", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/user_relate/table/user?${datas}`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
+
 export const createUserRelate : any = createAsyncThunk("createUserRelate", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_REACT_APP_API_URL+`/user_relate/data`,{
@@ -86,6 +100,20 @@ export const userRelateSlice = createSlice({
             state.message = action.payload;
         });
 
+        //get user relate table by user
+        builder.addCase(getUserRelateTableByUser.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getUserRelateTableByUser.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getUserRelateTableByUser.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
 
         //create user relate table
         builder.addCase(createUserRelate.pending, (state) => {

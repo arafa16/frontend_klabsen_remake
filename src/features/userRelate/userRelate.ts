@@ -4,7 +4,8 @@ import {
     getUserRelateTable,
     createUserRelate,
     resetUserRelate,
-    deleteUserRelate
+    deleteUserRelate,
+    getUserRelateTableByUser
 } from "../../stores/features/userRelateSlice";
 
 export const getDataUserRelateTable = (datas:any) => {
@@ -65,6 +66,75 @@ export const getDataUserRelateTable = (datas:any) => {
             const searchParams = new URLSearchParams(paramsObj);
             dispatch(getUserRelateTable(searchParams));
         }
+    }
+
+    return {
+        dataResult,
+        page, setPage,
+        limit,setLimit,
+        search, setSearch,
+        allPage, 
+        status_code, set_status_code, 
+        nextPage, 
+        prevPage,
+        reload
+    }
+}
+
+export const getDataUserRelateTableDashboard = () => {
+    const [dataResult, setDataResult] = useState([]);
+    const [limit, setLimit] = useState(7);
+    const [page, setPage] = useState(1);
+    const [allPage, setAllPage] = useState(0);
+    const [status_code, set_status_code] = useState(1);
+    const [search, setSearch] = useState('');
+
+    const dispatch = useDispatch();
+
+    const {data, isLoading, isSuccess} = useSelector(
+        (state : any) => state.userRelate
+    )
+
+    useEffect(()=>{
+        if(isSuccess && data){
+            if(!isLoading){
+                setDataResult(data && data.datas && data.datas.data && data.datas.data.rows);
+                countData(data && data.datas && data.datas.data && data.datas.data.count);
+                dispatch(resetUserRelate());
+            }
+        }
+    },[data, isSuccess, isLoading])
+
+    useEffect(()=>{
+        const paramsObj : any = {page, limit, search};
+        const searchParams = new URLSearchParams(paramsObj);
+        dispatch(getUserRelateTableByUser(searchParams));
+    },[page, limit, search])
+
+    //table
+    const countData = (allData : any) =>{
+        const count = allData / limit;
+        setAllPage(Math.ceil(count))
+    }
+
+    const nextPage = () => {
+        if(page < allPage){
+            const count = page + 1;
+            setPage(count);
+        }
+    }
+
+    const prevPage = () => {
+        if(page > 1){
+            const count = page - 1;
+            setPage(count);
+        }
+    }
+
+    const reload = () => {
+            const paramsObj : any = {page, limit, search};
+            const searchParams = new URLSearchParams(paramsObj);
+            dispatch(getUserRelateTable(searchParams));
     }
 
     return {
