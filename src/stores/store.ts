@@ -43,6 +43,9 @@ import StatusKoreksiReducer from "./features/statusKoreksiSlice";
 import DataEmailReducer from "./features/dataEmailSlice";
 import StatusEmailReducer from "./features/statusEmailSlice";
 import UserRelateReducer from "./features/userRelateSlice";
+import OvertimeTaskReducer from "./features/overtimeTaskSlice";
+import OvertimeTaskStatusReducer from "./features/overtimeTaskStatusSlice";
+import OvertimeReportStatusReducer from "./features/overtimeReportStatusSlice";
 
 export const store = configureStore({
   reducer: {
@@ -89,7 +92,10 @@ export const store = configureStore({
     statusKoreksi:StatusKoreksiReducer,
     dataEmail:DataEmailReducer,
     statusEmail:StatusEmailReducer,
-    userRelate:UserRelateReducer
+    userRelate:UserRelateReducer,
+    overtimeTask:OvertimeTaskReducer,
+    overtimeTaskStatus:OvertimeTaskStatusReducer,
+    overtimeReportStatus:OvertimeReportStatusReducer,
   },
 });
 

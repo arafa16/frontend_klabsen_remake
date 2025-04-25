@@ -32,6 +32,11 @@ const editViewPrivilege = (props : any) => {
     const [pendapatan_admin_sub, setPendapatanAdminSub] = useState(0);
     const [attribute, setAttribute] = useState(0);
     const [setting, setSetting] = useState(0);
+    const [overtime, setOvertime] = useState(0);
+    const [overtime_user, setOvertimeUser] = useState(0);
+    const [overtime_superior, setOvertimeSuperior] = useState(0);
+    const [overtime_assignor, setOvertimeAssignor] = useState(0);
+    const [overtime_admin, setOvertimeAdmin] = useState(0);
     const [id_privilege, setIdPrivilege] = useState(null);
 
     const dispatch = useDispatch();
@@ -62,6 +67,11 @@ const editViewPrivilege = (props : any) => {
             setPendapatanLainSub(datas.privilege && datas.privilege.pendapatan_lain_sub ? 1 : 0);
             setPendapatanAdminSub(datas.privilege && datas.privilege.pendapatan_admin_sub ? 1 : 0);
             setAttribute(datas.privilege && datas.privilege.attribute ? 1 : 0);
+            setOvertime(datas.privilege && datas.privilege.overtime ? 1 : 0);
+            setOvertimeUser(datas.privilege && datas.privilege.overtime_user ? 1 : 0);
+            setOvertimeSuperior(datas.privilege && datas.privilege.overtime_superior ? 1 : 0);
+            setOvertimeAssignor(datas.privilege && datas.privilege.overtime_assignor ? 1 : 0);
+            setOvertimeAdmin(datas.privilege && datas.privilege.overtime_admin ? 1 : 0);
             setSetting(datas.privilege && datas.privilege.setting ? 1 : 0);
             setIdPrivilege(datas.privilege && datas.privilege.uuid);
         }
@@ -102,6 +112,11 @@ const editViewPrivilege = (props : any) => {
             pendapatan_lain_sub,
             pendapatan_admin_sub,
             attribute,
+            overtime,
+            overtime_user,
+            overtime_superior,
+            overtime_assignor,
+            overtime_admin,
             setting
         }));
     }
@@ -463,6 +478,95 @@ const editViewPrivilege = (props : any) => {
                                     name='pendapatan_admin_sub'
                                     value={pendapatan_admin_sub}
                                     onChange={(e : any)=>setPendapatanAdminSub(e.target.value)}
+                                    >
+                                    <option value={0}>non active</option>
+                                    <option value={1}>active</option>
+                                </FormSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-2 md:grid-cols-2 gap-y-10 mt-10 border-b border-slate-200/60'>
+                        <div>
+                            <div className="font-medium whitespace-nowrap">
+                                Overtime
+                            </div>
+                            <div className="mt-1  text-slate-500 pr-6">
+                                <FormSelect
+                                    formSelectSize="sm"
+                                    aria-label=".form-select-sm example"
+                                    name='overtime'
+                                    value={overtime}
+                                    onChange={(e : any)=>setOvertime(e.target.value)}
+                                    >
+                                    <option value={0}>non active</option>
+                                    <option value={1}>active</option>
+                                </FormSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-2 md:grid-cols-2 gap-y-10 mt-10'>
+                        <div>
+                            <div className="font-medium whitespace-nowrap">
+                                Overtime User
+                            </div>
+                            <div className="mt-1  text-slate-500 pr-6">
+                                <FormSelect
+                                    formSelectSize="sm"
+                                    aria-label=".form-select-sm example"
+                                    name='pendapatan_sub'
+                                    value={overtime_user}
+                                    onChange={(e : any)=>setOvertimeUser(e.target.value)}
+                                    >
+                                    <option value={0}>non active</option>
+                                    <option value={1}>active</option>
+                                </FormSelect>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="font-medium whitespace-nowrap">
+                                Overtime Superior
+                            </div>
+                            <div className="mt-1  text-slate-500 pr-6">
+                                <FormSelect
+                                    formSelectSize="sm"
+                                    aria-label=".form-select-sm example"
+                                    name='overtime_superior'
+                                    value={overtime_superior}
+                                    onChange={(e : any)=>setOvertimeSuperior(e.target.value)}
+                                    >
+                                    <option value={0}>non active</option>
+                                    <option value={1}>active</option>
+                                </FormSelect>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="font-medium whitespace-nowrap">
+                                Overtime Assignor
+                            </div>
+                            <div className="mt-1  text-slate-500 pr-6">
+                                <FormSelect
+                                    formSelectSize="sm"
+                                    aria-label=".form-select-sm example"
+                                    name='overtime_assignor'
+                                    value={overtime_assignor}
+                                    onChange={(e : any)=>setOvertimeAssignor(e.target.value)}
+                                    >
+                                    <option value={0}>non active</option>
+                                    <option value={1}>active</option>
+                                </FormSelect>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="font-medium whitespace-nowrap">
+                                Overtime Admin
+                            </div>
+                            <div className="mt-1  text-slate-500 pr-6">
+                                <FormSelect
+                                    formSelectSize="sm"
+                                    aria-label=".form-select-sm example"
+                                    name='overtime_assignor'
+                                    value={overtime_admin}
+                                    onChange={(e : any)=>setOvertimeAdmin(e.target.value)}
                                     >
                                     <option value={0}>non active</option>
                                     <option value={1}>active</option>

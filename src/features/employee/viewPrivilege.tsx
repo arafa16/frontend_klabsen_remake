@@ -202,6 +202,50 @@ export const viewPrivilege = (props : any) => {
                 <div className='grid grid-cols-2 md:grid-cols-2 gap-y-10 mt-10 border-b border-slate-200/60'>
                     <div>
                         <div className="font-medium whitespace-nowrap">
+                            Overtime
+                        </div>
+                        <div className="mt-1  text-slate-500">
+                            {datas.privilege && datas.privilege.overtime ? 'Yes' : 'No'}
+                        </div>
+                    </div>
+                </div>
+                <div className='grid grid-cols-2 md:grid-cols-2 gap-y-10 mt-10'>
+                    <div>
+                        <div className="font-medium whitespace-nowrap">
+                            Overtime User
+                        </div>
+                        <div className="mt-1  text-slate-500">
+                            {datas.privilege && datas.privilege.overtime_user ? 'Yes' : 'No'}
+                        </div>
+                    </div>
+                    <div>
+                        <div className="font-medium whitespace-nowrap">
+                            Overtime Superior
+                        </div>
+                        <div className="mt-1  text-slate-500">
+                            {datas.privilege && datas.privilege.overtime_superior ? 'Yes' : 'No'}
+                        </div>
+                    </div>
+                    <div>
+                        <div className="font-medium whitespace-nowrap">
+                            Overtime Assignor
+                        </div>
+                        <div className="mt-1  text-slate-500">
+                            {datas.privilege && datas.privilege.overtime_assignor ? 'Yes' : 'No'}
+                        </div>
+                    </div>
+                    <div>
+                        <div className="font-medium whitespace-nowrap">
+                            Overtime Admin
+                        </div>
+                        <div className="mt-1  text-slate-500">
+                            {datas.privilege && datas.privilege.overtime_admin ? 'Yes' : 'No'}
+                        </div>
+                    </div>
+                </div>
+                <div className='grid grid-cols-2 md:grid-cols-2 gap-y-10 mt-10 border-b border-slate-200/60'>
+                    <div>
+                        <div className="font-medium whitespace-nowrap">
                             Attribute	
                         </div>
                         <div className="mt-1  text-slate-500">

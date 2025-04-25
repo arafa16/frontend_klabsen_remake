@@ -68,6 +68,37 @@ const initialState: SideMenuState = {
       ]
     },
     {
+      icon: "Clock",
+      title: "Overtime",
+      code: 'overtime',
+      subMenu: [
+        {
+          icon: "Clock",
+          pathname: "/overtime/data",
+          title: "Data Overtime",
+          code: 'overtime_user',
+        },
+        {
+          icon: "Clock",
+          pathname: "/overtime/assignor",
+          title: "Pemberi Tugas",
+          code: 'overtime_assignor',
+        },
+        {
+          icon: "Clock",
+          pathname: "/overtime/superior",
+          title: "Data Atasan",
+          code: 'overtime_superior',
+        },
+        {
+          icon: "Clock",
+          pathname: "/overtime/datas",
+          title: "All Data",
+          code: 'overtime_admin',
+        },
+      ],
+    },
+    {
       icon: "Users",
       title: "Employees",
       code: 'employees',
@@ -247,6 +278,18 @@ const initialState: SideMenuState = {
           icon: "Award",
           pathname: "/statusKoreksi",
           title: "Status Koreksi",
+          code: 'setting',
+        },
+        {
+          icon: "Award",
+          pathname: "/overtimeTaskStatus",
+          title: "Overtime Task Status",
+          code: 'setting',
+        },
+        {
+          icon: "Award",
+          pathname: "/overtimeReportStatus",
+          title: "Overtime Report Status",
           code: 'setting',
         },
         {

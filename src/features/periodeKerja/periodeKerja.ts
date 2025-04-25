@@ -3,7 +3,9 @@ import {
     createPeriodeKerjas, 
     deletePeriodeKerjas, 
     getPeriodeKerjas, 
+    getPeriodeKerjaSelect as getDataActiveSelect, 
     getPeriodeKerjasById, 
+    getPeriodeKerjasByIdForInout, 
     getPeriodeKerjasTable, 
     resetPeriodeKerja, 
     updatePeriodeKerjas 
@@ -17,7 +19,7 @@ export const getDataPeriodeKerjaSelect = () => {
     const dispatch = useDispatch();
 
     const {data, isSuccess, isLoading} = useSelector(
-        (state : any) => state.group
+        (state : any) => state.periodeKerja
     );
 
     useEffect(()=>{
@@ -31,6 +33,63 @@ export const getDataPeriodeKerjaSelect = () => {
 
     useEffect(()=>{
         dispatch(getPeriodeKerjas());
+    },[])
+
+    return {dataResult}
+}
+
+export const getDataPeriodeKerjaByIdForInout = () => {
+    const [uuid, setUuid] = useState<any>(null);
+    const [userUuid, setUserUuid] = useState<any>(null);
+    
+    const [dataResult, setDataResult] = useState([]);
+
+    const dispatch = useDispatch();
+
+    const {data2, isSuccess, isLoading} = useSelector(
+        (state : any) => state.periodeKerja
+    );
+
+    useEffect(()=>{
+        if(data2 && isSuccess){
+            if(!isLoading){
+                setDataResult(data2 && data2.datas && data2.datas.data);
+                dispatch(resetPeriodeKerja());
+            }
+        }
+    })
+
+    useEffect(()=>{
+        if(uuid !== null && uuid !== "" && userUuid !==null && userUuid !== ""){
+            dispatch(getPeriodeKerjasByIdForInout({uuid, userUuid}));
+        }else{
+            setDataResult([]);
+        }
+    },[uuid, userUuid])
+
+    return {dataResult, uuid, setUuid, userUuid, setUserUuid}
+}
+
+export const getDataPeriodeKerjaActiveSelect = () => {
+    const [dataResult, setDataResult] = useState([]);
+
+    const dispatch = useDispatch();
+
+    const {data, isSuccess, isLoading} = useSelector(
+        (state : any) => state.periodeKerja
+    );
+
+    useEffect(()=>{
+        if(data && isSuccess){
+            if(!isLoading){
+                setDataResult(data && data.datas && data.datas.data);
+                dispatch(resetPeriodeKerja());
+            }
+        }
+    })
+
+    useEffect(()=>{
+        dispatch(getDataActiveSelect());
     },[])
 
     return {dataResult}

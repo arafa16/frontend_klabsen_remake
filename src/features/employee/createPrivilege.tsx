@@ -29,6 +29,11 @@ const CreatePrivilege = (props : any) => {
     const [pendapatanLainSub, setPendapatanLainSub] = useState(0);
     const [pendapatanAdminSub, setPendapatanAdminSub] = useState(0);
     const [attribute, setAttribute] = useState(0);
+    const [overtime, setOvertime] = useState(0);
+    const [overtimeUser, setOvertimeUser] = useState(0);
+    const [overtimeSuperior, setOvertimeSuperior] = useState(0);
+    const [overtimeAssignor, setOvertimeAssignor] = useState(0);
+    const [overtimeAdmin, setOvertimeAdmin] = useState(0);
     const [setting, setSetting] = useState(0);
     
     const [idPrivilege, setIdPrivilege] = useState(null);
@@ -62,6 +67,11 @@ const CreatePrivilege = (props : any) => {
             setPendapatanAdminSub(datas.privilege && datas.privilege.pendapatanAdminSub ? 1 : 0);
             setAttribute(datas.privilege && datas.privilege.attribute ? 1 : 0);
             setSetting(datas.privilege && datas.privilege.setting ? 1 : 0);
+            setOvertime(datas.privilege && datas.privilege.overtime ? 1 : 0);
+            setOvertimeUser(datas.privilege && datas.privilege.overtimeUser ? 1 : 0);
+            setOvertimeSuperior(datas.privilege && datas.privilege.overtimeSuperior ? 1 : 0);
+            setOvertimeAssignor(datas.privilege && datas.privilege.overtimeAssignor ? 1 : 0);
+            setOvertimeAdmin(datas.privilege && datas.privilege.overtimeAdmin ? 1 : 0);
             setIdPrivilege(datas.privilege && datas.privilege.uuid);
         }
         setUserId(datas && datas.uuid);
@@ -101,6 +111,11 @@ const CreatePrivilege = (props : any) => {
                 pendapatanLainSub,
                 pendapatanAdminSub,
                 attribute,
+                overtime,
+                overtimeUser,
+                overtimeSuperior,
+                overtimeAssignor,
+                overtimeAdmin,
                 setting
             }));
         } catch (error) {

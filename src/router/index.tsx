@@ -101,7 +101,20 @@ import CreateDataEmailPage from "../pages/dataEmail/createDataEmailPage";
 import StatusEmailPage from "../pages/statusEmail/statusEmailPage";
 import CreateStatusEmailPage from "../pages/statusEmail/createStatusEmailPage";
 import EditStatusEmailPage from "../pages/statusEmail/editStatusEmailPage";
-
+import OvertimeTablePage from "../pages/overtime/overtimeTablePage";
+import OvertimeUserTablePage from "../pages/overtime/overtimeUserTablePage";
+import OvertimeAssignorTablePage from "../pages/overtime/overtimeAssignorTablePage";
+import OvertimeSuperiorTablePage from "../pages/overtime/overtimeSuperiorTablePage";
+import OvertimeUserByIdPage from "../pages/overtime/overtimeUserByIdPage";
+import OvertimeByIdPage from "../pages/overtime/overtimeByIdPage";
+import OvertimeUserCreatePage from "../pages/overtime/overtimeUserCreatePage";
+import OvertimeViewPdfPage from "../pages/overtime/overtimeViewPdfPage";
+import OvertimeTaskStatusViewPage from "../pages/overtimeTaskStatus/overtimeTaskStatusPage";
+import OvertimeTaskStatusEditPage from "../pages/overtimeTaskStatus/overtimeTaskStatusEditPage";
+import OvertimeTaskStatusCreatePage from "../pages/overtimeTaskStatus/overtimeTaskStatusCreatePage";
+import OvertimeReportStatusViewPage from "../pages/overtimeReportStatus/overtimeReportStatusPage";
+import OvertimeReportStatusEditPage from "../pages/overtimeReportStatus/overtimeReportStatusEditPage";
+import OvertimeReportStatusCreatePage from "../pages/overtimeReportStatus/overtimeReportStatusCreatePage";
 
 function Router() {
   const routes = [
@@ -144,6 +157,35 @@ function Router() {
         {
           path: "/event/edit/:id",
           element: <EditEvent />,
+        },
+        //overtime
+        {
+          path: "/overtime/data",
+          element: <OvertimeUserTablePage />,
+        },
+        {
+          path: "/overtime/assignor",
+          element: <OvertimeAssignorTablePage />,
+        },
+        {
+          path: "/overtime/superior",
+          element: <OvertimeSuperiorTablePage />,
+        },
+        {
+          path: "/overtime/datas",
+          element: <OvertimeTablePage />,
+        },
+        {
+          path: "/overtime/create",
+          element: <OvertimeUserCreatePage />,
+        },
+        {
+          path: "/overtime/data/:id",
+          element: <OvertimeUserByIdPage />,
+        },
+        {
+          path: "/overtime/datas/:id",
+          element: <OvertimeByIdPage />,
         },
         //employe
         {
@@ -503,6 +545,34 @@ function Router() {
           path: "/statusEmail/edit/:uuid",
           element: <EditStatusEmailPage/>
         },
+
+        //statusTask
+        {
+          path: "/overtimeTaskStatus",
+          element: <OvertimeTaskStatusViewPage />
+        },
+        {
+          path: "/overtimeTaskStatus/create",
+          element: <OvertimeTaskStatusCreatePage />
+        },
+        {
+          path: "/overtimeTaskStatus/edit/:uuid",
+          element: <OvertimeTaskStatusEditPage />
+        },
+
+        //statusReport
+        {
+          path: "/overtimeReportStatus",
+          element: <OvertimeReportStatusViewPage />
+        },
+        {
+          path: "/overtimeReportStatus/create",
+          element: <OvertimeReportStatusCreatePage />
+        },
+        {
+          path: "/overtimeReportStatus/edit/:uuid",
+          element: <OvertimeReportStatusEditPage />
+        },
         //email
         {
           path: "/dataEmail",
@@ -521,6 +591,10 @@ function Router() {
           element: <EditDataEmailPage/>
         },
       ],
+    },
+    {
+      path: "/overtime/view/:id",
+      element: <OvertimeViewPdfPage />,
     },
     {
       path: "/login",

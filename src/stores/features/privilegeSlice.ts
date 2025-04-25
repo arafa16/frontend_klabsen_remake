@@ -92,6 +92,11 @@ export const updatePrivileges : any = createAsyncThunk("updatePrivileges", async
             employees:datas.employees,
             data_employee:datas.data_employee,
             attribute:datas.attribute,
+            overtime:datas.overtime,
+            overtime_user:datas.overtime_user,
+            overtime_superior:datas.overtime_superior,
+            overtime_assignor:datas.overtime_assignor,
+            overtime_admin:datas.overtime_admin,
             setting:datas.setting
         },{
             withCredentials: true, // Now this is was the missing piece in the client side 

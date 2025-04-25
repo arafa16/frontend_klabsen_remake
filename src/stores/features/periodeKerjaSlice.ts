@@ -3,6 +3,7 @@ import axios from 'axios';
 
 interface variabel {
     data: any;
+    data2: any;
     isError: boolean;
     isSuccess: boolean;
     isLoading: boolean;
@@ -11,6 +12,7 @@ interface variabel {
 
 const initialState : variabel = {
     data: null,
+    data2: null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -20,6 +22,20 @@ const initialState : variabel = {
 export const getPeriodeKerjas : any = createAsyncThunk("getPeriodeKerjas", async(_, thunkAPI) => {
     try {
         const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode_kerja/datas`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
+
+export const getPeriodeKerjaSelect : any = createAsyncThunk("getPeriodeKerjaSelect", async(_, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode_kerja/select`,{
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         
@@ -64,6 +80,20 @@ export const getPeriodeKerjasById : any = createAsyncThunk("getPeriodeKerjasById
             withCredentials: true, // Now this is was the missing piece in the client side 
         });
         console.log(response, 'response');
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+});
+
+export const getPeriodeKerjasByIdForInout : any = createAsyncThunk("getPeriodeKerjasByIdForInout", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_APP_API_URL+`/periode_kerja/data/${datas.uuid}/${datas.userUuid}/inout`,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+        
         return response.data;
     } catch (error : any) {
         if(error.response){
@@ -156,6 +186,21 @@ export const periodeKerjasSlice = createSlice({
             state.message = action.payload;
         });
 
+        // get periode kerja select
+        builder.addCase(getPeriodeKerjaSelect.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getPeriodeKerjaSelect.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data = action.payload;
+        });
+        builder.addCase(getPeriodeKerjaSelect.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
+
         // get periode kerja table
         builder.addCase(getPeriodeKerjasTable.pending, (state) => {
             state.isLoading = true;
@@ -196,6 +241,21 @@ export const periodeKerjasSlice = createSlice({
             state.data = action.payload;
         });
         builder.addCase(getPeriodeKerjasById.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        });
+
+        // get periode kerja id for inout
+        builder.addCase(getPeriodeKerjasByIdForInout.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getPeriodeKerjasByIdForInout.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.data2 = action.payload;
+        });
+        builder.addCase(getPeriodeKerjasByIdForInout.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
