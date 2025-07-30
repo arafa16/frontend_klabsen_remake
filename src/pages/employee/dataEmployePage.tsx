@@ -92,6 +92,7 @@ const dataEmployePage = () => {
     setFilter("");
     setStatusWfh("");
     setIsViewFilter(false)
+    dataUserTable.setPenempatanUuid(null);
   }
 
   return (
