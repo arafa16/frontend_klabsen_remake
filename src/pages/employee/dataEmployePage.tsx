@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const dataEmployePage = () => {
   const [isViewFilter, setIsViewFilter] = useState(false);
-  const [filter, setFilter] = useState<any| undefined>("");
+  const [filter, setFilter] = useState<any | undefined>("");
   const [statusWfh, setStatusWfh] = useState<any | undefined>("");
 
   const dispatch = useDispatch();
@@ -58,7 +58,11 @@ const dataEmployePage = () => {
 
   function handleSubmitFilter(e: any) {
     e.preventDefault();
-    dataUserTable.setPenempatanUuid(filter);
+    if (filter !== "") {
+      dataUserTable.setPenempatanUuid(filter);
+    } else {
+      alert("filter not set");
+    }
   }
 
   const {
@@ -70,30 +74,40 @@ const dataEmployePage = () => {
   useEffect(() => {
     if (messagePrivilege && successPrivilege) {
       if (!loadingPrivilege) {
-        if(filter){
+        if (filter) {
           dataUserTable.reload();
           dataUserTable.setPenempatanUuid(filter);
         }
         dispatch(resetPrivileges());
       }
     }
-  }, [messagePrivilege, successPrivilege, loadingPrivilege, dataUserTable, filter]);
+  }, [
+    messagePrivilege,
+    successPrivilege,
+    loadingPrivilege,
+    dataUserTable,
+    filter,
+  ]);
 
-  const handleUpdateFilter = () => {
-    dispatch(
-      updatePrivilegeArray({
-        penempatan_uuid: filter,
-        wfh_modal: statusWfh,
-      })
-    );
+  const handleUpdateFilter = (e:any) => {
+    if (filter !== "" && statusWfh !== "") {
+      dispatch(
+        updatePrivilegeArray({
+          penempatan_uuid: filter,
+          wfh_modal: statusWfh,
+        })
+      );
+    } else {
+      alert("filter and status not set");
+    }
   };
 
   const handleClearFilter = () => {
     setFilter("");
     setStatusWfh("");
-    setIsViewFilter(false)
+    setIsViewFilter(false);
     dataUserTable.setPenempatanUuid(null);
-  }
+  };
 
   return (
     <div className="grid grid-cols-12 gap-5 mt-5">
