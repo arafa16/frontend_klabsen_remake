@@ -73,6 +73,7 @@ export const FormImportUser = (datas:any) => {
                         <Button 
                             variant="primary" 
                             className="w-full"
+                            size='sm'
                             >
                                 {isLoading ?   
                                     <LoadingIcon icon="tail-spin" color='white' className="w-4 h-4" /> 

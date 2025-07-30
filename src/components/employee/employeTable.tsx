@@ -103,7 +103,16 @@ const employeTable = (props : any) => {
                               "ml-3 truncate"
                               ])}
                               >
-                              {data && data.group && data.group.name}
+                              {data && data.penempatan && data.penempatan.name}
+                            </span>
+                          </div>
+                          <div className="w-64 truncate sm:w-72">
+                            <span
+                              className={clsx([
+                              "ml-3 truncate"
+                              ])}
+                              >
+                              {data?.privilege?.wfh_modal ? 'wfa active' : 'wfa non active'}
                             </span>
                           </div>
                           <div

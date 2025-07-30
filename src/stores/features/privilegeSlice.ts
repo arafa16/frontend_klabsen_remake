@@ -110,6 +110,21 @@ export const updatePrivileges : any = createAsyncThunk("updatePrivileges", async
     }
 });
 
+export const updatePrivilegeArray : any = createAsyncThunk("updatePrivilegeArray", async(datas : any, thunkAPI) => {
+    try {
+        const response = await axios.patch(import.meta.env.VITE_REACT_APP_API_URL+`/privilege/datas`,datas,{
+            withCredentials: true, // Now this is was the missing piece in the client side 
+        });
+
+        return response.data;
+    } catch (error : any) {
+        if(error.response){
+            const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+});
+
 export const deletePrivilege : any = createAsyncThunk("deletePrivilege", async(datas : any, thunkAPI) => {
     try {
         const response = await axios.delete(import.meta.env.VITE_REACT_APP_API_URL+`/privilege/data/${datas.uuid}`,{
@@ -173,6 +188,21 @@ export const privilegesSlice = createSlice({
             state.message = action.payload;
         });
         builder.addCase(updatePrivileges.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
+
+        // update PrivilegeArray
+        builder.addCase(updatePrivilegeArray.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(updatePrivilegeArray.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.message = action.payload;
+        });
+        builder.addCase(updatePrivilegeArray.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;

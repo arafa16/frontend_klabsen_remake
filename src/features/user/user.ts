@@ -23,6 +23,7 @@ export const getDataUserTable = () => {
     const [allPage, setAllPage] = useState(0);
     const [status_code, set_status_code] = useState(1);
     const [search, setSearch] = useState('');
+    const [penempatanUuid, setPenempatanUuid] = useState<any>(null);
 
     const dispatch = useDispatch();
 
@@ -42,10 +43,11 @@ export const getDataUserTable = () => {
     },[data, isSuccess, isLoading])
 
     useEffect(()=>{
-        const paramsObj : any = {page, limit, status_code, search};
+        const paramsObj : any = {page, limit, status_code, search, penempatan_uuid:penempatanUuid};
         const searchParams = new URLSearchParams(paramsObj);
+        console.log(searchParams, 'params')
         dispatch(getUsersTable(searchParams));
-    },[page, limit, status_code, search])
+    },[page, limit, status_code, search, penempatanUuid])
 
     //table
     const countData = (allData : any) =>{
@@ -68,7 +70,7 @@ export const getDataUserTable = () => {
     }
 
     const reload = () => {
-        const paramsObj : any = {page, limit, status_code, search};
+        const paramsObj : any = {page, limit, status_code, search, penempatan_uuid:penempatanUuid};
         const searchParams = new URLSearchParams(paramsObj);
         dispatch(getUsersTable(searchParams));
     }
@@ -78,6 +80,7 @@ export const getDataUserTable = () => {
         page, setPage,
         limit,setLimit,
         search, setSearch,
+        penempatanUuid, setPenempatanUuid,
         allPage, 
         status_code, set_status_code, 
         nextPage, 
