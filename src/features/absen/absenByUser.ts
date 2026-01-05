@@ -1,91 +1,101 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { 
-    getInOutsByUser, 
-    createInOutsByAbsenWeb, 
-    resetInOuts 
-} from '../../stores/features/inOutSlice';
-import dayjs from 'dayjs';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getInOutsByUser,
+  createInOutsByAbsenWeb,
+  resetInOuts,
+} from "../../stores/features/inOutSlice";
+import dayjs from "dayjs";
+import { useSearchParams } from "react-router-dom";
 
-export const getAbsenByUser = (datas:any) => {
-    const dispatch = useDispatch();
-    const [dataResult, setDataResult] = useState<any>([]);
-    const [message, setMessage] = useState<any>(null);
+export const getAbsenByUser = (datas: any) => {
+  const dispatch = useDispatch();
+  const [dataResult, setDataResult] = useState<any>([]);
+  const [message, setMessage] = useState<any>(null);
 
-    const {data, message:messageInOut, isSuccess, isLoading, isError} = useSelector(
-        (state: any) => state.inOut
-    );
+  const {
+    data,
+    message: messageInOut,
+    isSuccess,
+    isLoading,
+    isError,
+  } = useSelector((state: any) => state.inOut);
 
-    useEffect(()=>{
-        if(data && isSuccess){
-            if(!isLoading){
-                setDataResult(data && data.datas && data.datas.data);
-                dispatch(resetInOuts());
-            }
-        }
-    },[data, isSuccess, isLoading])
-
-    useEffect(()=>{
-        if(datas.uuid !== undefined){
-            dispatch(getInOutsByUser({uuid:datas.uuid}));
-        }
-    },[datas]);
-
-    const reload = () => {
-        if(datas.uuid !== undefined){
-            dispatch(getInOutsByUser({uuid:datas.uuid}));
-        }
+  useEffect(() => {
+    if (data && isSuccess) {
+      if (!isLoading) {
+        setDataResult(data && data.datas && data.datas.data);
+        dispatch(resetInOuts());
+      }
     }
+  }, [data, isSuccess, isLoading]);
 
-    useEffect(()=>{
-        if(messageInOut && isSuccess){
-            if(!isLoading){
-                setMessage(messageInOut);
-                dispatch(resetInOuts());
-                dispatch(getInOutsByUser({uuid:datas.uuid}));
-            }
-        }
-    },[messageInOut, isSuccess, isLoading])
-
-    const clickAbsen = (data:any) => {
-        const dateNow = dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss');
-        dispatch(createInOutsByAbsenWeb({
-            user_uuid:data.uuid,
-            tanggal_mulai:dateNow,
-            tanggal_selesai:dateNow,
-            latitude:data.latitude, 
-            longitude:data.longitude,
-            code_tipe_absen:data.code_tipe_absen
-        }));
+  useEffect(() => {
+    if (datas.uuid !== undefined) {
+      dispatch(getInOutsByUser({ uuid: datas.uuid }));
     }
+  }, [datas]);
 
-    return {dataResult, isLoading, clickAbsen, message, reload}
-}
+  const reload = () => {
+    if (datas.uuid !== undefined) {
+      dispatch(getInOutsByUser({ uuid: datas.uuid }));
+    }
+  };
 
-export const getAbsenById = (uuid:any) => {
-    const dispatch = useDispatch();
-    const [dataResult, setDataResult] = useState<any>([]);
-    const [dataUser, setDataUser] = useState<any>({})
+  useEffect(() => {
+    if (messageInOut && isSuccess) {
+      if (!isLoading) {
+        setMessage(messageInOut);
+        dispatch(resetInOuts());
+        dispatch(getInOutsByUser({ uuid: datas.uuid }));
+      }
+    }
+  }, [messageInOut, isSuccess, isLoading]);
 
-    const {data, message, isSuccess, isLoading, isError} = useSelector(
-        (state: any) => state.inOut
+  const clickAbsen = (data: any) => {
+    const dateNow = dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss");
+    dispatch(
+      createInOutsByAbsenWeb({
+        user_uuid: data.uuid,
+        tanggal_mulai: dateNow,
+        tanggal_selesai: dateNow,
+        latitude: data.latitude,
+        longitude: data.longitude,
+        code_tipe_absen: data.code_tipe_absen,
+      })
     );
+  };
 
-    useEffect(()=>{
-        if(data && isSuccess){
-            if(!isLoading){
-                setDataResult(data && data.datas && data.datas.data);
-                setDataUser(data && data.datas && data.datas.user);
-                dispatch(resetInOuts());
-            }
-        }
-    },[data, isSuccess, isLoading])
+  return { dataResult, isLoading, clickAbsen, message, reload };
+};
 
-    useEffect(()=>{
-        if(uuid !== undefined){
-            dispatch(getInOutsByUser({uuid}));
-        }
-    },[uuid]);
+export const getAbsenById = (uuid: any) => {
+  const dispatch = useDispatch();
+  const [dataResult, setDataResult] = useState<any>([]);
+  const [dataUser, setDataUser] = useState<any>({});
+  const [searchParams] = useSearchParams();
 
-    return {dataResult, dataUser}
-}
+  const paramsTahun = searchParams.get("tahun");
+
+  const { data, message, isSuccess, isLoading, isError } = useSelector(
+    (state: any) => state.inOut
+  );
+
+  useEffect(() => {
+    if (data && isSuccess) {
+      if (!isLoading) {
+        setDataResult(data && data.datas && data.datas.data);
+        setDataUser(data && data.datas && data.datas.user);
+        dispatch(resetInOuts());
+      }
+    }
+  }, [data, isSuccess, isLoading]);
+
+  useEffect(() => {
+    if (uuid !== undefined) {
+      dispatch(getInOutsByUser({ uuid, tahun: paramsTahun }));
+    }
+  }, [uuid]);
+
+  return { dataResult, dataUser };
+};
