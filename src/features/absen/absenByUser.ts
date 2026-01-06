@@ -69,13 +69,10 @@ export const getAbsenByUser = (datas: any) => {
   return { dataResult, isLoading, clickAbsen, message, reload };
 };
 
-export const getAbsenById = (uuid: any) => {
+export const getAbsenById = (uuid: any, tahun: any) => {
   const dispatch = useDispatch();
   const [dataResult, setDataResult] = useState<any>([]);
   const [dataUser, setDataUser] = useState<any>({});
-  const [searchParams] = useSearchParams();
-
-  const paramsTahun = searchParams.get("tahun");
 
   const { data, message, isSuccess, isLoading, isError } = useSelector(
     (state: any) => state.inOut
@@ -92,10 +89,10 @@ export const getAbsenById = (uuid: any) => {
   }, [data, isSuccess, isLoading]);
 
   useEffect(() => {
-    if (uuid !== undefined) {
-      dispatch(getInOutsByUser({ uuid, tahun: paramsTahun }));
+    if (uuid !== undefined && tahun !== undefined) {
+      dispatch(getInOutsByUser({ uuid, tahun }));
     }
-  }, [uuid]);
+  }, [uuid, tahun]);
 
-  return { dataResult, dataUser };
+  return { dataResult, dataUser, isLoading };
 };
