@@ -89,7 +89,7 @@ const dataEmployePage = () => {
     filter,
   ]);
 
-  const handleUpdateFilter = (e:any) => {
+  const handleUpdateFilter = (e: any) => {
     if (filter !== "" && statusWfh !== "") {
       dispatch(
         updatePrivilegeArray({

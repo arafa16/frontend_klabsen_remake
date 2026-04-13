@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 // import CalendarUser from "../../components/calendar/calendarUser";
 import dayjs from "dayjs";
+import Lucide from "../../base-components/Lucide";
 // import { SlideOverDateKoreksiUser } from '../../features/absen/SlideOverDateKoreksiUser';
 // import { SlideOverDate } from '../../features/absen/SlideOverDate';
 // import { getMeAuth } from "../../features/auth/meAuth";
@@ -19,7 +20,7 @@ const viewAbsenByAtasan = () => {
 
   const [message, setMessage] = useState<any>(null);
   const [dateSetting, setDateSetting] = useState(
-    dayjs(Date.now()).format("YYYY-MM-DD")
+    dayjs(Date.now()).format("YYYY-MM-DD"),
   );
 
   const navigate = useNavigate();
@@ -63,6 +64,62 @@ const viewAbsenByAtasan = () => {
               clickDate=""
               dateSetting={dateSetting}
             />
+          </div>
+        </div>
+        <div className="col-span-4">
+          <div className=" grid grid-cols-12">
+            <div className="col-span-6">
+              <Button variant="secondary" size="sm" className="w-full mb-2">
+                {dataUser && dataUser.name}
+              </Button>
+            </div>
+            <div className="col-span-6 grid justify-end">
+              <div>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => navigate(-1)}
+                >
+                  Back
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-12 mb-4">
+            <div className="col-span-6">
+              <div className="">
+                <FormSelect
+                  formSelectSize="sm"
+                  aria-label=".form-select-sm example"
+                  name="selectedYear"
+                  value={selectedYear}
+                  onChange={handleYearChange}
+                >
+                  <option value="">-- Pilih Tahun --</option>
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option> // Memetakan array tahun ke option
+                  ))}
+                </FormSelect>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 box px-2 py-2">
+              <div className="col-span-12 flex justify-end">
+                <Lucide
+                  icon="Edit"
+                  className="w-4 h-4 ml-auto z-30 text-blue-500 cursor-pointer hover:text-yellow-500"
+                />
+              </div>
+              <div className="col-span-12">
+                <div className="font-medium whitespace-nowrap">Absen On </div>
+                <div className="mt-1 text-slate-500">
+                  {true ? "active" : "non active"}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="col-span-12 xl:col-span-2 2xl:col-span-2 flex flex-col gap-2">
