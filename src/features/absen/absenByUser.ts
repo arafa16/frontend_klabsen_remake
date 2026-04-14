@@ -7,6 +7,7 @@ import {
 } from "../../stores/features/inOutSlice";
 import dayjs from "dayjs";
 import { useSearchParams } from "react-router-dom";
+import { get } from "lodash";
 
 export const getAbsenByUser = (datas: any) => {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ export const getAbsenByUser = (datas: any) => {
         latitude: data.latitude,
         longitude: data.longitude,
         code_tipe_absen: data.code_tipe_absen,
-      })
+      }),
     );
   };
 
@@ -75,7 +76,7 @@ export const getAbsenById = (uuid: any, tahun: any) => {
   const [dataUser, setDataUser] = useState<any>({});
 
   const { data, message, isSuccess, isLoading, isError } = useSelector(
-    (state: any) => state.inOut
+    (state: any) => state.inOut,
   );
 
   useEffect(() => {
@@ -88,11 +89,20 @@ export const getAbsenById = (uuid: any, tahun: any) => {
     }
   }, [data, isSuccess, isLoading]);
 
-  useEffect(() => {
+  const getInOut = (uuid: any, tahun: any) => {
     if (uuid !== undefined && tahun !== undefined) {
       dispatch(getInOutsByUser({ uuid, tahun }));
     }
+  };
+
+  useEffect(() => {
+    getInOut(uuid, tahun);
   }, [uuid, tahun]);
 
-  return { dataResult, dataUser, isLoading };
+  const reload = () => {
+    console.log("reload", uuid, tahun);
+    getInOut(uuid, tahun);
+  };
+
+  return { dataResult, dataUser, isLoading, reload };
 };
