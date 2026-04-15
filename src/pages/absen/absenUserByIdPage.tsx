@@ -7,6 +7,8 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { SlideOverEditDate } from "../../features/absen/SlideOverEditDate";
 import { SlideOverEditEvent } from "../../features/absen/SlideOverEditEvent";
+import { SlideOverDateAdmin } from "../../features/absen/SlideOverDateAdmin";
+
 import CalendarAdmin from "../../components/calendar/calendarAdmin";
 import { getDataUserById } from "../../features/user/user";
 import { FormSelect } from "../../base-components/Form";
@@ -18,7 +20,7 @@ const AbsenUserByIdPage = () => {
 
   const [message, setMessage] = useState<any>(null);
   const [dateSetting, setDateSetting] = useState(
-    dayjs(Date.now()).format("YYYY-MM-DD")
+    dayjs(Date.now()).format("YYYY-MM-DD"),
   );
 
   const navigate = useNavigate();
@@ -42,13 +44,18 @@ const AbsenUserByIdPage = () => {
     setDataUser,
   } = SlideOverEditDate({ uuid });
 
+  const clickCloseSlide = () => {
+    setOpenSlide(false);
+    setOpenUpdate(false);
+  };
+
   const {
     message: messageUpdate,
     form: formUpdate,
     setOpen: setOpenUpdate,
     setDataInfo: setDataInfoUpdate,
     getDataEvent,
-  } = SlideOverEditEvent({ uuid });
+  } = SlideOverEditEvent({ uuid, clickCloseSlide });
 
   useEffect(() => {
     setMessage(messageCreate);
@@ -63,9 +70,16 @@ const AbsenUserByIdPage = () => {
 
   const clickEvent = async (info: any) => {
     if (info.groupId !== "event") {
-      getDataEvent(info.publicId);
-      setOpenUpdate(true);
+      setData(info);
+      setOpenSlide(true);
+      setOpenUpdate(false);
     }
+  };
+
+  const clickEditEvent = (info: any) => {
+    setOpenSlide(false);
+    getDataEvent(info.event._def.publicId);
+    setOpenUpdate(true);
   };
 
   //click date
@@ -89,11 +103,27 @@ const AbsenUserByIdPage = () => {
     setSelectedYear(event.target.value);
   };
 
+  const link_back = `/absen/check/${dataUser?.uuid}`;
+
+  // view data absen by date
+  const {
+    form: formSlideOverDate,
+    setOpen: setOpenSlide,
+    setData,
+    message: messageDate,
+    setMessage: setMessageDate,
+  } = SlideOverDateAdmin({
+    reload,
+    link_back,
+    clickEditEvent,
+  });
+
   return (
     <>
       {messageShow}
       {formDate}
       {formUpdate}
+      {formSlideOverDate}
       <div className="grid grid-cols-12 gap-5 mt-5 text-xs">
         <div className="col-span-12 xl:col-span-8 2xl:col-span-9">
           <div className="p-5 box">
