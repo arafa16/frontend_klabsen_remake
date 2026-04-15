@@ -360,7 +360,6 @@ export const SlideOverEditEvent = (props: any) => {
                   id="modal-form-1"
                   type="text"
                   step="1"
-                  required
                   value={value_form.latitude}
                   onChange={(e: any) =>
                     set_value_form({ ...value_form, latitude: e.target.value })
@@ -374,7 +373,6 @@ export const SlideOverEditEvent = (props: any) => {
                   id="modal-form-1"
                   type="text"
                   step="1"
-                  required
                   value={value_form.longitude}
                   onChange={(e: any) =>
                     set_value_form({ ...value_form, longitude: e.target.value })
