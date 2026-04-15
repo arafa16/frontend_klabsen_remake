@@ -100,7 +100,6 @@ export const getAbsenById = (uuid: any, tahun: any) => {
   }, [uuid, tahun]);
 
   const reload = () => {
-    console.log("reload", uuid, tahun);
     getInOut(uuid, tahun);
   };
 

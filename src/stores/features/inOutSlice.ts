@@ -37,10 +37,10 @@ export const getInOutsByUser: any = createAsyncThunk(
     try {
       const response = await axios.get(
         import.meta.env.VITE_REACT_APP_API_URL +
-          `/in_out/user/${datas.uuid}?tahun=${datas.tahun || ""}`,
+          `/in_out/user/${datas?.uuid}?tahun=${datas?.tahun || ""}&hide_koreksi=1`,
         {
           withCredentials: true, // Now this is was the missing piece in the client side
-        }
+        },
       );
 
       return response.data;
@@ -49,7 +49,7 @@ export const getInOutsByUser: any = createAsyncThunk(
         return thunkAPI.rejectWithValue(error.response);
       }
     }
-  }
+  },
 );
 
 // export const getInOutsByIdAndMonth : any = createAsyncThunk("getInOutsByIdAndMonth", async(datas : any, thunkAPI) => {
@@ -96,7 +96,7 @@ export const createInOutsByAbsenWeb: any = createAsyncThunk(
         },
         {
           withCredentials: true, // Now this is was the missing piece in the client side
-        }
+        },
       );
 
       return response.data;
@@ -106,7 +106,7 @@ export const createInOutsByAbsenWeb: any = createAsyncThunk(
         return thunkAPI.rejectWithValue(message);
       }
     }
-  }
+  },
 );
 
 export const inOutsSlice = createSlice({
