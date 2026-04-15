@@ -1,7 +1,7 @@
 import logoWhite from "../../assets/images/logo/logo_kopkarla_white.png";
 import logoColor from "../../assets/images/logo/logo_kopkarla_color.png";
 import Button from "../../base-components/Button";
-import { FormInput} from "../../base-components/Form";
+import { FormInput } from "../../base-components/Form";
 import DarkModeSwitcher from "../../components/DarkModeSwitcher";
 
 import { useNavigate } from "react-router-dom";
@@ -14,19 +14,31 @@ function Main() {
   const navigate = useNavigate();
 
   //login proses
-  const {email, setEmail, password, setPassword, message:messageLogin, isLoadingLogin, submitLogin} = getLoginAuth();
-  
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    message: messageLogin,
+    isLoadingLogin,
+    submitLogin,
+  } = getLoginAuth();
+
   //message
   const messageShow = getMessageShow(messageLogin);
 
   //check data auth
-  const {data: dataMe, loading:loadingMe, message:messageMe} = getMeAuthCheck();
+  const {
+    data: dataMe,
+    loading: loadingMe,
+    message: messageMe,
+  } = getMeAuthCheck();
 
   return (
     <>
       {messageShow}
       <div className="container">
-      <DarkModeSwitcher />
+        <DarkModeSwitcher />
         <div className="flex items-center justify-center w-full min-h-screen p-5 md:p-20 text-xs">
           <div className="w-96 intro-y">
             <img
@@ -48,7 +60,7 @@ function Main() {
                   placeholder="Email"
                   required
                   value={email}
-                  onChange={(e)=>setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <FormInput
                   type="password"
@@ -57,31 +69,43 @@ function Main() {
                   placeholder="Password"
                   required
                   value={password}
-                  onChange={(e)=>setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="flex mt-8 text-slate-500">
-                  <p 
+                  <p
                     className="w-full flex justify-end hover:cursor-pointer"
-                    onClick={()=>navigate('/forgotPassword')}
-                    >
-                      Forgot Password?
+                    onClick={() => navigate("/forgotPassword")}
+                  >
+                    Forgot Password?
                   </p>
                 </div>
                 <div className="mt-5 text-center xl:mt-8 xl:text-left">
-                  <Button type="submit" variant="primary" className="w-full xl:mr-3">
-                    {isLoadingLogin ? <LoadingIcon icon="circles" className="w-4 h4" color="white"  /> : 'Login'}
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    className="w-full xl:mr-3"
+                  >
+                    {isLoadingLogin ? (
+                      <LoadingIcon
+                        icon="circles"
+                        className="w-4 h4"
+                        color="white"
+                      />
+                    ) : (
+                      "Login"
+                    )}
                   </Button>
-                  <Button 
-                    variant="outline-secondary" 
+                  <Button
+                    variant="outline-secondary"
                     className="w-full mt-3"
                     type="button"
-                    onClick={()=>navigate('/register')}
-                    >
+                    onClick={() => navigate("/register")}
+                  >
                     Sign up
                   </Button>
                 </div>
                 <div className="mt-10 flex justify-center text-gray-400">
-                  <p>Created by Ara Fa Adri</p>
+                  <p>V.1.1.0 - Created by Ara Fa Adri</p>
                 </div>
               </div>
             </form>
