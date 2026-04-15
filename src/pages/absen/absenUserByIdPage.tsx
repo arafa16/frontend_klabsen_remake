@@ -53,7 +53,6 @@ const AbsenUserByIdPage = () => {
     message: messageUpdate,
     form: formUpdate,
     setOpen: setOpenUpdate,
-    setDataInfo: setDataInfoUpdate,
     getDataEvent,
   } = SlideOverEditEvent({ uuid, clickCloseSlide });
 
