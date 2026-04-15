@@ -33,7 +33,6 @@ export const SlideOverEditEvent = (props: any) => {
   const { uuid, clickCloseSlide } = props;
 
   const [open, setOpen] = useState(false);
-  const [dataInfo, setDataInfo] = useState<any>(null);
   const [message, setMessage] = useState<any>(null);
 
   const [attributes, set_attributes] = useState({
@@ -43,15 +42,11 @@ export const SlideOverEditEvent = (props: any) => {
     data_jam_operasional: [],
   });
 
-  // const [dataPelanggaran, setDataPelanggaran] = useState([]);
-  // const [dataTipeAbsen, setDataTipeAbsen] = useState([]);
-  // const [dataStatusInOut, setDataStatusInOut] = useState([]);
-  // const [dataJamOperasional, setDataJamOperasional] = useState([]);
-
   //data form
   const [value_form, set_value_form] = useState({
     uuid: "",
     user_uuid: "",
+    user_name: "",
     time: "",
     tanggal_mulai: "",
     tanggal_selesai: "",
@@ -109,8 +104,6 @@ export const SlideOverEditEvent = (props: any) => {
     }
   }, [pelanggaran, isPelanggaranSuccess, isPelanggaranLoading]);
 
-  console.log("attributes", attributes);
-
   useEffect(() => {
     if (tipeAbsen && isTipeAbsenSuccess) {
       if (!isTipeAbsenLoading) {
@@ -159,6 +152,7 @@ export const SlideOverEditEvent = (props: any) => {
       ...value_form,
       uuid: data?.uuid,
       user_uuid: data?.user?.uuid,
+      user_name: data?.user?.name,
       pelanggaran_uuid: data?.pelanggaran?.uuid,
       tipe_absen_uuid: data?.tipe_absen?.uuid,
       status_inout_uuid: data?.status_inout?.uuid,
@@ -240,13 +234,13 @@ export const SlideOverEditEvent = (props: any) => {
           </a>
           <Slideover.Title>
             <h2 className="mr-auto text-base font-medium">
-              {dataInfo && dataInfo.user && dataInfo.user.name}
+              {value_form?.user_name}
             </h2>
           </Slideover.Title>
           {/* END: Slide Over Header */}
           <form onSubmit={submitForm}>
             {/* BEGIN: Slide Over Body */}
-            <Slideover.Description className="grid grid-cols-2 gap-3 md:grid-cols-1">
+            <Slideover.Description className="grid grid-cols-2 gap-3">
               <div className="mt-3">
                 <FormLabel htmlFor="modal-form-6">Tipe Absen</FormLabel>
                 <FormSelect
@@ -395,7 +389,7 @@ export const SlideOverEditEvent = (props: any) => {
               <Button
                 variant="outline-danger"
                 type="button"
-                onClick={() => clickDeleteEvent(dataInfo && dataInfo.uuid)}
+                onClick={() => clickDeleteEvent(value_form?.uuid)}
                 className="w-20 mr-1"
               >
                 Delete
@@ -427,8 +421,6 @@ export const SlideOverEditEvent = (props: any) => {
     form,
     open,
     setOpen,
-    dataInfo,
-    setDataInfo,
     message,
     getDataEvent,
   };
