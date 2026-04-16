@@ -37,7 +37,7 @@ export const getInOutsByUser: any = createAsyncThunk(
     try {
       const response = await axios.get(
         import.meta.env.VITE_REACT_APP_API_URL +
-          `/in_out/user/${datas?.uuid}?tahun=${datas?.tahun || ""}&hide_koreksi=1`,
+          `/in_out/user/${datas?.uuid}?tahun=${datas?.tahun || ""}&hide_koreksi=${datas?.hide_koreksi || ""}`,
         {
           withCredentials: true, // Now this is was the missing piece in the client side
         },

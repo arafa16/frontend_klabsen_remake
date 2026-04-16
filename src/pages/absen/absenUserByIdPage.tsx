@@ -32,7 +32,7 @@ const AbsenUserByIdPage = () => {
     dataResult: dataAbsen,
     dataUser,
     isLoading: isLoadingAbsen,
-  } = getAbsenById(uuid, selectedYear);
+  } = getAbsenById(uuid, selectedYear, 1);
 
   const { dataResult, reload } = getDataUserById({ id: uuid });
 

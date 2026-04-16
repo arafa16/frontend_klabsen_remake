@@ -73,7 +73,7 @@ const viewAbsenByAtasan = () => {
     dataUser,
     isLoading: isLoadingAbsen,
     reload: reloadAbsen,
-  } = getAbsenById(uuid, selectedYear);
+  } = getAbsenById(uuid, selectedYear, 0);
 
   //message
   const messageShow = getMessageShow(message);
@@ -111,7 +111,6 @@ const viewAbsenByAtasan = () => {
   } = useSelector((state: any) => state.privilege);
 
   useEffect(() => {
-    console.log("data user", dataUser);
     if (dataUser && dataUser.privilege_id !== null) {
       setPrivilege({
         uuid: dataUser?.privilege?.uuid,

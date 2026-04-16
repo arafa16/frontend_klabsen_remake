@@ -70,7 +70,7 @@ export const getAbsenByUser = (datas: any) => {
   return { dataResult, isLoading, clickAbsen, message, reload };
 };
 
-export const getAbsenById = (uuid: any, tahun: any) => {
+export const getAbsenById = (uuid: any, tahun: any, hide_koreksi: any) => {
   const dispatch = useDispatch();
   const [dataResult, setDataResult] = useState<any>([]);
   const [dataUser, setDataUser] = useState<any>({});
@@ -89,18 +89,22 @@ export const getAbsenById = (uuid: any, tahun: any) => {
     }
   }, [data, isSuccess, isLoading]);
 
-  const getInOut = (uuid: any, tahun: any) => {
-    if (uuid !== undefined && tahun !== undefined) {
-      dispatch(getInOutsByUser({ uuid, tahun }));
+  const getInOut = (uuid: any, tahun: any, hide_koreksi: any) => {
+    if (
+      uuid !== undefined &&
+      tahun !== undefined &&
+      hide_koreksi !== undefined
+    ) {
+      dispatch(getInOutsByUser({ uuid, tahun, hide_koreksi }));
     }
   };
 
   useEffect(() => {
-    getInOut(uuid, tahun);
-  }, [uuid, tahun]);
+    getInOut(uuid, tahun, hide_koreksi);
+  }, [uuid, tahun, hide_koreksi]);
 
   const reload = () => {
-    getInOut(uuid, tahun);
+    getInOut(uuid, tahun, hide_koreksi);
   };
 
   return { dataResult, dataUser, isLoading, reload };
