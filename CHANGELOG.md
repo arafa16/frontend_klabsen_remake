@@ -1,3 +1,13 @@
+#### v1.2.0 - 2026-05-01
+
+- build: make filter on pendapatan by [Ara Fa Adri](https://github.com/arafa16) in [#e80f1f0](https://github.com/arafa16/frontend_klabsen_remake/commit/e80f1f0737537bfb0d8456f4b53a8b9e7f053a7c).
+
+- fixs: change color when not approved by [Ara Fa Adri](https://github.com/arafa16) in [#9bb486f](https://github.com/arafa16/frontend_klabsen_remake/commit/9bb486f9e06dba10f9b5f3a26dd2f603b0ea868f).
+
+#### v1.1.1
+
+- fixs: corection not display in calendar by [Ara Fa Adri](https://github.com/arafa16) in [#b6da7f3](https://github.com/arafa16/frontend_klabsen_remake/commit/b6da7f3404e46dc72b9e111e1710e3c07091a5cf).
+
 #### v1.1.0 - 2026-04-15
 
 - build: make version v.1.1 by [Ara Fa Adri](https://github.com/arafa16) in [#927a6a0](https://github.com/arafa16/frontend_klabsen_remake/commit/927a6a09931aa6f346325b23541a036c8ecd5552).
