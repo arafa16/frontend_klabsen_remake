@@ -1,5 +1,7 @@
 #### v1.2.1 - 2026-05-06
 
+- build: change version to 1.2.1 by [Ara Fa Adri](https://github.com/arafa16) in [#8d86837](https://github.com/arafa16/frontend_klabsen_remake/commit/8d8683799e635cc2cd55cfb7487317e02e58b9c1).
+
 - fixs: trouble get me after login by [Ara Fa Adri](https://github.com/arafa16) in [#f9587d6](https://github.com/arafa16/frontend_klabsen_remake/commit/f9587d6367134587f71c629d9048ddea13dd78e6).
 
 #### v1.2.0 - 2026-05-01
