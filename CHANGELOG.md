@@ -1,3 +1,7 @@
+#### v1.2.1 - 2026-05-06
+
+- fixs: trouble get me after login by [Ara Fa Adri](https://github.com/arafa16) in [#f9587d6](https://github.com/arafa16/frontend_klabsen_remake/commit/f9587d6367134587f71c629d9048ddea13dd78e6).
+
 #### v1.2.0 - 2026-05-01
 
 - build: make filter on pendapatan by [Ara Fa Adri](https://github.com/arafa16) in [#e80f1f0](https://github.com/arafa16/frontend_klabsen_remake/commit/e80f1f0737537bfb0d8456f4b53a8b9e7f053a7c).
