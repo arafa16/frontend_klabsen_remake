@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import { 
-//     LoginUser, 
-//     RegisterUser, 
-//     resetAuth, 
-//     // SendEmailForgot, 
-//     // VerifyToken
-// } from "../../stores/features/authSlice";
-// import { ResetPasswordByToken, resetAuth2} from "../../stores/features/auth2Slice";
 import { 
     SendEmailForgot, 
     resetState,

@@ -27,7 +27,7 @@ function Main() {
   //message
   const messageShow = getMessageShow(messageLogin);
 
-  //check data auth
+  // check data auth
   const {
     data: dataMe,
     loading: loadingMe,
