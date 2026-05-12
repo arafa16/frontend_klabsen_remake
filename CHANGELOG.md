@@ -1,5 +1,7 @@
 #### v1.2.2 - 2026-05-12
 
+- build: update version 1.2.1 to 1.2.2 by [Ara Fa Adri](https://github.com/arafa16) in [#dcc3255](https://github.com/arafa16/frontend_klabsen_remake/commit/dcc32550cc102d48dc2b43eb509370829ba5fdf7).
+
 - fixs: trouble when create correction by [Ara Fa Adri](https://github.com/arafa16) in [#de6697b](https://github.com/arafa16/frontend_klabsen_remake/commit/de6697b901731af3d5aa7bfc2fd4959900066483).
 
 - fixs: trouble when create correction by [Ara Fa Adri](https://github.com/arafa16) in [#ae93c3e](https://github.com/arafa16/frontend_klabsen_remake/commit/ae93c3e3df6cc96f9334751633aa822fdf646e82).
