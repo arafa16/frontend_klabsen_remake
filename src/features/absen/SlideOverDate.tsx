@@ -26,6 +26,7 @@ export const SlideOverDate = (datas: any) => {
 
   const {
     data: dataInOut,
+    message: messageInOut,
     isSuccess,
     isLoading,
     isError,
@@ -42,6 +43,11 @@ export const SlideOverDate = (datas: any) => {
             dataInOut.datas.data &&
             dataInOut.datas.data.koreksis,
         );
+      }
+    } else if (isError && messageInOut) {
+      if (!isLoading) {
+        setMessage(messageInOut);
+        dispatch(resetInOut2());
       }
     }
   }, [dataInOut, isSuccess, isLoading]);
