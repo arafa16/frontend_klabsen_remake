@@ -1,3 +1,9 @@
+#### v1.3.2 - 2026-07-02
+
+- build: update version 1.2.2 to 1.3.2 by [Ara Fa Adri](https://github.com/arafa16) in [#2bf84ae](https://github.com/arafa16/frontend_klabsen_remake/commit/2bf84ae0cc895fc836a9f0ba535d7bbf816e9978).
+
+- build: make new filter to calculate by [Ara Fa Adri](https://github.com/arafa16) in [#56b4f3d](https://github.com/arafa16/frontend_klabsen_remake/commit/56b4f3d3d131b18257809ffd542c4cc8cd1c09d5).
+
 #### v1.2.2 - 2026-05-12
 
 - build: update version 1.2.1 to 1.2.2 by [Ara Fa Adri](https://github.com/arafa16) in [#dcc3255](https://github.com/arafa16/frontend_klabsen_remake/commit/dcc32550cc102d48dc2b43eb509370829ba5fdf7).
