@@ -1,183 +1,333 @@
-import {useEffect, useState} from 'react'
-import { FormLabel, FormSelect } from '../../base-components/Form'
-import Button from '../../base-components/Button'
-import { useDispatch, useSelector } from 'react-redux'
-import { getPeriodeKerjas, resetPeriodeKerja } from '../../stores/features/periodeKerjaSlice'
-import { getGroups, resetGroup } from '../../stores/features/groupSlice'
-import LoadingIcon from '../../base-components/LoadingIcon'
-import { 
-    getPerhitunganByGroupPeriode, 
-    downloadPerhitunganByGroupPeriode, 
-    resetPerhitungan 
-} from '../../stores/features/perhitunganSlice';
+import { useEffect, useState } from "react";
+import { FormLabel, FormSelect } from "../../base-components/Form";
+import Button from "../../base-components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getPeriodeKerjas,
+  resetPeriodeKerja,
+} from "../../stores/features/periodeKerjaSlice";
+import { getSelectDatas, resetUser2 } from "../../stores/features/user2Slice";
+import { getStatus, resetStatus } from "../../stores/features/statusSlice";
+import { getGroups, resetGroup } from "../../stores/features/groupSlice";
+import LoadingIcon from "../../base-components/LoadingIcon";
+import {
+  getPerhitunganByGroupPeriode,
+  downloadPerhitunganByGroupPeriode,
+  resetPerhitungan,
+} from "../../stores/features/perhitunganSlice";
 
 export const SortingPeriodeGroup = () => {
+  const [isView, setIsView] = useState(true);
+  const [group_uuid, setIdGroup] = useState("");
+  const [periode_uuid, setIdPeriode] = useState("");
+  const [user_uuid, setUserUuid] = useState<any>("");
+  const [data_select_name, setDataSelectName] = useState<any>([]);
+  const [status_uuid, setStatusUuid] = useState<any>();
+  const [data_select_status, setDataSelectStatus] = useState<any>([]);
+  const [is_select_name, setIsSelectName] = useState(false);
+  const [is_select_status, setIsSelectStatus] = useState(true);
 
-    const [isView, setIsView] = useState(true);
-    const [group_uuid, setIdGroup] = useState('');
-    const [periode_uuid, setIdPeriode] = useState('');
+  const [dataPeriode, setDataPeriode] = useState([]);
+  const [dataGroup, setDataGroup] = useState([]);
+  const [dataCalculation, setDataCalculation] = useState([]);
+  const [message, setMessage] = useState<any>(null);
 
-    const [dataPeriode, setDataPeriode] = useState([]);
-    const [dataGroup, setDataGroup] = useState([]);
-    const [dataCalculation, setDataCalculation] = useState([]);
-    const [message, setMessage] = useState<any>(null);
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  //get periode select
+  const {
+    data: periodeKerja,
+    isSuccess: isPeriodeKerjaSuccess,
+    isError: isPeriodeKerjaError,
+    isLoading: isPeriodeKerjaLoading,
+  } = useSelector((state: any) => state.periodeKerja);
 
-    //get periode select
-    const {data:periodeKerja, isSuccess:isPeriodeKerjaSuccess, isError:isPeriodeKerjaError, isLoading:isPeriodeKerjaLoading} = useSelector(
-        (state : any) => state.periodeKerja
-    )
+  //get periode user select
+  const {
+    data: dataUser,
+    isSuccess: isUserSuccess,
+    isError: isUserError,
+    isLoading: isUserLoading,
+  } = useSelector((state: any) => state.user2);
 
-    useEffect(()=>{
-        dispatch(getPeriodeKerjas())
-    },[])
+  //get periode status
+  const {
+    data: dataStatus,
+    isSuccess: isStatusSuccess,
+    isError: isStatusError,
+    isLoading: isStatusLoading,
+  } = useSelector((state: any) => state.status);
 
-    useEffect(()=>{
-        if(periodeKerja && isPeriodeKerjaSuccess){
-            if(!isPeriodeKerjaLoading){
-                setDataPeriode(periodeKerja && periodeKerja.datas && periodeKerja.datas.data);
-                dispatch(resetPeriodeKerja());
-            }
-        }
-    },[periodeKerja, isPeriodeKerjaSuccess, isPeriodeKerjaLoading])
-
-    //get group select
-    const {data:group, isSuccess:isGroupSuccess, isLoading:isGroupLoading} = useSelector(
-        (state : any) => state.group
-    )
-
-    useEffect(()=>{
-        dispatch(getGroups())
-    },[]);
-
-    useEffect(()=>{
-        if(isGroupSuccess && group){
-            if(!isGroupLoading){
-                setDataGroup(group && group.datas && group.datas.data);
-                dispatch(resetGroup());
-            }
-        }
-    },[group, isGroupSuccess, isGroupLoading])
-
-    //get data perhitungan
-
-    const {data:dataPerhitungan, isSuccess:isPerhitunganSuccess, isError:isPerhitunganError, message:messagePerhitungan, isLoading1:isPerhitunganLoading, isLoading2:isExportLoading} = useSelector(
-        (state : any) => state.perhitungan
-    )
-
-    useEffect(()=>{
-        if(dataPerhitungan && isPerhitunganSuccess){
-            if(!isPerhitunganLoading){
-                setDataCalculation(dataPerhitungan && dataPerhitungan.datas && dataPerhitungan.datas.data && dataPerhitungan.datas.data.data_perhitungan);
-                dispatch(resetPerhitungan());
-            }
-        }
-    },[dataPerhitungan, isPerhitunganSuccess])
-
-    const submitGroupPeriode = (e:any)=>{
-        e.preventDefault();
-        const paramsObj : any = {periode_uuid, group_uuid};
-        const searchParams = new URLSearchParams(paramsObj);
-        dispatch(getPerhitunganByGroupPeriode(searchParams))
+  useEffect(() => {
+    if (dataStatus && isStatusSuccess) {
+      if (!isStatusLoading) {
+        setDataSelectStatus(
+          dataStatus && dataStatus.datas && dataStatus.datas.data,
+        );
+        dispatch(resetStatus());
+      }
     }
+  }, [dataStatus, isStatusSuccess, isStatusLoading]);
 
-    const clickClose = () => {
-        setIsView(false);
-        setDataCalculation([]);
-        setIdGroup('');
-        setIdPeriode('');
-        // setSelectForm('');
+  useEffect(() => {
+    dispatch(getStatus());
+  }, []);
+
+  useEffect(() => {
+    if (dataUser && isUserSuccess) {
+      if (!isUserLoading) {
+        setDataSelectName(dataUser && dataUser.datas && dataUser.datas.data);
+        dispatch(resetUser2());
+      }
     }
+  }, [dataUser, isUserSuccess, isUserLoading]);
 
-    const downloadFile = async() => {
-        if(group_uuid !== '' && periode_uuid !== ''){
-            const paramsObj : any = {periode_uuid, group_uuid};
-            const searchParams = new URLSearchParams(paramsObj);
-            dispatch(downloadPerhitunganByGroupPeriode({searchParams, name:'data perhitungan.xlsx'}))
-        }
-        else{
-            setMessage('group and periode cannot be null')
-        }
+  useEffect(() => {
+    dispatch(getPeriodeKerjas());
+  }, []);
+
+  useEffect(() => {
+    if (periodeKerja && isPeriodeKerjaSuccess) {
+      if (!isPeriodeKerjaLoading) {
+        setDataPeriode(
+          periodeKerja && periodeKerja.datas && periodeKerja.datas.data,
+        );
+        dispatch(resetPeriodeKerja());
+      }
     }
+  }, [periodeKerja, isPeriodeKerjaSuccess, isPeriodeKerjaLoading]);
 
-    const form = (
-        <div className={`box w-full p-4 ${isView ? '' : 'hidden'}`}>
-            <form onSubmit={submitGroupPeriode}>
-                <div className={`grid grid-cols-12 gap-4 mt-5 gap-y-5`}>
-                    <div className="col-span-12 intro-y sm:col-span-6">
-                        <FormLabel htmlFor="name">Periode</FormLabel>
-                        <FormSelect
-                            formSelectSize="sm"
-                            aria-label=".form-select-sm example"
-                            name='isSelect'
-                            value={periode_uuid}
-                            onChange={(e)=>setIdPeriode(e.target.value)}
-                            required
-                            >
-                            <option value=''></option>
-                            {dataPeriode.map((data :any, index:any)=>(
-                                <option key={index} value={data.uuid}>{data.name}</option>
-                            ))}
-                        </FormSelect>
-                    </div>
-                    <div className="col-span-12 intro-y sm:col-span-6">
-                        <FormLabel htmlFor="name">Group</FormLabel>
-                        <FormSelect
-                            formSelectSize="sm"
-                            aria-label=".form-select-sm example"
-                            name='isSelect'
-                            value={group_uuid}
-                            onChange={(e)=>setIdGroup(e.target.value)}
-                            required
-                            >
-                            <option value=''></option>
-                            {dataGroup.map((data :any, index:any)=>(
-                                <option key={index} value={data.uuid}>{data.name}</option>
-                            ))}
-                        </FormSelect>
-                    </div>
-                    <div className={`flex items-center justify-center col-span-12 mt-5 intro-y sm:justify-end`}>
-                            <Button
-                                variant="secondary" 
-                                className="w-24"
-                                size='sm'
-                                type='button'
-                                onClick={()=>clickClose()}
-                                >
-                                Close
-                            </Button>
-                            <Button
-                                variant="primary" 
-                                className={`w-36 ml-2`}
-                                size='sm'
-                                type='submit'
-                                >
-                                {isPerhitunganLoading ?   
-                                    <LoadingIcon icon="tail-spin" color='white' className="w-4 h-4" /> 
-                                    : 
-                                'View Calculate'
-                                }
-                            </Button>
-                            <Button
-                                variant="primary" 
-                                className={`w-36 ml-2`}
-                                size='sm'
-                                type='button'
-                                onClick={()=>downloadFile()}
-                                >
-                                {isExportLoading ?   
-                                    <LoadingIcon icon="tail-spin" color='white' className="w-4 h-4" /> 
-                                    :
-                                    'Download Perhitungan'
-                                    }
-                            </Button>
-                            
-                    </div>
-                </div>
-            </form>
+  //get group select
+  const {
+    data: group,
+    isSuccess: isGroupSuccess,
+    isLoading: isGroupLoading,
+  } = useSelector((state: any) => state.group);
+
+  useEffect(() => {
+    dispatch(getGroups());
+  }, []);
+
+  useEffect(() => {
+    if (isGroupSuccess && group) {
+      if (!isGroupLoading) {
+        setDataGroup(group && group.datas && group.datas.data);
+        dispatch(resetGroup());
+      }
+    }
+  }, [group, isGroupSuccess, isGroupLoading]);
+
+  //get data perhitungan
+
+  const {
+    data: dataPerhitungan,
+    isSuccess: isPerhitunganSuccess,
+    isError: isPerhitunganError,
+    message: messagePerhitungan,
+    isLoading1: isPerhitunganLoading,
+    isLoading2: isExportLoading,
+  } = useSelector((state: any) => state.perhitungan);
+
+  useEffect(() => {
+    if (dataPerhitungan && isPerhitunganSuccess) {
+      if (!isPerhitunganLoading) {
+        setDataCalculation(
+          dataPerhitungan &&
+            dataPerhitungan.datas &&
+            dataPerhitungan.datas.data &&
+            dataPerhitungan.datas.data.data_perhitungan,
+        );
+        dispatch(resetPerhitungan());
+      }
+    }
+  }, [dataPerhitungan, isPerhitunganSuccess, isPerhitunganLoading]);
+
+  const submitGroupPeriode = (e: any) => {
+    e.preventDefault();
+    const paramsObj: any = { periode_uuid, group_uuid, user_uuid, status_uuid };
+    const searchParams = new URLSearchParams(paramsObj);
+    dispatch(getPerhitunganByGroupPeriode(searchParams));
+  };
+
+  const clickClose = () => {
+    setIsView(false);
+    setDataCalculation([]);
+    setIdGroup("");
+    setIdPeriode("");
+    // setSelectForm('');
+  };
+
+  const downloadFile = async () => {
+    if (group_uuid !== "" && periode_uuid !== "") {
+      const paramsObj: any = {
+        periode_uuid,
+        group_uuid,
+        user_uuid,
+        status_uuid,
+      };
+      const searchParams = new URLSearchParams(paramsObj);
+      dispatch(
+        downloadPerhitunganByGroupPeriode({
+          searchParams,
+          name: "data perhitungan.xlsx",
+        }),
+      );
+    } else {
+      setMessage("group and periode cannot be null");
+    }
+  };
+
+  const handleChangeGroup = (e: any) => {
+    if (e.target.value !== "") {
+      setIdGroup(e.target.value);
+      setIsSelectName(true);
+      const paramsObj: any = { group_uuid: e.target.value };
+      dispatch(getSelectDatas(new URLSearchParams(paramsObj)));
+    } else {
+      setIdGroup("");
+      setDataSelectName([]);
+      setUserUuid("");
+      setIsSelectName(false);
+    }
+  };
+
+  const handleChangeName = (e: any) => {
+    if (e.target.value !== "") {
+      setUserUuid(e.target.value);
+      setStatusUuid("");
+      setIsSelectStatus(false);
+    } else {
+      setUserUuid("");
+      setIsSelectStatus(true);
+    }
+  };
+
+  const form = (
+    <div className={`box w-full p-4 ${isView ? "" : "hidden"}`}>
+      <form onSubmit={submitGroupPeriode}>
+        <div className={`grid grid-cols-12 gap-4 mt-5 gap-y-5`}>
+          <div className="col-span-12 intro-y sm:col-span-3">
+            <FormLabel htmlFor="name">Periode</FormLabel>
+            <FormSelect
+              formSelectSize="sm"
+              aria-label=".form-select-sm example"
+              name="isSelect"
+              value={periode_uuid}
+              onChange={(e) => setIdPeriode(e.target.value)}
+              required
+            >
+              <option value=""></option>
+              {dataPeriode.map((data: any, index: any) => (
+                <option key={index} value={data.uuid}>
+                  {data.name}
+                </option>
+              ))}
+            </FormSelect>
+          </div>
+          <div className="col-span-12 intro-y sm:col-span-3">
+            <FormLabel htmlFor="name">Group</FormLabel>
+            <FormSelect
+              formSelectSize="sm"
+              aria-label=".form-select-sm example"
+              name="isSelect"
+              value={group_uuid}
+              onChange={(e) => handleChangeGroup(e)}
+              required
+            >
+              <option value=""></option>
+              {dataGroup.map((data: any, index: any) => (
+                <option key={index} value={data.uuid}>
+                  {data.name}
+                </option>
+              ))}
+            </FormSelect>
+          </div>
+          <div className="col-span-12 intro-y sm:col-span-3">
+            <FormLabel htmlFor="name">Name</FormLabel>
+            <FormSelect
+              formSelectSize="sm"
+              aria-label=".form-select-sm example"
+              name="isSelect"
+              value={user_uuid}
+              onChange={(e) => handleChangeName(e)}
+              disabled={!is_select_name}
+            >
+              <option value=""></option>
+              {data_select_name.map((data: any, index: any) => (
+                <option key={index} value={data.uuid}>
+                  {data.name}
+                </option>
+              ))}
+            </FormSelect>
+          </div>
+          <div className="col-span-12 intro-y sm:col-span-3">
+            <FormLabel htmlFor="name">Status</FormLabel>
+            <FormSelect
+              formSelectSize="sm"
+              aria-label=".form-select-sm example"
+              name="isSelect"
+              value={status_uuid}
+              onChange={(e) => setStatusUuid(e.target.value)}
+              disabled={!is_select_status}
+            >
+              <option value=""></option>
+              {data_select_status.map((data: any, index: any) => (
+                <option key={index} value={data.uuid}>
+                  {data.name}
+                </option>
+              ))}
+            </FormSelect>
+          </div>
+          <div
+            className={`flex items-center justify-center col-span-12 mt-5 intro-y sm:justify-end`}
+          >
+            <Button
+              variant="secondary"
+              className="w-24"
+              size="sm"
+              type="button"
+              onClick={() => clickClose()}
+            >
+              Close
+            </Button>
+            <Button
+              variant="primary"
+              className={`w-36 ml-2`}
+              size="sm"
+              type="submit"
+            >
+              {isPerhitunganLoading ? (
+                <LoadingIcon
+                  icon="tail-spin"
+                  color="white"
+                  className="w-4 h-4"
+                />
+              ) : (
+                "View Calculate"
+              )}
+            </Button>
+            <Button
+              variant="primary"
+              className={`w-36 ml-2`}
+              size="sm"
+              type="button"
+              onClick={() => downloadFile()}
+            >
+              {isExportLoading ? (
+                <LoadingIcon
+                  icon="tail-spin"
+                  color="white"
+                  className="w-4 h-4"
+                />
+              ) : (
+                "Download Perhitungan"
+              )}
+            </Button>
+          </div>
         </div>
-    )
+      </form>
+    </div>
+  );
 
-    return {form, setIsView, isView, dataCalculation, message, setMessage}
-}
+  return { form, setIsView, isView, dataCalculation, message, setMessage };
+};
